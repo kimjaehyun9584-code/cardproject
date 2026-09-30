@@ -167,7 +167,7 @@ def write_report(path, p, customers, txns, n_months, meta):
     summary_rows = "".join(f"<tr><th>{esc(k)}</th><td>{esc(v)}</td></tr>" for k, v in summary.items())
 
     def fmt(v, kind):
-        return {"won": f"{v:,.0f}원", "count": f"{v:,.1f}건", "pct": f"{v:.1%}"}[kind]
+        return {"won": f"{v:,.0f}원", "count": f"{v:,.1f}건", "pct": f"{v:.1%}", "ratio": f"{v:.2f}"}[kind]
 
     bench_rows = ""
     for label, gen, tgt, kind in comparison_rows(customers, txns, n_months):
@@ -204,7 +204,7 @@ td.warn {{ background:var(--warn); }}
 <table>{summary_rows}</table>
 
 <h2>공개 통계 비교</h2>
-<p class="note">목표값은 data/reference/benchmarks.csv (여신금융협회 2025년 카드승인실적, 행정안전부 2025년 말 주민등록인구)에서 계산합니다. 수치는 보도 기사로 확인한 값이며, 차이가 ±15%를 넘는 칸은 노란색입니다.</p>
+<p class="note">목표값은 data/reference/benchmarks.csv (여신금융협회 2025년 카드승인실적, 행정안전부 2025년 말 주민등록인구, 한국은행 2024년 지급수단 이용행태 조사)에서 계산합니다. 수치는 보도 기사로 확인한 값이며, 차이가 ±15%를 넘는 칸은 노란색입니다.</p>
 <div class="scroll"><table><thead><tr><th>지표</th><th>생성 데이터</th><th>공개 통계</th><th>차이</th></tr></thead><tbody>{bench_rows}</tbody></table></div>
 
 <h2>검증 항목</h2>

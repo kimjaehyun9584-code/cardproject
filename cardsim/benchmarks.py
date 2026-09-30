@@ -13,6 +13,10 @@ AGE_BANDS = {"20s": "pop_share_20s", "30s": "pop_share_30s", "40s": "pop_share_4
              "50s": "pop_share_50s", "60s+": ("pop_share_60s", "pop_share_70plus")}
 
 
+BOK_TXN = {"20s": "bok_card_txn_20s", "30s": "bok_card_txn_30s", "40s": "bok_card_txn_40s",
+           "50s": "bok_card_txn_50s", "60s+": "bok_card_txn_60plus"}
+
+
 def load_benchmarks(path=None):
     df = pd.read_csv(path or DEFAULT_PATH)
     return dict(zip(df["metric_id"], df["값"])), df
@@ -42,6 +46,8 @@ def targets(b):
         # 체크카드는 사실상 개인카드뿐이라 개인카드 승인금액 대비로 본다 (4분기)
         "check_share": b["check_amount_q4"] / b["personal_amount_q4"],
         "age_share": age_share,
+        # 한국은행 조사의 연령별 월 카드 이용건수를 40대 대비 비율로 (설문이라 절대값은 쓰지 않음)
+        "age_intensity": {band: b[BOK_TXN[band]] / b[BOK_TXN["40s"]] for band in AGE_BANDS},
     }
 
 
@@ -50,6 +56,10 @@ def generated_metrics(customers, txns, n_months):
     n = len(customers)
     no_transit = orig[orig["category"] != "TRANSIT"]
     age = customers["age_band"].value_counts(normalize=True).to_dict()
+    # 연령대별 1인당 월 결제 건수 (대중교통 제외)
+    per_cust = no_transit.groupby("customer_id").size().reindex(customers["customer_id"], fill_value=0)
+    by_age = (per_cust.to_numpy() / n_months)
+    age_cnt = pd.Series(by_age, index=customers["age_band"].to_numpy()).groupby(level=0).mean()
     return {
         "monthly_spend_per_adult": orig["amount"].sum() / n / n_months,
         "monthly_count_per_adult": len(orig) / n / n_months,
@@ -58,6 +68,7 @@ def generated_metrics(customers, txns, n_months):
         "personal_ticket_ex_transit": no_transit["amount"].mean(),
         "check_share": orig.loc[orig["payment_type"] == "check", "amount"].sum() / orig["amount"].sum(),
         "age_share": {band: age.get(band, 0.0) for band in AGE_BANDS},
+        "age_intensity": {band: age_cnt.get(band, 0.0) / age_cnt.get("40s", float("nan")) for band in AGE_BANDS},
     }
 
 
@@ -74,4 +85,6 @@ def comparison_rows(customers, txns, n_months, path=None):
         ("체크카드 결제 비중 (금액)", g["check_share"], t["check_share"], "pct"),
     ]
     rows += [(f"연령 구성: {band}", g["age_share"][band], t["age_share"][band], "pct") for band in AGE_BANDS]
+    rows += [(f"이용 강도 (40대=1): {band}", g["age_intensity"][band], t["age_intensity"][band], "ratio")
+             for band in AGE_BANDS if band != "40s"]
     return rows
