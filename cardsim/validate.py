@@ -54,18 +54,22 @@ def run_checks(p, customers, txns, n_months):
     exp = expected_table(p)
     pc = per_customer_monthly(customers, txns, n_months)
 
-    # 세그먼트별 월 결제 횟수·사용액이 설계값(3.4.1)과 맞는지
+    # 세그먼트별 월 결제 횟수·사용액이 설계값(3.4.1)과 맞는지.
+    # 생성 로직을 검증하는 항목이라, 이미 뽑힌 고객의 활동성 계수 평균은 반영한다
+    # (고객 표본이 우연히 활발하게 뽑힌 것까지 로직 오류로 보지 않기 위해).
+    activity = customers.groupby("segment")["activity_factor"].mean()
+    autopay = {c for c in p["categories"] if p["ticket"][c].get("autopay")}
     for metric, idx, label, tol in (("count", 0, "월 결제 횟수", 0.05), ("spend", 1, "월 사용액", 0.05)):
         bad = []
         for s in p["segments"]:
             v = pc.loc[pc["segment"] == s, metric]
             if len(v) == 0:
                 continue
-            e = sum(x[idx] for x in exp[s].values())
+            e = sum(x[idx] * (1.0 if c in autopay else activity[s]) for c, x in exp[s].items())
             se = v.std(ddof=1) / np.sqrt(len(v)) if len(v) > 1 else 0.0
             if not _within(v.mean(), e, tol, se):
                 bad.append(f"{s}: {v.mean():,.1f} (설계 {e:,.1f})")
-        checks.append(Check(f"세그먼트별 {label} (설계값 ±5% 또는 표본오차 3배 이내)", not bad,
+        checks.append(Check(f"세그먼트별 {label} (설계값 ±5% 또는 표본오차 3배 이내, 활동성 계수 표본 평균 반영)", not bad,
                             "; ".join(bad) or "전 세그먼트 통과"))
 
     orig = txns[~txns["is_cancelled"]]

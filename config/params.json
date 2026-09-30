@@ -33,7 +33,7 @@
   "card_type": {
     "_section": "2.4",
     "has_credit_prob":  {"S1_STUDENT": 0.08, "S2_YOUNG_WORKER": 0.75, "S3_SINGLE_30S": 0.90, "S4_FAMILY_KIDS": 0.95, "S5_MIDDLE_AGE": 0.95, "S6_SELF_EMPLOYED": 0.90, "S7_SENIOR": 0.80},
-    "check_card_ratio": {"S1_STUDENT": 0.70, "S2_YOUNG_WORKER": 0.35, "S3_SINGLE_30S": 0.25, "S4_FAMILY_KIDS": 0.20, "S5_MIDDLE_AGE": 0.15, "S6_SELF_EMPLOYED": 0.15, "S7_SENIOR": 0.30}
+    "check_card_ratio": {"S1_STUDENT": 0.56, "S2_YOUNG_WORKER": 0.28, "S3_SINGLE_30S": 0.20, "S4_FAMILY_KIDS": 0.16, "S5_MIDDLE_AGE": 0.12, "S6_SELF_EMPLOYED": 0.12, "S7_SENIOR": 0.24}
   },
 
   "ticket": {
@@ -84,22 +84,22 @@
 
   "monthly_frequency": {
     "_section": "3.3 (세그먼트 순서: S1~S7)",
-    "ONLINE_SHOP":  [3, 8, 10, 12, 7, 7, 1.5],
-    "GROCERY":      [0.5, 2, 3, 5, 4, 4, 5],
-    "CONVENIENCE":  [8, 12, 9, 6, 6, 7, 4],
-    "CAFE":         [18, 22, 20, 14, 13, 14, 5],
-    "RESTAURANT":   [10, 12, 12, 10, 12, 14, 6],
-    "DELIVERY":     [3, 5, 6, 5, 3, 4, 0.5],
-    "TRANSIT":      [36, 50, 36, 18, 18, 10, 12],
-    "FUEL":         [2, 2, 2.5, 3, 3, 4, 2],
+    "ONLINE_SHOP":  [3, 8, 10, 12, 7, 7, 1.12],
+    "GROCERY":      [0.5, 2, 3, 5, 4, 4, 3.75],
+    "CONVENIENCE":  [8, 12, 9, 6, 6, 7, 3],
+    "CAFE":         [18, 22, 20, 14, 13, 14, 3.75],
+    "RESTAURANT":   [10, 12, 12, 10, 12, 14, 4.5],
+    "DELIVERY":     [3, 5, 6, 5, 3, 4, 0.38],
+    "TRANSIT":      [36, 50, 36, 18, 18, 10, 9],
+    "FUEL":         [2, 2, 2.5, 3, 3, 4, 1.5],
     "TELECOM":      [0.3, 1, 1, 1.5, 1.5, 1.5, 1],
-    "MEDICAL":      [0.8, 1, 1.2, 3, 2.5, 2, 5],
-    "EDUCATION":    [1, 1, 1, 1.5, 1.2, 1, 1],
-    "TRAVEL":       [0.25, 0.3, 0.5, 0.35, 0.35, 0.35, 0.15],
-    "CULTURE_OTT":  [2, 3, 3, 2, 1.5, 1, 0.5],
-    "DEPT_APPAREL": [0.4, 0.8, 1, 1.2, 1.2, 1.2, 0.6],
+    "MEDICAL":      [0.8, 1, 1.2, 3, 2.5, 2, 3.75],
+    "EDUCATION":    [1, 1, 1, 1.5, 1.2, 1, 0.75],
+    "TRAVEL":       [0.25, 0.3, 0.5, 0.35, 0.35, 0.35, 0.11],
+    "CULTURE_OTT":  [2, 3, 3, 2, 1.5, 1, 0.38],
+    "DEPT_APPAREL": [0.4, 0.8, 1, 1.2, 1.2, 1.2, 0.45],
     "UTILITY_INS":  [0, 0.7, 1.5, 2.5, 3, 3, 2.5],
-    "ETC":          [3, 4, 5, 5, 5, 10, 4]
+    "ETC":          [3, 4, 5, 5, 5, 10, 3]
   },
   "participation": {
     "_section": "3.3 † 이용자 비율",
