@@ -38,22 +38,22 @@
 
   "ticket": {
     "_section": "3.2",
-    "ONLINE_SHOP":  {"median": 45000,  "sigma": 0.8,  "channel": "online"},
+    "ONLINE_SHOP":  {"median": 45000,  "sigma": 0.8,  "channel": "online", "floor": 1000},
     "GROCERY":      {"median": 65000,  "sigma": 0.7,  "channel": "mixed"},
-    "CONVENIENCE":  {"median": 9000,   "sigma": 0.6,  "channel": "offline"},
+    "CONVENIENCE":  {"median": 9000,   "sigma": 0.6,  "channel": "offline", "floor": 1000},
     "CAFE":         {"mixture": "cafe", "channel": "offline"},
     "RESTAURANT":   {"mixture": "restaurant", "channel": "offline"},
     "DELIVERY":     {"median": 30000,  "sigma": 0.35, "channel": "online"},
-    "TRANSIT":      {"median": 1700,   "sigma": 0.15, "channel": "offline", "segment_multiplier": false},
+    "TRANSIT":      {"median": 1700,   "sigma": 0.15, "channel": "offline", "segment_multiplier": false, "floor": 1500},
     "FUEL":         {"median": 70000,  "sigma": 0.35, "channel": "offline"},
     "TELECOM":      {"median": 65000,  "sigma": 0.3,  "channel": "online", "segment_multiplier": false, "autopay": true},
-    "MEDICAL":      {"median": 25000,  "sigma": 0.8,  "channel": "offline"},
+    "MEDICAL":      {"median": 25000,  "sigma": 0.8,  "channel": "offline", "floor": 1000},
     "EDUCATION":    {"median": 300000, "sigma": 0.6,  "channel": "offline"},
     "TRAVEL":       {"median": 300000, "sigma": 0.9,  "channel": "online"},
     "CULTURE_OTT":  {"median": 15000,  "sigma": 0.5,  "channel": "online"},
     "DEPT_APPAREL": {"median": 110000, "sigma": 0.8,  "channel": "mixed"},
     "UTILITY_INS":  {"median": 80000,  "sigma": 0.7,  "channel": "online", "autopay": true, "excluded_from_performance": true},
-    "ETC":          {"median": 25000,  "sigma": 0.9,  "channel": "mixed"}
+    "ETC":          {"median": 25000,  "sigma": 0.9,  "channel": "mixed", "floor": 1000}
   },
 
   "segment_multiplier": {
@@ -77,7 +77,7 @@
       "_section": "3.2.3",
       "low":  {"median": 7000,  "sigma": 0.3, "segment_multiplier": false},
       "high": {"median": 26000, "sigma": 0.6, "segment_multiplier": true},
-      "floor": 0,
+      "floor": 3000,
       "low_share": {"S1_STUDENT": 0.75, "S2_YOUNG_WORKER": 0.45, "S3_SINGLE_30S": 0.40, "S4_FAMILY_KIDS": 0.30, "S5_MIDDLE_AGE": 0.30, "S6_SELF_EMPLOYED": 0.35, "S7_SENIOR": 0.40}
     }
   },

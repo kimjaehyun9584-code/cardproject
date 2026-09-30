@@ -68,6 +68,15 @@ def test_student_cafe_ticket_mostly_low_cost():
     assert 2000 <= cafe.median() <= 2700  # 설계서 3.2.2: 대학생 중위값 약 2,300원
 
 
+def test_category_floors(small):
+    _, _, txns = small
+    mins = txns.groupby("category")["amount"].min()
+    assert mins["TRANSIT"] >= 1500
+    assert mins["RESTAURANT"] >= 3000
+    for c in ("CONVENIENCE", "MEDICAL", "ONLINE_SHOP", "ETC"):
+        assert mins[c] >= 1000, c
+
+
 def test_season_factors_average_one():
     assert np.mean(season_factors(load_params())) == pytest.approx(1.0)
 

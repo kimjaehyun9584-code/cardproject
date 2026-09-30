@@ -6,6 +6,7 @@ from dataclasses import dataclass
 import numpy as np
 import pandas as pd
 
+from .benchmarks import comparison_rows
 from .expected import expected_table
 
 SEGMENT_LABELS = {
@@ -26,6 +27,16 @@ def _within(actual, expected, rel_tol, se):
     """±rel_tol 이내이거나, 표본오차(se)의 3배 이내면 통과."""
     diff = abs(actual - expected)
     return diff <= rel_tol * expected or diff <= 3 * se
+
+
+def category_floors(p):
+    floors = {}
+    for c in p["categories"]:
+        spec = p["ticket"][c]
+        f = p["mixtures"][spec["mixture"]]["floor"] if "mixture" in spec else spec.get("floor", 0)
+        if f:
+            floors[c] = f
+    return floors
 
 
 def per_customer_monthly(customers, txns, n_months):
@@ -63,10 +74,11 @@ def run_checks(p, customers, txns, n_months):
     checks.append(Check("거래 ID 중복 없음", txns["txn_id"].is_unique, f"{len(txns):,}건"))
     checks.append(Check("금액 > 0", bool((txns["amount"] > 0).all()), f"최소 {txns['amount'].min():,}원"))
 
-    cafe = orig.loc[orig["category"] == "CAFE", "amount"]
-    floor = p["mixtures"]["cafe"]["floor"]
-    checks.append(Check(f"카페 결제 {floor:,}원 이상 (3.2.2)", bool((cafe >= floor).all()),
-                        f"최소 {cafe.min():,}원" if len(cafe) else "카페 거래 없음"))
+    floors = category_floors(p)
+    mins = orig.groupby("category")["amount"].min()
+    below = [f"{c} {mins[c]:,}원 < {f:,}원" for c, f in floors.items() if c in mins and mins[c] < f]
+    checks.append(Check("업종별 최저 결제금액 미만 0건 (3.2)", not below,
+                        "; ".join(below) or ", ".join(f"{c} {f:,}원" for c, f in floors.items())))
 
     bad_inst = int(((txns["payment_type"] == "check") & (txns["installment_months"] > 0)).sum())
     checks.append(Check("체크카드 할부 거래 0건 (2.4)", bad_inst == 0, f"{bad_inst}건"))
@@ -150,6 +162,16 @@ def write_report(path, p, customers, txns, n_months, meta):
     }
     summary_rows = "".join(f"<tr><th>{esc(k)}</th><td>{esc(v)}</td></tr>" for k, v in summary.items())
 
+    def fmt(v, kind):
+        return {"won": f"{v:,.0f}원", "count": f"{v:,.1f}건", "pct": f"{v:.1%}"}[kind]
+
+    bench_rows = ""
+    for label, gen, tgt, kind in comparison_rows(customers, txns, n_months):
+        diff = gen / tgt - 1 if tgt else 0
+        cls = "warn" if abs(diff) > 0.15 else ""
+        bench_rows += (f"<tr><th>{esc(label)}</th><td>{fmt(gen, kind)}</td><td>{fmt(tgt, kind)}</td>"
+                       f"<td class='{cls}'>{diff:+.1%}</td></tr>")
+
     page = f"""<!doctype html>
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -172,10 +194,14 @@ td.warn {{ background:var(--warn); }}
 </style></head>
 <body><main>
 <h1>합성 데이터 검증 리포트</h1>
-<p class="note">설계서 docs/data_assumptions.md 의 가정값(보정 전)과 생성 결과를 비교합니다. 공개 통계와의 비교는 통계 수집 후 추가됩니다.</p>
+<p class="note">설계서 docs/data_assumptions.md 의 가정값과 생성 결과, 그리고 공개 통계를 비교합니다.</p>
 
 <h2>요약</h2>
 <table>{summary_rows}</table>
+
+<h2>공개 통계 비교</h2>
+<p class="note">목표값은 data/reference/benchmarks.csv (여신금융협회 2025년 카드승인실적, 행정안전부 2025년 말 주민등록인구)에서 계산합니다. 수치는 보도 기사로 확인한 값이며, 차이가 ±15%를 넘는 칸은 노란색입니다.</p>
+<div class="scroll"><table><thead><tr><th>지표</th><th>생성 데이터</th><th>공개 통계</th><th>차이</th></tr></thead><tbody>{bench_rows}</tbody></table></div>
 
 <h2>검증 항목</h2>
 <table class="checks"><thead><tr><th></th><th>항목</th><th>결과</th></tr></thead><tbody>{check_rows}</tbody></table>

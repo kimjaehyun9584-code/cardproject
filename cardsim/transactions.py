@@ -31,7 +31,8 @@ def sample_amounts(p, category, seg_rows, rng):
     mult = segment_multipliers(p, category)[seg_rows]
 
     if "mixture" not in spec:
-        return _round_won(_lognormal(rng, spec["median"] * mult, spec["sigma"], n))
+        amounts = _round_won(_lognormal(rng, spec["median"] * mult, spec["sigma"], n))
+        return np.maximum(amounts, spec.get("floor", 0))
 
     mix = p["mixtures"][spec["mixture"]]
     low_share = np.array([mix["low_share"][s] for s in p["segments"]])[seg_rows]

@@ -26,7 +26,7 @@ def mean_ticket(p, segment, category):
     spec = p["ticket"][category]
     mult = multiplier(p, segment, category)
     if "mixture" not in spec:
-        return lognormal_mean(spec["median"] * mult, spec["sigma"])
+        return lognormal_mean(spec["median"] * mult, spec["sigma"], spec.get("floor", 0))
     mix = p["mixtures"][spec["mixture"]]
     share = mix["low_share"][segment]
     means = {}
