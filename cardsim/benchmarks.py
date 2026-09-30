@@ -113,3 +113,31 @@ def comparison_rows(customers, txns, n_months, path=None):
     rows += [(f"이용 강도 (40대=1): {band}", g["age_intensity"][band], t["age_intensity"][band], "ratio", T["age_intensity"])
              for band in AGE_BANDS if band != "40s"]
     return rows
+
+
+# 여신금융협회 「월간 국내카드승인실적」(KOSIS)의 한국표준산업분류 대분류와 생성기 업종의 대응 (설계서 4.4).
+# 이 통계표에 없는 대분류(정보통신·금융보험·전기가스 등)에 해당하는 TELECOM, UTILITY_INS와
+# 여러 대분류에 걸친 ETC는 비교에서 뺀다. TRAVEL은 항공·숙박·여행사가 섞여 있지만 운수업에 넣는다.
+KSIC_MAP = {
+    "G": ("도매 및 소매업", ["ONLINE_SHOP", "GROCERY", "CONVENIENCE", "FUEL", "DEPT_APPAREL"]),
+    "H": ("운수업", ["TRANSIT", "TRAVEL"]),
+    "I": ("숙박 및 음식점업", ["CAFE", "RESTAURANT", "DELIVERY"]),
+    "P": ("교육서비스업", ["EDUCATION"]),
+    "Q": ("보건업 및 사회복지 서비스업", ["MEDICAL"]),
+    "R": ("예술 스포츠 및 여가관련 서비스업", ["CULTURE_OTT"]),
+}
+
+
+def industry_share_rows(txns, path=None):
+    """(대분류, 생성 데이터 금액 비중, 공개 통계 금액 비중). 대응되는 대분류끼리의 합을 100%로 본다.
+
+    공개 통계는 국내 승인만 집계하므로 생성 데이터도 해외 결제를 뺀다. 공개 통계는 법인카드를 포함하고
+    건수가 없어 업종별 건당 금액은 알 수 없다. 참고용으로만 쓴다.
+    """
+    b, _ = load_benchmarks(path)
+    dom = txns[~txns["is_cancelled"] & ~txns["is_overseas"]].groupby("category")["amount"].sum()
+    gen = {k: sum(dom.get(c, 0) for c in cats) for k, (_, cats) in KSIC_MAP.items()}
+    pub = {k: b[f"kosis_ksic_{k}_amount"] for k in KSIC_MAP}
+    g_tot, p_tot = sum(gen.values()), sum(pub.values())
+    return [(f"{k} {name} ({', '.join(cats)})", gen[k] / g_tot, pub[k] / p_tot)
+            for k, (name, cats) in KSIC_MAP.items()]

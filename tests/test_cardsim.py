@@ -97,3 +97,11 @@ def test_generated_totals_match_design():
     for s in p["segments"]:
         e_cnt = sum(v[0] for v in exp[s].values())
         assert g.loc[s, "size"] / n[s] / 12 == pytest.approx(e_cnt, rel=0.08), s
+
+
+def test_industry_shares_sum_to_one(small):
+    from cardsim.benchmarks import industry_share_rows
+    _, _, txns = small
+    rows = industry_share_rows(txns)
+    assert sum(g for _, g, _ in rows) == pytest.approx(1.0)
+    assert sum(p for _, _, p in rows) == pytest.approx(1.0)

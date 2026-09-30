@@ -6,7 +6,7 @@ from dataclasses import dataclass
 import numpy as np
 import pandas as pd
 
-from .benchmarks import comparison_rows, within
+from .benchmarks import comparison_rows, industry_share_rows, within
 from .expected import expected_table
 
 SEGMENT_LABELS = {
@@ -187,6 +187,10 @@ def write_report(path, p, customers, txns, n_months, meta):
         bench_rows += (f"<tr><th>{esc(label)}</th><td>{fmt(gen, kind)}</td><td>{fmt(tgt, kind)}</td>"
                        f"<td class='{cls}'>{diff:+.1%}</td><td>{tol_text(tol)}</td><td>{verdict}</td></tr>")
 
+    industry_rows = "".join(
+        f"<tr><th>{esc(label)}</th><td>{gen:.1%}</td><td>{pub:.1%}</td><td>{(gen - pub) * 100:+.1f}%p</td></tr>"
+        for label, gen, pub in industry_share_rows(txns))
+
     page = f"""<!doctype html>
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -217,6 +221,10 @@ td.warn {{ background:var(--warn); }}
 <h2>공개 통계 비교</h2>
 <p class="note">목표값은 data/reference/benchmarks.csv (여신금융협회 2025년 카드승인실적, 행정안전부 2025년 말 주민등록인구, 한국은행 2024년 지급수단 이용행태 조사)에서 계산합니다. 출처별 확인 방법은 CSV에 적혀 있습니다. 허용 범위는 지표마다 다르며(설계서 5장), 벗어난 칸은 노란색입니다.</p>
 <div class="scroll"><table><thead><tr><th>지표</th><th>생성 데이터</th><th>공개 통계</th><th>차이</th><th>허용 범위</th><th>판정</th></tr></thead><tbody>{bench_rows}</tbody></table></div>
+
+<h2>업종 대분류별 승인금액 비중 (참고)</h2>
+<p class="note">여신금융협회 「월간 국내카드승인실적」(KOSIS, 2025년 1~12월)의 한국표준산업분류 대분류별 승인금액과 비교합니다. 대응되는 대분류끼리의 합을 100%로 놓고, 생성 데이터는 해외 결제를 뺍니다. 공개 통계는 법인카드를 포함하고 승인건수가 없어 참고용이며 판정하지 않습니다 (설계서 4.4).</p>
+<div class="scroll"><table><thead><tr><th>대분류 (생성기 업종)</th><th>생성 데이터</th><th>공개 통계</th><th>차이</th></tr></thead><tbody>{industry_rows}</tbody></table></div>
 
 <h2>검증 항목</h2>
 <table class="checks"><thead><tr><th></th><th>항목</th><th>결과</th></tr></thead><tbody>{check_rows}</tbody></table>
