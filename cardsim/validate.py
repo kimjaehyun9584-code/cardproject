@@ -6,7 +6,7 @@ from dataclasses import dataclass
 import numpy as np
 import pandas as pd
 
-from .benchmarks import comparison_rows
+from .benchmarks import comparison_rows, within
 from .expected import expected_table
 
 SEGMENT_LABELS = {
@@ -169,12 +169,23 @@ def write_report(path, p, customers, txns, n_months, meta):
     def fmt(v, kind):
         return {"won": f"{v:,.0f}원", "count": f"{v:,.1f}건", "pct": f"{v:.1%}", "ratio": f"{v:.2f}"}[kind]
 
+    def tol_text(tol):
+        if tol is None:
+            return "참고"
+        kind, x = tol
+        return {"rel": f"±{x:.0%}", "pp": f"±{x * 100:.0f}%p", "abs": f"±{x:.2f}"}[kind]
+
     bench_rows = ""
-    for label, gen, tgt, kind in comparison_rows(customers, txns, n_months):
+    for label, gen, tgt, kind, tol in comparison_rows(customers, txns, n_months):
         diff = gen / tgt - 1 if tgt else 0
-        cls = "warn" if abs(diff) > 0.15 else ""
+        if tol is None:
+            verdict, cls = "", ""
+        elif within(gen, tgt, tol):
+            verdict, cls = "✅", ""
+        else:
+            verdict, cls = "⚠️", "warn"
         bench_rows += (f"<tr><th>{esc(label)}</th><td>{fmt(gen, kind)}</td><td>{fmt(tgt, kind)}</td>"
-                       f"<td class='{cls}'>{diff:+.1%}</td></tr>")
+                       f"<td class='{cls}'>{diff:+.1%}</td><td>{tol_text(tol)}</td><td>{verdict}</td></tr>")
 
     page = f"""<!doctype html>
 <html lang="ko"><head><meta charset="utf-8">
@@ -204,8 +215,8 @@ td.warn {{ background:var(--warn); }}
 <table>{summary_rows}</table>
 
 <h2>공개 통계 비교</h2>
-<p class="note">목표값은 data/reference/benchmarks.csv (여신금융협회 2025년 카드승인실적, 행정안전부 2025년 말 주민등록인구, 한국은행 2024년 지급수단 이용행태 조사)에서 계산합니다. 수치는 보도 기사로 확인한 값이며, 차이가 ±15%를 넘는 칸은 노란색입니다.</p>
-<div class="scroll"><table><thead><tr><th>지표</th><th>생성 데이터</th><th>공개 통계</th><th>차이</th></tr></thead><tbody>{bench_rows}</tbody></table></div>
+<p class="note">목표값은 data/reference/benchmarks.csv (여신금융협회 2025년 카드승인실적, 행정안전부 2025년 말 주민등록인구, 한국은행 2024년 지급수단 이용행태 조사)에서 계산합니다. 출처별 확인 방법은 CSV에 적혀 있습니다. 허용 범위는 지표마다 다르며(설계서 5장), 벗어난 칸은 노란색입니다.</p>
+<div class="scroll"><table><thead><tr><th>지표</th><th>생성 데이터</th><th>공개 통계</th><th>차이</th><th>허용 범위</th><th>판정</th></tr></thead><tbody>{bench_rows}</tbody></table></div>
 
 <h2>검증 항목</h2>
 <table class="checks"><thead><tr><th></th><th>항목</th><th>결과</th></tr></thead><tbody>{check_rows}</tbody></table>

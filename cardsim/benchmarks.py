@@ -48,6 +48,7 @@ def targets(b):
         "age_share": age_share,
         # 한국은행 조사의 연령별 월 카드 이용건수를 40대 대비 비율로 (설문이라 절대값은 쓰지 않음)
         "age_intensity": {band: b[BOK_TXN[band]] / b[BOK_TXN["40s"]] for band in AGE_BANDS},
+        "online_share_count": b["bok_card_txn_online_share"] / 100,
     }
 
 
@@ -67,24 +68,48 @@ def generated_metrics(customers, txns, n_months):
         "personal_ticket": orig["amount"].mean(),
         "personal_ticket_ex_transit": no_transit["amount"].mean(),
         "check_share": orig.loc[orig["payment_type"] == "check", "amount"].sum() / orig["amount"].sum(),
+        "online_share_count_ex_transit": (no_transit["channel"] == "online").mean(),
         "age_share": {band: age.get(band, 0.0) for band in AGE_BANDS},
         "age_intensity": {band: age_cnt.get(band, 0.0) / age_cnt.get("40s", float("nan")) for band in AGE_BANDS},
     }
 
 
+# 허용 범위 (설계서 5장). ("rel", x): 상대 오차 ±x, ("pp", x): 비중 차이 ±x (%p), ("abs", x): 절대 차이 ±x.
+# 정의가 거의 같고 시뮬레이터 결과에 직접 영향을 주는 지표는 좁게, 설문 기반이거나 정의 차이가 있는 지표는 넓게 잡는다.
+TOLERANCE = {
+    "spend": ("rel", 0.10),
+    "count": ("rel", 0.10),
+    "ticket": ("rel", 0.10),
+    "check": ("pp", 0.03),
+    "online": ("pp", 0.05),
+    "age_share": ("pp", 0.02),
+    "age_intensity": ("abs", 0.10),
+}
+
+
+def within(actual, target, tol):
+    kind, x = tol
+    if kind == "rel":
+        return abs(actual / target - 1) <= x
+    return abs(actual - target) <= x
+
+
 def comparison_rows(customers, txns, n_months, path=None):
+    """(지표, 생성값, 목표값, 표시 형식, 허용 범위 또는 None) 목록. None은 참고용."""
     b, _ = load_benchmarks(path)
     t = targets(b)
     g = generated_metrics(customers, txns, n_months)
+    T = TOLERANCE
     rows = [
-        ("20세 이상 1인당 월 카드 사용액", g["monthly_spend_per_adult"], t["monthly_spend_per_adult"], "won"),
-        ("20세 이상 1인당 월 결제 건수", g["monthly_count_per_adult"], t["monthly_count_per_adult"], "count"),
-        ("  └ 대중교통 제외", g["monthly_count_per_adult_ex_transit"], t["monthly_count_per_adult"], "count"),
-        ("개인카드 건당 평균 결제금액", g["personal_ticket"], t["personal_ticket"], "won"),
-        ("  └ 대중교통 제외", g["personal_ticket_ex_transit"], t["personal_ticket"], "won"),
-        ("체크카드 결제 비중 (금액)", g["check_share"], t["check_share"], "pct"),
+        ("20세 이상 1인당 월 카드 사용액", g["monthly_spend_per_adult"], t["monthly_spend_per_adult"], "won", T["spend"]),
+        ("20세 이상 1인당 월 결제 건수 (참고: 대중교통 포함)", g["monthly_count_per_adult"], t["monthly_count_per_adult"], "count", None),
+        ("20세 이상 1인당 월 결제 건수 (대중교통 제외)", g["monthly_count_per_adult_ex_transit"], t["monthly_count_per_adult"], "count", T["count"]),
+        ("개인카드 건당 평균 결제금액 (참고: 대중교통 포함)", g["personal_ticket"], t["personal_ticket"], "won", None),
+        ("개인카드 건당 평균 결제금액 (대중교통 제외)", g["personal_ticket_ex_transit"], t["personal_ticket"], "won", T["ticket"]),
+        ("체크카드 결제 비중 (금액)", g["check_share"], t["check_share"], "pct", T["check"]),
+        ("온라인 결제 비중 (건수, 대중교통 제외)", g["online_share_count_ex_transit"], t["online_share_count"], "pct", T["online"]),
     ]
-    rows += [(f"연령 구성: {band}", g["age_share"][band], t["age_share"][band], "pct") for band in AGE_BANDS]
-    rows += [(f"이용 강도 (40대=1): {band}", g["age_intensity"][band], t["age_intensity"][band], "ratio")
+    rows += [(f"연령 구성: {band}", g["age_share"][band], t["age_share"][band], "pct", T["age_share"]) for band in AGE_BANDS]
+    rows += [(f"이용 강도 (40대=1): {band}", g["age_intensity"][band], t["age_intensity"][band], "ratio", T["age_intensity"])
              for band in AGE_BANDS if band != "40s"]
     return rows
