@@ -1,0 +1,145 @@
+{
+  "_doc": "docs/data_assumptions.md v1.0 의 가정값. 섹션 번호는 설계서 기준.",
+  "segments": ["S1_STUDENT", "S2_YOUNG_WORKER", "S3_SINGLE_30S", "S4_FAMILY_KIDS", "S5_MIDDLE_AGE", "S6_SELF_EMPLOYED", "S7_SENIOR"],
+  "categories": ["ONLINE_SHOP", "GROCERY", "CONVENIENCE", "CAFE", "RESTAURANT", "DELIVERY", "TRANSIT", "FUEL", "TELECOM", "MEDICAL", "EDUCATION", "TRAVEL", "CULTURE_OTT", "DEPT_APPAREL", "UTILITY_INS", "ETC"],
+
+  "segment_share": {"S1_STUDENT": 0.08, "S2_YOUNG_WORKER": 0.17, "S3_SINGLE_30S": 0.13, "S4_FAMILY_KIDS": 0.22, "S5_MIDDLE_AGE": 0.20, "S6_SELF_EMPLOYED": 0.08, "S7_SENIOR": 0.12},
+
+  "segment_profile": {
+    "_section": "2.1, 2.5",
+    "S1_STUDENT":       {"age_band": {"20s": 1.0}, "household": {"single": 1.0}, "income_band": {"Q1": 0.7, "Q2": 0.3},
+                         "online_ratio": 0.50, "installment_propensity": 0.05, "overseas_propensity": 0.05},
+    "S2_YOUNG_WORKER":  {"age_band": {"20s": 0.6, "30s": 0.4}, "household": {"single": 0.85, "couple": 0.15}, "income_band": {"Q2": 0.4, "Q3": 0.45, "Q4": 0.15},
+                         "online_ratio": 0.50, "installment_propensity": 0.15, "overseas_propensity": 0.06},
+    "S3_SINGLE_30S":    {"age_band": {"30s": 1.0}, "household": {"single": 1.0}, "income_band": {"Q2": 0.2, "Q3": 0.4, "Q4": 0.3, "Q5": 0.1},
+                         "online_ratio": 0.45, "installment_propensity": 0.15, "overseas_propensity": 0.10},
+    "S4_FAMILY_KIDS":   {"age_band": {"30s": 0.4, "40s": 0.6}, "household": {"with_kids": 1.0}, "income_band": {"Q2": 0.1, "Q3": 0.3, "Q4": 0.35, "Q5": 0.25},
+                         "online_ratio": 0.40, "installment_propensity": 0.30, "overseas_propensity": 0.04},
+    "S5_MIDDLE_AGE":    {"age_band": {"40s": 0.4, "50s": 0.6}, "household": {"couple": 0.5, "with_kids": 0.5}, "income_band": {"Q2": 0.1, "Q3": 0.3, "Q4": 0.35, "Q5": 0.25},
+                         "online_ratio": 0.30, "installment_propensity": 0.20, "overseas_propensity": 0.04},
+    "S6_SELF_EMPLOYED": {"age_band": {"40s": 0.5, "50s": 0.5}, "household": {"couple": 0.5, "with_kids": 0.5}, "income_band": {"Q1": 0.15, "Q2": 0.2, "Q3": 0.25, "Q4": 0.2, "Q5": 0.2},
+                         "online_ratio": 0.30, "installment_propensity": 0.20, "overseas_propensity": 0.04},
+    "S7_SENIOR":        {"age_band": {"60s+": 1.0}, "household": {"single": 0.35, "couple": 0.65}, "income_band": {"Q1": 0.45, "Q2": 0.3, "Q3": 0.15, "Q4": 0.1},
+                         "online_ratio": 0.15, "installment_propensity": 0.10, "overseas_propensity": 0.03}
+  },
+  "propensity_beta_concentration": 10,
+
+  "individual_variation": {
+    "_section": "2.3",
+    "activity_sigma": 0.4,
+    "taste_gamma_shape": 2.0
+  },
+
+  "card_type": {
+    "_section": "2.4",
+    "has_credit_prob":  {"S1_STUDENT": 0.08, "S2_YOUNG_WORKER": 0.75, "S3_SINGLE_30S": 0.90, "S4_FAMILY_KIDS": 0.95, "S5_MIDDLE_AGE": 0.95, "S6_SELF_EMPLOYED": 0.90, "S7_SENIOR": 0.80},
+    "check_card_ratio": {"S1_STUDENT": 0.70, "S2_YOUNG_WORKER": 0.35, "S3_SINGLE_30S": 0.25, "S4_FAMILY_KIDS": 0.20, "S5_MIDDLE_AGE": 0.15, "S6_SELF_EMPLOYED": 0.15, "S7_SENIOR": 0.30}
+  },
+
+  "ticket": {
+    "_section": "3.2",
+    "ONLINE_SHOP":  {"median": 45000,  "sigma": 0.8,  "channel": "online"},
+    "GROCERY":      {"median": 65000,  "sigma": 0.7,  "channel": "mixed"},
+    "CONVENIENCE":  {"median": 9000,   "sigma": 0.6,  "channel": "offline"},
+    "CAFE":         {"mixture": "cafe", "channel": "offline"},
+    "RESTAURANT":   {"mixture": "restaurant", "channel": "offline"},
+    "DELIVERY":     {"median": 30000,  "sigma": 0.35, "channel": "online"},
+    "TRANSIT":      {"median": 1700,   "sigma": 0.15, "channel": "offline", "segment_multiplier": false},
+    "FUEL":         {"median": 70000,  "sigma": 0.35, "channel": "offline"},
+    "TELECOM":      {"median": 65000,  "sigma": 0.3,  "channel": "online", "segment_multiplier": false, "autopay": true},
+    "MEDICAL":      {"median": 25000,  "sigma": 0.8,  "channel": "offline"},
+    "EDUCATION":    {"median": 300000, "sigma": 0.6,  "channel": "offline"},
+    "TRAVEL":       {"median": 300000, "sigma": 0.9,  "channel": "online"},
+    "CULTURE_OTT":  {"median": 15000,  "sigma": 0.5,  "channel": "online"},
+    "DEPT_APPAREL": {"median": 110000, "sigma": 0.8,  "channel": "mixed"},
+    "UTILITY_INS":  {"median": 80000,  "sigma": 0.7,  "channel": "online", "autopay": true, "excluded_from_performance": true},
+    "ETC":          {"median": 25000,  "sigma": 0.9,  "channel": "mixed"}
+  },
+
+  "segment_multiplier": {
+    "_section": "3.2.1",
+    "S1_STUDENT": 0.65, "S2_YOUNG_WORKER": 1.0, "S3_SINGLE_30S": 1.1, "S4_FAMILY_KIDS": 1.15, "S5_MIDDLE_AGE": 1.15, "S6_SELF_EMPLOYED": 1.2, "S7_SENIOR": 0.9
+  },
+  "segment_multiplier_override": {
+    "_section": "3.2.1 예외",
+    "S1_STUDENT": {"CONVENIENCE": 0.45}
+  },
+
+  "mixtures": {
+    "cafe": {
+      "_section": "3.2.2",
+      "low":  {"median": 2000, "sigma": 0.25, "segment_multiplier": false},
+      "high": {"median": 5500, "sigma": 0.45, "segment_multiplier": false},
+      "floor": 1700,
+      "low_share": {"S1_STUDENT": 0.70, "S2_YOUNG_WORKER": 0.50, "S3_SINGLE_30S": 0.40, "S4_FAMILY_KIDS": 0.35, "S5_MIDDLE_AGE": 0.35, "S6_SELF_EMPLOYED": 0.40, "S7_SENIOR": 0.30}
+    },
+    "restaurant": {
+      "_section": "3.2.3",
+      "low":  {"median": 7000,  "sigma": 0.3, "segment_multiplier": false},
+      "high": {"median": 26000, "sigma": 0.6, "segment_multiplier": true},
+      "floor": 0,
+      "low_share": {"S1_STUDENT": 0.75, "S2_YOUNG_WORKER": 0.45, "S3_SINGLE_30S": 0.40, "S4_FAMILY_KIDS": 0.30, "S5_MIDDLE_AGE": 0.30, "S6_SELF_EMPLOYED": 0.35, "S7_SENIOR": 0.40}
+    }
+  },
+
+  "monthly_frequency": {
+    "_section": "3.3 (세그먼트 순서: S1~S7)",
+    "ONLINE_SHOP":  [3, 8, 10, 12, 7, 7, 1.5],
+    "GROCERY":      [0.5, 2, 3, 5, 4, 4, 5],
+    "CONVENIENCE":  [8, 12, 9, 6, 6, 7, 4],
+    "CAFE":         [18, 22, 20, 14, 13, 14, 5],
+    "RESTAURANT":   [10, 12, 12, 10, 12, 14, 6],
+    "DELIVERY":     [3, 5, 6, 5, 3, 4, 0.5],
+    "TRANSIT":      [36, 50, 36, 18, 18, 10, 12],
+    "FUEL":         [2, 2, 2.5, 3, 3, 4, 2],
+    "TELECOM":      [0.3, 1, 1, 1.5, 1.5, 1.5, 1],
+    "MEDICAL":      [0.8, 1, 1.2, 3, 2.5, 2, 5],
+    "EDUCATION":    [1, 1, 1, 1.5, 1.2, 1, 1],
+    "TRAVEL":       [0.25, 0.3, 0.5, 0.35, 0.35, 0.35, 0.15],
+    "CULTURE_OTT":  [2, 3, 3, 2, 1.5, 1, 0.5],
+    "DEPT_APPAREL": [0.4, 0.8, 1, 1.2, 1.2, 1.2, 0.6],
+    "UTILITY_INS":  [0, 0.7, 1.5, 2.5, 3, 3, 2.5],
+    "ETC":          [3, 4, 5, 5, 5, 10, 4]
+  },
+  "participation": {
+    "_section": "3.3 † 이용자 비율",
+    "FUEL":      [0.02, 0.15, 0.40, 0.85, 0.85, 0.85, 0.45],
+    "EDUCATION": [0.10, 0.15, 0.15, 0.75, 0.35, 0.25, 0.05]
+  },
+
+  "seasonality": {
+    "_section": "3.5 (연평균 1.0이 되도록 코드에서 정규화)",
+    "factors": [1.00, 0.95, 0.97, 0.98, 1.03, 0.98, 1.05, 1.07, 1.02, 1.00, 1.03, 1.12]
+  },
+
+  "timing": {
+    "_section": "3.4 일시",
+    "weekend_weight": {"RESTAURANT": 1.4, "TRAVEL": 1.5, "DEPT_APPAREL": 1.4, "CAFE": 1.1, "TRANSIT": 0.5, "EDUCATION": 0.6},
+    "hour_profile": {
+      "CAFE":       [[8, 10, 3], [12, 14, 4], [14, 18, 2], [18, 21, 1]],
+      "RESTAURANT": [[11, 14, 4], [17, 21, 4], [21, 24, 1]],
+      "DELIVERY":   [[11, 14, 2], [17, 22, 5], [22, 24, 2]],
+      "TRANSIT":    [[6, 9, 5], [9, 17, 2], [17, 20, 5], [20, 24, 1]],
+      "CONVENIENCE":[[0, 6, 1], [7, 10, 2], [10, 18, 2], [18, 24, 3]],
+      "_default":   [[9, 12, 2], [12, 18, 3], [18, 22, 3], [22, 24, 1]]
+    }
+  },
+
+  "installment": {
+    "_section": "3.6",
+    "min_amount": 50000,
+    "category_weight": {"DEPT_APPAREL": 2.0, "EDUCATION": 1.5, "TRAVEL": 2.0, "ONLINE_SHOP": 1.5, "GROCERY": 0.5, "FUEL": 0.3, "MEDICAL": 1.0, "ETC": 1.0, "RESTAURANT": 0.3},
+    "months": [2, 3, 6, 10, 12],
+    "months_prob": [0.30, 0.35, 0.20, 0.08, 0.07]
+  },
+  "overseas": {
+    "_section": "3.6",
+    "category_weight": {"TRAVEL": 3.0, "ONLINE_SHOP": 1.0, "RESTAURANT": 0.3}
+  },
+  "cancel": {
+    "_section": "3.6",
+    "rate": 0.015,
+    "delay_days": [1, 7],
+    "exclude_categories": ["TELECOM", "UTILITY_INS", "TRANSIT"]
+  }
+}
