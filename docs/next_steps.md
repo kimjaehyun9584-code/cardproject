@@ -22,6 +22,9 @@
 
 ## 네트워크·API 메모
 - 허용됨: www.bok.or.kr, file-cdn.bok.or.kr(`curl --http1.1` 필요), ecos.bok.or.kr, kosis.kr(OpenAPI만), www.data.go.kr, jumin.mois.go.kr
+- 허용됨 (2026-10-02 추가): card.kbcard.com, www.shinhancard.com, www.samsungcard.com, www.hyundaicard.com, www.bccard.com, www.banksalad.com, v.daum.net
+  - 뱅크샐러드 상품 페이지(`/product/cards/CARD000004` 형식)의 `__NEXT_DATA__`에 상품 조건이 구조화되어 있음. 목록 페이지는 없어 검색으로 상품 ID를 찾음
+  - card-gorilla.com은 www.card-gorilla.com으로 리다이렉트되는데 www는 아직 허용 안 됨
 - 안 됨: www.crefia.or.kr(사이트가 연결을 끊음), KOSIS 통계표 화면(sso.kosis.kr 로그인 경유)
 - KOSIS OpenAPI는 환경 변수 `KOSIS_API_KEY` 사용 (키 값은 로그·파일·커밋에 남기지 않기). 가끔 연결이 끊겨서 `curl --retry 5 --retry-all-errors` 권장
   - 메타 조회: `statisticsData.do?method=getMeta&type=ITM&...&orgId=435&tblId=DT_435001N_001`

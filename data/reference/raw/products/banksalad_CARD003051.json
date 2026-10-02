@@ -1,0 +1,169 @@
+{
+ "_source": "https://www.banksalad.com/product/cards/CARD003051",
+ "_downloaded": "2026-10-02",
+ "card": {
+  "productGuid": "CARD003051",
+  "organization": {
+   "guid": "CRD0002",
+   "name": "삼성카드",
+   "logoImageUrl": "https://cdn.banksalad.com/graphic/color/logo/circle/samsungcard.png",
+   "industryEnum": "INDUSTRY_CARD",
+   "objectid": "5880ec0575c8e8fbdc00acea",
+   "subIndustryEnum": "SUB_INDUSTRY_UNSET",
+   "mydatacenterOrganizationCode": "D1AAEV0000"
+  },
+  "name": "삼성카드 taptap O",
+  "catchphrase": "다양한 혜택이 한장에! 믿고 선택하는 알짜카드",
+  "cardTypeEnum": "CARD_TYPE_CREDIT",
+  "isPremiumCard": false,
+  "isStopped": false,
+  "isContracted": false,
+  "imageUrl": "https://financialshopping-cdn.banksalad.com/samsung_taptap_O_card_ccf6f293c0.png",
+  "shouldDisplayImageVertically": true,
+  "annualCosts": [
+   {
+    "brandName": "MASTER",
+    "amountKrw0f": "10000"
+   },
+   {
+    "brandName": "국내전용",
+    "amountKrw0f": "10000"
+   }
+  ],
+  "majorBenefits": [
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/red_store_c484d33818.png",
+    "text": "커피·쇼핑 최대 50%"
+   },
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/bus_3f92db0b67.png",
+    "text": "대중교통 10%"
+   },
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/phone_wifi_b047a82a70.png",
+    "text": "통신 10%"
+   },
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/film_reel_31197b89aa.png",
+    "text": "영화 5천원 할인"
+   }
+  ],
+  "minimumPreviousMonthPaymentAmountKrw0f": "300000",
+  "prevMonthPaymentAmountKrw0fOptions": [
+   "300000"
+  ],
+  "chartBenefits": [
+   {
+    "id": "4974047",
+    "title": "라이프스타일 패키지",
+    "summary": "스타벅스 · 쿠팡 · 올리브영 등 할인 · 적립",
+    "description": "<ul><li>라이프스타일에 따른 옵션 패키지 선택 시 업종별 결제일할인(청구할인) 또는 빅포인트 적립</li></ul><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\">구분(택1)</th><th style=\"text-align:center;\">커피</th><th style=\"text-align:center;\" colspan=\"3\">쇼핑</th></tr></thead><tbody><tr><td style=\"text-align:center;\">패키지1</td><td style=\"text-align:center;\">스타벅스 50% 할인</td><td style=\"text-align:center;\">오픈마켓 7% 할인</td><td style=\"text-align:center;\">소셜커머스 1% 적립</td><td style=\"text-align:center;\">트렌디숍 1% 적립</td></tr><tr><td style=\"text-align:center;\">패키지2</td><td style=\"text-align:center;\">스타벅스 50% 할인</td><td style=\"text-align:center;\">소셜커머스 7% 할인</td><td style=\"text-align:center;\">오픈마켓 1% 적립</td><td style=\"text-align:center;\">트렌디숍 1% 적립</td></tr><tr><td style=\"text-align:center;\">패키지3</td><td style=\"text-align:center;\">스타벅스 50% 할인</td><td style=\"text-align:center;\">트렌디숍 7% 할인</td><td style=\"text-align:center;\">오픈마켓 1% 적립</td><td style=\"text-align:center;\">소셜커머스 1% 적립</td></tr><tr><td style=\"text-align:center;\">패키지4</td><td style=\"text-align:center;\">커피전문점 30% 할인</td><td style=\"text-align:center;\">오픈마켓 7% 할인</td><td style=\"text-align:center;\">소셜커머스 1% 적립</td><td style=\"text-align:center;\">트렌디숍 1% 적립</td></tr><tr><td style=\"text-align:center;\">패키지5</td><td style=\"text-align:center;\">커피전문점 30% 할인</td><td style=\"text-align:center;\">소셜커머스 7% 할인</td><td style=\"text-align:center;\">오픈마켓 1% 적립</td><td style=\"text-align:center;\">트렌디숍 1% 적립</td></tr><tr><td style=\"text-align:center;\">패키지6</td><td style=\"text-align:center;\">커피전문점 30% 할인</td><td style=\"text-align:center;\">트렌디숍 7% 할인</td><td style=\"text-align:center;\">오픈마켓 1% 적립</td><td style=\"text-align:center;\">소셜커머스 1% 적립</td></tr></tbody></table></figure><p>&nbsp;</p><ul><li>이용방법<ul><li>삼성카드 앱을 통해 매월 옵션 패키지 변경 가능</li><li>변경 신청 다음 달1일에 자동 반영</li></ul></li><li>이용조건<ul><li>할인 : 쇼핑 업종 월 5,000원, 커피 업종 월 10,000원</li><li>적립 : 없음</li></ul></li><li>실적조건<ul><li>할인 : 전월 일시불 및 할부 이용금액 30만원 이상 시 제공</li><li>적립 : 없음&nbsp;</li></ul></li></ul>",
+    "grades": [],
+    "canToggleBenefitCalculation": false,
+    "altTextForToggleButton": "최대 50% 할인",
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/red_store_circle_55ffce00f1.png",
+    "bdsIconName": "red-store",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4974048",
+    "title": "대중교통",
+    "summary": "버스, 지하철, 택시 10% 청구할인",
+    "description": "<figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\">조건</th><th style=\"text-align:center;\">혜택</th><th style=\"text-align:center;\">한도</th></tr></thead><tbody><tr><td style=\"text-align:center;\">전월 실적 30만원 이상 시</td><td style=\"text-align:center;\">청구할인 10% 청구할인</td><td style=\"text-align:center;\">월 최대 5천원 한도</td></tr></tbody></table></figure><p>&nbsp;</p><ul><li>대상 가맹점: 버스, 지하철, 택시<ul><li>후불교통기능 선택 시 제공되며, 시외·고속버스 제외<br>&nbsp;</li></ul></li><li>발급월+1개월까지는 전월 이용금액에 관계없이 제공</li><li>모바일티머니, 캐시비와 통합 선불카드의 충전금액은 교통할인 서비스 대상에 포함되지 않습니다.</li><li>해당 카드 이용 시 카드 혜택 외 삼성카드의 다른 할인 및 적립 혜택은 제공되지 않습니다.</li><li>할인이 적용된 이용금액 등에 대해서는 포인트가 적립되지 않습니다.</li><li>무이자할부 이용 시 할인 혜택은 적용되지 않습니다.</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "300000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "altTextForToggleButton": "10% 할인",
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/bus_circle_edebbddf34.png",
+    "bdsIconName": "bus",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4974049",
+    "title": "통신",
+    "summary": "SKT · KT · LG U+ 10% 청구할인",
+    "description": "<figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\">조건</th><th style=\"text-align:center;\">혜택</th><th style=\"text-align:center;\">한도</th></tr></thead><tbody><tr><td style=\"text-align:center;\">전월 실적 30만원 이상 시</td><td style=\"text-align:center;\">청구할인 10% 청구할인</td><td style=\"text-align:center;\">월 최대 5천원 한도</td></tr></tbody></table></figure><p><br>&nbsp;</p><ul><li>대상 가맹점 : SK텔레콤, KT, LG유플러스<ul><li>SKT·KT·LG U+ 이동통신요금 자동납부 시 10% 결제일할인(청구할인)<br>&nbsp;</li></ul></li><li>발급월+1개월까지는 전월 이용금액에 관계없이 제공(카드 자동납부 연결 필수)</li><li>결합상품요금, 휴대전화 단말기 구매금액 및 대리점 카드 결제 건은 제외됩니다.</li><li>해당 카드 이용 시 카드 혜택 외 삼성카드의 다른 할인 및 적립 혜택은 제공되지 않습니다.</li><li>할인이 적용된 이용금액 등에 대해서는 포인트가 적립되지 않습니다.</li><li>무이자할부 이용 시 할인 혜택은 적용되지 않습니다.</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "300000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "altTextForToggleButton": "10% 할인",
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/phone_wifi_circle_a640350a8f.png",
+    "bdsIconName": "phone-wifi",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4974050",
+    "title": "영화/문화",
+    "summary": "CGV · 롯데시네마 5천원 청구할인",
+    "description": "<figure class=\"table\"><table><thead><tr><th>조건</th><th>혜택</th><th>한도</th></tr></thead><tbody><tr><td style=\"text-align:center;\">1만원 이상 결제 시<br>전월 실적 30만원 이상 시</td><td style=\"text-align:center;\">청구할인 5천원 청구할인</td><td style=\"text-align:center;\">일 1회 한도<br>월 2회 한도<br>연 12회 한도</td></tr></tbody></table></figure><ul><li>대상 가맹점 : CGV, 롯데시네마</li><li>발급월+1개월까지는 전월 이용금액에 관계없이 제공(연 12회 이용한도에 포함)</li><li>현장 결제, 공식 홈페이지 및 App을 통한 온라인 예매 시 제공됩니다.</li><li>예매 대행 사이트 이용 시 할인이 적용되지 않습니다.</li><li>해당 카드 이용 시 카드 혜택 외 삼성카드의 다른 할인 및 적립 혜택은 제공되지 않습니다.</li><li>할인이 적용된 이용금액 등에 대해서는 포인트가 적립되지 않습니다.</li><li>무이자할부 이용 시 할인 혜택은 적용되지 않습니다.</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "300000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "altTextForToggleButton": "5천원 할인",
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/film_reel_circle_12f75640fa.png",
+    "bdsIconName": "film-reel",
+    "isExtraBenefit": false
+   }
+  ],
+  "chartBenefitLimits": [
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "300000",
+    "chartBenefitIds": [
+     "4974048"
+    ],
+    "limitAmount": "5000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "300000",
+    "chartBenefitIds": [
+     "4974049"
+    ],
+    "limitAmount": "5000",
+    "isIntegrationLimit": false
+   }
+  ],
+  "cardBenefitCalculationLevelEnum": "CARD_BENEFIT_CALCULATION_LEVEL_NOT_CALCULABLE",
+  "cardBenefitTypeEnum": "CARD_BENEFIT_TYPE_CASH",
+  "issueUrls": [
+   {
+    "channel": "CARD_ISSUE_CHANNEL_WEB",
+    "url": "https://www.samsungcard.com/personal/card/simple-apply/UHPPCA0225M0.jsp?code=AAP1483&alncmpC=CYBERBR&affcode=QFBANKTEST04&cmpid=banksalad"
+   },
+   {
+    "channel": "CARD_ISSUE_CHANNEL_APP",
+    "url": "https://www.samsungcard.com/personal/card/simple-apply/UHPPCA0225M0.jsp?code=AAP1483&alncmpC=CYBERBR&affcode=BANKSALADAPP&cmpid=banksalad"
+   }
+  ],
+  "footerDescription": "",
+  "legalReview": null,
+  "cashbackPromotion": {
+   "startDateMs": "1790812800000",
+   "endDateMs": "1793404800000",
+   "cashbackAmountKrw0f": "560000",
+   "cardOrganizationPromotionId": "1227",
+   "applicationUrlForPc": "https://www.samsungcard.com/personal/event/ing/UHPPBE1404P0.jsp?bgdAlncPdC=AAP1483&site=QFBANKTST6&cms_id=3757280&evt_type=04&ojDvC=01&operAgree=Y",
+   "applicationUrlForMobile": "https://www.samsungcard.com/personal/event/ing/UHPPBE1404P0.jsp?bgdAlncPdC=AAP1483&site=QFBANKTST6&cms_id=3757280&evt_type=04&ojDvC=01&operAgree=Y",
+   "isFinished": false
+  },
+  "isExposed": true,
+  "alfredCardId": "2928",
+  "cardBenefitSimulationLevelEnum": "CARD_BENEFIT_SIMULATION_LEVEL_FULL_AVAILABLE",
+  "isDetailPageAccessible": true
+ }
+}
