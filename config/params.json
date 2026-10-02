@@ -13,7 +13,7 @@
                          "online_ratio": 0.50, "installment_propensity": 0.15, "overseas_propensity": 0.06},
     "S3_SINGLE_30S":    {"age_band": {"30s": 1.0}, "household": {"single": 1.0}, "income_band": {"Q2": 0.2, "Q3": 0.4, "Q4": 0.3, "Q5": 0.1},
                          "online_ratio": 0.45, "installment_propensity": 0.15, "overseas_propensity": 0.10},
-    "S4_FAMILY_KIDS":   {"age_band": {"30s": 0.4, "40s": 0.6}, "household": {"with_kids": 1.0}, "income_band": {"Q2": 0.1, "Q3": 0.3, "Q4": 0.35, "Q5": 0.25},
+    "S4_FAMILY_KIDS":   {"age_band": {"30s": 0.3, "40s": 0.7}, "household": {"with_kids": 1.0}, "income_band": {"Q2": 0.1, "Q3": 0.3, "Q4": 0.35, "Q5": 0.25},
                          "online_ratio": 0.40, "installment_propensity": 0.30, "overseas_propensity": 0.04},
     "S5_MIDDLE_AGE":    {"age_band": {"40s": 0.2, "50s": 0.8}, "household": {"couple": 0.5, "with_kids": 0.5}, "income_band": {"Q2": 0.1, "Q3": 0.3, "Q4": 0.35, "Q5": 0.25},
                          "online_ratio": 0.30, "installment_propensity": 0.20, "overseas_propensity": 0.04},
