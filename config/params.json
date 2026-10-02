@@ -33,7 +33,7 @@
   "card_type": {
     "_section": "2.4",
     "has_credit_prob":  {"S1_STUDENT": 0.08, "S2_YOUNG_WORKER": 0.75, "S3_SINGLE_30S": 0.90, "S4_FAMILY_KIDS": 0.95, "S5_MIDDLE_AGE": 0.95, "S6_SELF_EMPLOYED": 0.90, "S7_SENIOR": 0.80},
-    "check_card_ratio": {"S1_STUDENT": 0.56, "S2_YOUNG_WORKER": 0.28, "S3_SINGLE_30S": 0.20, "S4_FAMILY_KIDS": 0.16, "S5_MIDDLE_AGE": 0.12, "S6_SELF_EMPLOYED": 0.12, "S7_SENIOR": 0.24}
+    "check_card_ratio": {"S1_STUDENT": 0.56, "S2_YOUNG_WORKER": 0.266, "S3_SINGLE_30S": 0.19, "S4_FAMILY_KIDS": 0.152, "S5_MIDDLE_AGE": 0.114, "S6_SELF_EMPLOYED": 0.114, "S7_SENIOR": 0.228}
   },
 
   "ticket": {
