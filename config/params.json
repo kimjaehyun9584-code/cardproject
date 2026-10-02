@@ -46,7 +46,7 @@
     "DELIVERY":     {"median": 30000,  "sigma": 0.35, "channel": "online"},
     "TRANSIT":      {"median": 1700,   "sigma": 0.15, "channel": "offline", "segment_multiplier": false, "floor": 1500},
     "FUEL":         {"median": 70000,  "sigma": 0.35, "channel": "offline"},
-    "TELECOM":      {"median": 65000,  "sigma": 0.3,  "channel": "online", "segment_multiplier": false, "autopay": true},
+    "TELECOM":      {"median": 45000,  "sigma": 0.3,  "channel": "online", "segment_multiplier": false, "autopay": true},
     "MEDICAL":      {"median": 25000,  "sigma": 0.8,  "channel": "offline", "floor": 1000},
     "EDUCATION":    {"median": 200000, "sigma": 0.6,  "channel": "offline"},
     "TRAVEL":       {"median": 200000, "sigma": 0.9,  "channel": "online"},
@@ -98,7 +98,7 @@
     "TRAVEL":       [0.25, 0.3, 0.5, 0.35, 0.35, 0.35, 0.14],
     "CULTURE_OTT":  [2, 3, 3, 2, 1.5, 1, 0.47],
     "DEPT_APPAREL": [0.4, 0.8, 1, 1.2, 1.2, 1.2, 0.57],
-    "UTILITY_INS":  [0, 0.7, 1.5, 2.5, 3, 3, 2.5],
+    "UTILITY_INS":  [0, 0.35, 0.75, 1.25, 1.5, 1.5, 1.25],
     "ETC":          [3, 4, 5, 5, 5, 10, 3.8]
   },
   "participation": {
