@@ -13,7 +13,7 @@
 | 1 | 합성 데이터 설계서 | ✅ v1.0 확정 ([docs/data_assumptions.md](docs/data_assumptions.md)) |
 | 2 | 합성 데이터 생성기 + 검증 리포트 | ✅ 구현 (`cardsim/`) |
 | 3 | 공개 통계 보정 | ✅ v1.11 완료 ([설계서 4장](docs/data_assumptions.md), [다음 작업 메모](docs/next_steps.md)) |
-| 4 | 카드 상품 손익 시뮬레이터 / 혜택 누수 진단 | 예정 |
+| 4 | 카드 상품 손익 시뮬레이터 / 혜택 누수 진단 | 설계 중 ([손익 시뮬레이터 설계서](docs/simulator_design.md)) |
 
 ## 합성 데이터 생성
 
