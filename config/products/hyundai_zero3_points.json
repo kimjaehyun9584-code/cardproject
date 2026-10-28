@@ -1,0 +1,15 @@
+{
+  "id": "hyundai_zero3_points",
+  "name": "현대카드 ZERO Edition3 (포인트형)",
+  "issuer": "현대카드",
+  "card_kind": "credit",
+  "annual_fee": 15000,
+  "source": "data/reference/raw/products/banksalad_CARD004284.json (뱅크샐러드, 2026-10-02 다운로드). 적립 제외 거래는 상품설명서로 확인 필요",
+  "performance": {"tiers": [], "exclude_categories": [], "grace": null},
+  "benefits": [
+    {"id": "all", "name": "국내외 가맹점 1.2% M포인트 적립", "kind": "points", "rate": 0.012,
+     "match": [{"category": "*"}], "min_tier": null, "pools": []}
+  ],
+  "pools": {},
+  "unmodeled_benefits": []
+}

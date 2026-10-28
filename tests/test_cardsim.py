@@ -105,3 +105,31 @@ def test_industry_shares_sum_to_one(small):
     rows = industry_share_rows(txns)
     assert sum(g for _, g, _ in rows) == pytest.approx(1.0)
     assert sum(p for _, _, p in rows) == pytest.approx(1.0)
+
+
+def test_all_products_valid():
+    from cardsim.products import load_all_products
+    products = load_all_products()
+    assert {"shinhan_mr_life", "samsung_taptap_o", "hyundai_zero3_discount",
+            "hyundai_zero3_points", "kb_nori2_check"} <= set(products)
+
+
+def test_product_validation_catches_typos():
+    import copy, json
+    from cardsim.params import load_params
+    from cardsim.products import PRODUCTS_DIR, ProductError, load_shares, validate_product
+    params, shares = load_params(), load_shares()
+    cats = set(params["categories"])
+    base = json.load(open(PRODUCTS_DIR / "kb_nori2_check.json", encoding="utf-8"))
+    cases = [
+        lambda p: p["benefits"][0]["match"][0].update(category="COFFEE"),          # 없는 업종
+        lambda p: p["benefits"][0]["match"][0].update(merchant_share="starbucks"),  # 없는 비중
+        lambda p: p["benefits"][1].update(pools=["nope"]),                          # 없는 한도
+        lambda p: p["benefits"][1].update(min_tier=250000),                         # 없는 구간
+        lambda p: p["benefits"][4]["match"][0].update(merchant_share="telecom_mno3"),  # customer 비중을 txn으로
+    ]
+    for broken in cases:
+        p = copy.deepcopy(base)
+        broken(p)
+        with pytest.raises(ProductError):
+            validate_product(p, cats, shares)

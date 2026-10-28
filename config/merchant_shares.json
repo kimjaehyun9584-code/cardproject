@@ -1,0 +1,23 @@
+{
+  "_doc": "상품 혜택이 특정 가맹점·조건에만 적용될 때, 생성 데이터 업종 안에서 해당하는 비율. 손익 시뮬레이터 설계서 2.5 참고. value가 null이면 출처를 아직 확보하지 못한 것이고, 시뮬레이터는 assumed 값을 쓰며 리포트에 가정값으로 표시한다.",
+  "_level": "txn: 거래마다 해당 여부를 뽑음 (같은 고객도 가맹점을 바꿔 씀) / customer: 고객마다 한 번 뽑음 (통신사, 후불교통 기능처럼 고객 속성)",
+  "shares": {
+    "utility_electric_gas":      {"category": "UTILITY_INS",  "level": "txn",      "desc": "공과금·보험료 결제 중 전기·도시가스 요금", "value": null, "assumed": null, "source": null},
+    "utility_water":             {"category": "UTILITY_INS",  "level": "txn",      "desc": "공과금·보험료 결제 중 상하수도 요금", "value": null, "assumed": null, "source": null},
+    "telecom_mno3":              {"category": "TELECOM",      "level": "customer", "desc": "이동통신 3사(SKT·KT·LG U+) 가입자 비율 (알뜰폰 제외)", "value": null, "assumed": null, "source": null},
+    "telecom_mno3_liivm":        {"category": "TELECOM",      "level": "customer", "desc": "이동통신 3사 + KB리브모바일 가입자 비율", "value": null, "assumed": null, "source": null},
+    "grocery_big3":              {"category": "GROCERY",      "level": "txn",      "desc": "대형마트·슈퍼 결제 중 이마트·롯데마트·홈플러스(기업형 슈퍼·온라인몰 포함)", "value": null, "assumed": null, "source": null},
+    "fuel_big4":                 {"category": "FUEL",         "level": "txn",      "desc": "주유 결제 중 SK에너지·GS칼텍스·HD현대오일뱅크·S-Oil 주유소", "value": null, "assumed": null, "source": null},
+    "online_mrlife_malls":       {"category": "ONLINE_SHOP",  "level": "txn",      "desc": "온라인쇼핑 중 옥션·G마켓·AK몰·11번가·티몬·위메프·쿠팡", "value": null, "assumed": null, "source": null},
+    "online_openmarket":         {"category": "ONLINE_SHOP",  "level": "txn",      "desc": "온라인쇼핑 중 삼성카드 기준 오픈마켓 가맹점", "value": null, "assumed": null, "source": null},
+    "online_social_trendy":      {"category": "ONLINE_SHOP",  "level": "txn",      "desc": "온라인쇼핑 중 삼성카드 기준 소셜커머스·트렌디숍 가맹점", "value": null, "assumed": null, "source": null},
+    "cafe_starbucks_coffeebean": {"category": "CAFE",         "level": "txn",      "desc": "카페 결제 중 스타벅스·커피빈", "value": null, "assumed": null, "source": null},
+    "convenience_gs25_cu":       {"category": "CONVENIENCE",  "level": "txn",      "desc": "편의점 결제 중 GS25·CU", "value": null, "assumed": null, "source": null},
+    "delivery_baemin_yogiyo":    {"category": "DELIVERY",     "level": "txn",      "desc": "배달앱 결제 중 배달의민족·요기요", "value": null, "assumed": null, "source": null},
+    "culture_cgv_lotte":         {"category": "CULTURE_OTT",  "level": "txn",      "desc": "영화·OTT·구독 결제 중 CGV·롯데시네마", "value": null, "assumed": null, "source": null},
+    "culture_cgv":               {"category": "CULTURE_OTT",  "level": "txn",      "desc": "영화·OTT·구독 결제 중 CGV", "value": null, "assumed": null, "source": null},
+    "culture_netflix_youtube":   {"category": "CULTURE_OTT",  "level": "txn",      "desc": "영화·OTT·구독 결제 중 넷플릭스·유튜브 프리미엄", "value": null, "assumed": null, "source": null},
+    "transit_postpaid_option":   {"category": "TRANSIT",      "level": "customer", "desc": "후불교통 기능을 선택한 가입자 비율 (taptap O 대중교통 할인 조건)", "value": null, "assumed": null, "source": null}
+  },
+  "fuel_price_per_liter": {"desc": "리터당 할인을 금액으로 바꿀 때 쓰는 휘발유 평균 가격 (원/L)", "value": null, "assumed": null, "source": null}
+}
