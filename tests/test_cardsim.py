@@ -133,3 +133,11 @@ def test_product_validation_catches_typos():
         broken(p)
         with pytest.raises(ProductError):
             validate_product(p, cats, shares)
+
+
+def test_merchant_shares_within_range():
+    from cardsim.products import load_shares
+    shares = load_shares()
+    for key, spec in shares["shares"].items():
+        lo, hi = spec["range"]
+        assert 0 <= lo <= spec["value"] <= hi <= 1, key

@@ -4,36 +4,144 @@
   "issuer": "삼성카드",
   "card_kind": "credit",
   "annual_fee": 10000,
-  "source": "data/reference/raw/products/banksalad_CARD003051.json (뱅크샐러드, 2026-10-02 다운로드). 라이프스타일 패키지는 패키지4(커피전문점 30% + 오픈마켓 7%)로 고정",
+  "source": "data/reference/raw/products/banksalad_CARD003051.json (뱅크샐러드, 2026-10-02 다운로드). 라이프스타일 패키지는 패키지4(커피전문점 30% + 오픈마켓 7%)로 고정. 오픈마켓(G마켓·11번가·옥션), 소셜커머스(쿠팡·티몬·위메프), 트렌디숍(편의점·올리브영·유니클로 등) 구분은 카드고릴라 설명 기준(https://m.card-gorilla.com/contents/detail/490)",
   "performance": {
-    "tiers": [300000],
+    "tiers": [
+      300000
+    ],
     "exclude_categories": [],
-    "grace": {"months": 2, "tier": 300000},
+    "grace": {
+      "months": 2,
+      "tier": 300000
+    },
     "_note": "전월 일시불+할부 이용금액 기준. 발급월+1개월까지는 전월 이용금액 무관"
   },
   "benefits": [
-    {"id": "coffee", "name": "커피전문점 30% (패키지4)", "kind": "rate", "rate": 0.30,
-     "match": [{"category": "CAFE"}], "min_tier": 300000, "pools": ["coffee"]},
-    {"id": "openmarket", "name": "오픈마켓 7% (패키지4)", "kind": "rate", "rate": 0.07,
-     "match": [{"category": "ONLINE_SHOP", "merchant_share": "online_openmarket"}], "min_tier": 300000, "pools": ["shopping"]},
-    {"id": "shopping_points", "name": "소셜커머스·트렌디숍 1% 빅포인트 적립 (패키지4)", "kind": "points", "rate": 0.01,
-     "match": [{"category": "ONLINE_SHOP", "merchant_share": "online_social_trendy"}], "min_tier": null, "pools": []},
-    {"id": "transit", "name": "버스·지하철 10%", "kind": "rate", "rate": 0.10,
-     "match": [{"category": "TRANSIT", "customer_share": "transit_postpaid_option"}], "min_tier": 300000, "pools": ["transit"]},
-    {"id": "telecom", "name": "이동통신 3사 10%", "kind": "rate", "rate": 0.10,
-     "match": [{"category": "TELECOM", "customer_share": "telecom_mno3"}], "min_tier": 300000, "pools": ["telecom"]},
-    {"id": "movie", "name": "CGV·롯데시네마 5천 원", "kind": "fixed", "amount": 5000,
-     "match": [{"category": "CULTURE_OTT", "merchant_share": "culture_cgv_lotte"}],
-     "min_txn_amount": 10000, "per_day": 1, "per_month": 2, "per_year": 12, "min_tier": 300000, "pools": []}
+    {
+      "id": "coffee",
+      "name": "커피전문점 30% (패키지4)",
+      "kind": "rate",
+      "rate": 0.3,
+      "match": [
+        {
+          "category": "CAFE"
+        }
+      ],
+      "min_tier": 300000,
+      "pools": [
+        "coffee"
+      ]
+    },
+    {
+      "id": "openmarket",
+      "name": "오픈마켓 7% (패키지4)",
+      "kind": "rate",
+      "rate": 0.07,
+      "match": [
+        {
+          "category": "ONLINE_SHOP",
+          "merchant_share": "online_openmarket"
+        }
+      ],
+      "min_tier": 300000,
+      "pools": [
+        "shopping"
+      ]
+    },
+    {
+      "id": "shopping_points",
+      "name": "소셜커머스·트렌디숍 1% 빅포인트 적립 (패키지4)",
+      "kind": "points",
+      "rate": 0.01,
+      "match": [
+        {
+          "category": "ONLINE_SHOP",
+          "merchant_share": "online_social"
+        },
+        {
+          "category": "CONVENIENCE"
+        }
+      ],
+      "min_tier": null,
+      "pools": []
+    },
+    {
+      "id": "transit",
+      "name": "버스·지하철 10%",
+      "kind": "rate",
+      "rate": 0.1,
+      "match": [
+        {
+          "category": "TRANSIT",
+          "customer_share": "transit_postpaid_option"
+        }
+      ],
+      "min_tier": 300000,
+      "pools": [
+        "transit"
+      ]
+    },
+    {
+      "id": "telecom",
+      "name": "이동통신 3사 10%",
+      "kind": "rate",
+      "rate": 0.1,
+      "match": [
+        {
+          "category": "TELECOM",
+          "customer_share": "telecom_mno3"
+        }
+      ],
+      "min_tier": 300000,
+      "pools": [
+        "telecom"
+      ]
+    },
+    {
+      "id": "movie",
+      "name": "CGV·롯데시네마 5천 원",
+      "kind": "fixed",
+      "amount": 5000,
+      "match": [
+        {
+          "category": "CULTURE_OTT",
+          "merchant_share": "culture_cgv_lotte"
+        }
+      ],
+      "min_txn_amount": 10000,
+      "per_day": 1,
+      "per_month": 2,
+      "per_year": 12,
+      "min_tier": 300000,
+      "pools": []
+    }
   ],
   "pools": {
-    "coffee":   {"300000": 10000},
-    "shopping": {"300000": 5000},
-    "transit":  {"300000": 5000},
-    "telecom":  {"300000": 5000}
+    "coffee": {
+      "300000": 10000
+    },
+    "shopping": {
+      "300000": 5000
+    },
+    "transit": {
+      "300000": 5000
+    },
+    "telecom": {
+      "300000": 5000
+    }
   },
   "unmodeled_benefits": [
-    {"name": "택시 10% (대중교통과 한도 공유)", "reason": "택시가 ETC에 포함되어 분리 불가"},
-    {"name": "무이자할부 결제 시 할인 제외", "reason": "생성 데이터에 무이자 여부가 없어 할부 거래도 할인 대상으로 계산"}
+    {
+      "name": "택시 10% (대중교통과 한도 공유)",
+      "reason": "택시가 ETC에 포함되어 분리 불가"
+    },
+    {
+      "name": "무이자할부 결제 시 할인 제외",
+      "reason": "생성 데이터에 무이자 여부가 없어 할부 거래도 할인 대상으로 계산"
+    },
+    {
+      "name": "트렌디숍 중 올리브영·의류 매장 1% 적립",
+      "reason": "뷰티 업종이 없고 의류 매장 비중 자료 없음 (편의점만 반영)"
+    }
   ]
 }

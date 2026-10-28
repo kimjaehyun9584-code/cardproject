@@ -24,9 +24,26 @@ class ProductError(ValueError):
     pass
 
 
+BASIS = {"출처", "추정", "가정"}
+
+
+def _check_value(key, spec, lo_hi=(0.0, 1.0)):
+    v, (lo, hi) = spec["value"], spec["range"]
+    if spec.get("basis") not in BASIS:
+        raise ProductError(f"{key}: basis는 {sorted(BASIS)} 중 하나")
+    if not (lo_hi[0] <= lo <= v <= hi <= lo_hi[1]):
+        raise ProductError(f"{key}: value {v}가 range {spec['range']} 안에 있어야 함")
+
+
 def load_shares(path=None):
     with open(path or SHARES_PATH, encoding="utf-8") as f:
-        return json.load(f)
+        shares = json.load(f)
+    for key, spec in shares["shares"].items():
+        if spec["level"] not in SHARE_LEVEL.values():
+            raise ProductError(f"{key}: level은 txn 또는 customer")
+        _check_value(key, spec)
+    _check_value("fuel_price_per_liter", shares["fuel_price_per_liter"], (0.0, float("inf")))
+    return shares
 
 
 def _check_match(m, where, categories, shares):

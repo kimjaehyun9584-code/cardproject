@@ -38,7 +38,7 @@ cardsim/validate.py     검증 항목과 HTML 리포트 (설계서 5장)
 cardsim/generate.py     CLI
 cardsim/products.py     카드 상품 정의 로드·검증 (손익 시뮬레이터 설계서 2.2)
 config/products/        실제 카드 5종 상품 정의
-config/merchant_shares.json  업종 내 가맹점 비중 (자료 수집 중)
+config/merchant_shares.json  업종 내 가맹점 비중 (출처·추정·가정 구분)
 tests/                  pytest
 ```
 
