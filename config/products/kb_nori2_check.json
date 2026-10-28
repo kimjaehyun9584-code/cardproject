@@ -1,0 +1,55 @@
+{
+  "id": "kb_nori2_check",
+  "name": "KB국민 노리2 체크카드 (Global)",
+  "issuer": "KB국민카드",
+  "card_kind": "check",
+  "annual_fee": 0,
+  "source": "data/reference/raw/products/banksalad_CARD004248.json (뱅크샐러드, 2026-10-02 다운로드)",
+  "performance": {
+    "tiers": [200000, 300000, 400000, 600000, 800000],
+    "exclude_categories": ["TRANSIT"],
+    "exclude_shares": [{"category": "UTILITY_INS", "merchant_share": "utility_water"}],
+    "grace": null,
+    "_note": "실적 제외: 후불교통요금, 지방세(상하수도 포함), 대학 등록금, 상품권·선불 충전, 정부지원금, 취소금액, 수수료·이자 등. 대학 등록금은 EDUCATION과 구분할 수 없어 반영하지 않음"
+  },
+  "benefits": [
+    {"id": "coffee", "name": "스타벅스·커피빈 10%", "kind": "rate", "rate": 0.10,
+     "match": [{"category": "CAFE", "merchant_share": "cafe_starbucks_coffeebean"}],
+     "monthly_eligible_cap": 30000, "min_tier": null, "pools": ["coffee", "total"]},
+    {"id": "convenience", "name": "GS25·CU 5%", "kind": "rate", "rate": 0.05,
+     "match": [{"category": "CONVENIENCE", "merchant_share": "convenience_gs25_cu"}],
+     "monthly_eligible_cap": 40000, "min_tier": 200000, "pools": ["convenience", "total"]},
+    {"id": "subscription", "name": "넷플릭스·유튜브 프리미엄 1천 원", "kind": "fixed", "amount": 1000,
+     "match": [{"category": "CULTURE_OTT", "merchant_share": "culture_netflix_youtube"}],
+     "min_txn_amount": 10000, "per_month": 2, "min_tier": 200000, "pools": ["subscription", "total"]},
+    {"id": "delivery", "name": "배달의민족·요기요 1천 원", "kind": "fixed", "amount": 1000,
+     "match": [{"category": "DELIVERY", "merchant_share": "delivery_baemin_yogiyo"}],
+     "min_txn_amount": 10000, "per_month": 1, "min_tier": 200000, "pools": ["delivery", "total"]},
+    {"id": "telecom", "name": "이동통신 2,500원", "kind": "fixed", "amount": 2500,
+     "match": [{"category": "TELECOM", "customer_share": "telecom_mno3_liivm"}],
+     "min_txn_amount": 50000, "per_month": 1, "min_tier": 200000, "pools": ["telecom", "total"]},
+    {"id": "movie", "name": "CGV 4천 원", "kind": "fixed", "amount": 4000,
+     "match": [{"category": "CULTURE_OTT", "merchant_share": "culture_cgv"}],
+     "min_txn_amount": 10000, "per_month": 2, "min_tier": 200000, "pools": ["movie", "total"]},
+    {"id": "overseas", "name": "해외가맹점 2%", "kind": "rate", "rate": 0.02,
+     "match": [{"category": "*", "overseas": true}],
+     "monthly_eligible_cap": 250000, "min_tier": 300000, "pools": ["overseas", "total"]}
+  ],
+  "pools": {
+    "coffee":       {"0": 3000},
+    "convenience":  {"200000": 2000},
+    "subscription": {"200000": 2000},
+    "delivery":     {"200000": 1000},
+    "telecom":      {"200000": 2500},
+    "movie":        {"200000": 8000},
+    "overseas":     {"300000": 5000},
+    "total":        {"0": 3000, "200000": 20000, "400000": 30000, "600000": 40000, "800000": 50000}
+  },
+  "unmodeled_benefits": [
+    {"name": "올리브영·미용실 5%", "reason": "뷰티 업종이 생성 데이터에 없음"},
+    {"name": "인터파크 공연 티켓 10%", "reason": "공연 업종이 생성 데이터에 없음"},
+    {"name": "에버랜드·롯데월드 1만 5천 원", "reason": "놀이공원 업종이 생성 데이터에 없음"},
+    {"name": "구글플레이·앱스토어 10%", "reason": "앱마켓이 생성 데이터에서 분리되지 않음"},
+    {"name": "공항라운지 연 1회", "reason": "이용 비용 자료 없음"}
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "id": "shinhan_mr_life",
+  "name": "신한카드 Mr.Life",
+  "issuer": "신한카드",
+  "card_kind": "credit",
+  "annual_fee": 15000,
+  "source": "data/reference/raw/products/banksalad_CARD000004.json (뱅크샐러드, 2026-10-02 다운로드). 연회비는 국내전용(S&) 기준, 해외겸용 18,000원",
+  "performance": {
+    "tiers": [300000, 500000, 1000000],
+    "exclude_categories": [],
+    "grace": {"months": 2, "tier": 300000},
+    "_note": "실적 제외: 카드대출·연회비·수수료·이자·기프트/선불카드 충전·거래취소 (생성 데이터에는 취소만 해당). 신규 회원은 등록월+1개월까지 30~50만 원 구간 한도 제공"
+  },
+  "benefits": [
+    {"id": "utility", "name": "공과금·통신 10%", "kind": "rate", "rate": 0.10,
+     "match": [{"category": "UTILITY_INS", "merchant_share": "utility_electric_gas"},
+               {"category": "TELECOM", "customer_share": "telecom_mno3"}],
+     "max_eligible_per_txn": 50000, "per_day": 1, "min_tier": 300000, "pools": ["utility"]},
+    {"id": "mart_weekend", "name": "주말 3대 할인마트 10%", "kind": "rate", "rate": 0.10,
+     "match": [{"category": "GROCERY", "merchant_share": "grocery_big3"}], "weekdays": [5, 6],
+     "max_eligible_per_txn": 50000, "per_day": 1, "min_tier": 300000, "pools": ["mart", "mart_fuel"]},
+    {"id": "fuel_weekend", "name": "주말 4대 주유소 리터당 60원", "kind": "per_liter", "per_liter": 60,
+     "match": [{"category": "FUEL", "merchant_share": "fuel_big4"}], "weekdays": [5, 6],
+     "max_eligible_per_txn": 100000, "monthly_eligible_cap": 300000, "per_day": 1, "min_tier": 300000, "pools": ["fuel", "mart_fuel"]},
+    {"id": "convenience", "name": "편의점 10%", "kind": "rate", "rate": 0.10,
+     "match": [{"category": "CONVENIENCE"}],
+     "max_eligible_per_txn": 10000, "per_day": 1, "per_month": 5, "min_tier": 300000, "pools": ["convenience", "time"]},
+    {"id": "medical", "name": "병원·약국 10%", "kind": "rate", "rate": 0.10,
+     "match": [{"category": "MEDICAL"}],
+     "max_eligible_per_txn": 10000, "per_day": 1, "per_month": 5, "min_tier": 300000, "pools": ["medical", "time"]},
+    {"id": "night_online", "name": "밤 9시~아침 9시 온라인쇼핑 10%", "kind": "rate", "rate": 0.10,
+     "match": [{"category": "ONLINE_SHOP", "merchant_share": "online_mrlife_malls"}], "hours": [21, 9],
+     "max_eligible_per_txn": 10000, "per_day": 1, "per_month": 10, "min_tier": 300000, "pools": ["night_online", "time"]},
+    {"id": "night_food", "name": "밤 9시~아침 9시 식음료 10%", "kind": "rate", "rate": 0.10,
+     "match": [{"category": "RESTAURANT"}, {"category": "CAFE"}], "hours": [21, 9],
+     "max_eligible_per_txn": 10000, "per_day": 1, "per_month": 10, "min_tier": 300000, "pools": ["night_food", "time"]}
+  ],
+  "pools": {
+    "utility":      {"300000": 3000,  "500000": 7000,  "1000000": 10000},
+    "mart":         {"300000": 3000,  "500000": 7000,  "1000000": 10000},
+    "fuel":         {"300000": 3000,  "500000": 7000,  "1000000": 10000},
+    "mart_fuel":    {"300000": 3000,  "500000": 7000,  "1000000": 10000},
+    "convenience":  {"300000": 10000, "500000": 20000, "1000000": 30000},
+    "medical":      {"300000": 10000, "500000": 20000, "1000000": 30000},
+    "night_online": {"300000": 10000, "500000": 20000, "1000000": 30000},
+    "night_food":   {"300000": 10000, "500000": 20000, "1000000": 30000},
+    "time":         {"300000": 10000, "500000": 20000, "1000000": 30000}
+  },
+  "unmodeled_benefits": [
+    {"name": "세탁비 10%", "reason": "세탁소 업종이 생성 데이터에 없음 (ETC에 포함)"},
+    {"name": "밤 시간 택시 10%", "reason": "택시가 ETC에 포함되어 분리 불가"},
+    {"name": "인테이크몰 20%", "reason": "특정 쇼핑몰, 비중 자료 없음"}
+  ]
+}

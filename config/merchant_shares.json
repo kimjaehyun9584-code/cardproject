@@ -1,0 +1,210 @@
+{
+  "_doc": "상품 혜택이 특정 가맹점·조건에만 적용될 때, 생성 데이터 업종 안에서 해당하는 비율. 손익 시뮬레이터 설계서 2.5 참고. 시뮬레이터는 value를 쓰고, 리포트의 민감도 분석에서 range 양 끝으로 바꿔 본다.",
+  "_level": "txn: 거래마다 해당 여부를 뽑음 / customer: 고객마다 한 번 뽑음 (통신사, 후불교통 기능처럼 고객 속성)",
+  "_basis": "출처: 공개 자료 수치를 그대로 씀 / 추정: 공개 자료로 계산했지만 정의·연도가 완전히 맞지 않음 / 가정: 출처를 찾지 못해 정한 값 (사용자 검토 필요)",
+  "_updated": "2026-10-28",
+  "shares": {
+    "utility_electric_gas": {
+      "category": "UTILITY_INS",
+      "level": "txn",
+      "desc": "공과금·보험료 결제 중 전기·도시가스 요금",
+      "value": 0.366,
+      "range": [
+        0.3,
+        0.37
+      ],
+      "basis": "추정",
+      "source": "통계청 가계동향조사 2025 (KOSIS DT_1L9U105, data/reference/raw/kosis_101_DT_1L9U105_2025.json): 연료비 111,856원 ÷ (상하수도·폐기물 + 관리비 등 + 연료비 + 보험) 305,366원. UTILITY_INS 보정(데이터 설계서 4.6)과 같은 구성. 카드 결제 구성이 가구 지출 구성과 같다고 가정. 연료비에 등유 등이 섞여 있어 상한값"
+    },
+    "utility_water": {
+      "category": "UTILITY_INS",
+      "level": "txn",
+      "desc": "공과금·보험료 결제 중 상하수도 요금",
+      "value": 0.081,
+      "range": [
+        0.06,
+        0.1
+      ],
+      "basis": "추정",
+      "source": "같은 자료: 상하수도및폐기물처리 24,647원 ÷ 305,366원"
+    },
+    "telecom_mno3": {
+      "category": "TELECOM",
+      "level": "customer",
+      "desc": "이동통신 3사(SKT·KT·LG U+) 가입자 비율 (알뜰폰 제외)",
+      "value": 0.824,
+      "range": [
+        0.8,
+        0.84
+      ],
+      "basis": "출처",
+      "source": "과학기술정보통신부 집계 2025년 6월 고객용 휴대폰 회선 점유율: SKT 39.0%, KT 23.84%, LG U+ 19.51%, 알뜰폰 17.64% (매일경제 등 보도, https://biz.sbs.co.kr/amp/article/20000228849 외). 3사 합계 82.4%"
+    },
+    "telecom_mno3_liivm": {
+      "category": "TELECOM",
+      "level": "customer",
+      "desc": "이동통신 3사 + KB리브모바일 가입자 비율",
+      "value": 0.832,
+      "range": [
+        0.81,
+        0.85
+      ],
+      "basis": "추정",
+      "source": "3사 82.4% + 리브모바일 44만 회선(2025년 말, 보도) ÷ 전체 고객용 휴대폰 회선 약 5,731만 (알뜰폰 1,011만 = 17.64%에서 역산)"
+    },
+    "grocery_big3": {
+      "category": "GROCERY",
+      "level": "txn",
+      "desc": "대형마트·슈퍼 결제 중 이마트·롯데마트·홈플러스(기업형 슈퍼·온라인몰 포함)",
+      "value": 0.23,
+      "range": [
+        0.18,
+        0.3
+      ],
+      "basis": "추정",
+      "source": "분모: 국가데이터처 소매업태별 판매액 2025 대형마트 36.4조 + 슈퍼마켓 및 잡화점 66.9조 = 103.3조 (KOSIS DT_1K41003, data/reference/raw/kosis_101_DT_1K41003_2025.json). 분자: 2023년 보도 매출 이마트 별도 15.1조 − 트레이더스 3.9조, 홈플러스 6.9조, 롯데마트 5.7조 ≈ 23.9조. 연도 불일치·SSM 미포함이라 범위를 넓게 둠"
+    },
+    "fuel_big4": {
+      "category": "FUEL",
+      "level": "txn",
+      "desc": "주유 결제 중 SK에너지·GS칼텍스·HD현대오일뱅크·S-Oil 주유소",
+      "value": 0.85,
+      "range": [
+        0.75,
+        0.95
+      ],
+      "basis": "가정",
+      "source": "상표별 주유소 수·판매량 공개 통계를 찾지 못함 (오피넷 접속 불가). 나머지는 알뜰·자가상표 주유소"
+    },
+    "online_mrlife_malls": {
+      "category": "ONLINE_SHOP",
+      "level": "txn",
+      "desc": "온라인쇼핑 중 옥션·G마켓·AK몰·11번가·티몬·위메프·쿠팡",
+      "value": 0.51,
+      "range": [
+        0.4,
+        0.6
+      ],
+      "basis": "추정",
+      "source": "2024년 실물 이커머스 약 135조 중 쿠팡 39.2%, 신세계(SSG닷컴·G마켓) 13.3% (증권가 컨센서스·IR 기반 추산 보도, https://byline.network/2026/01/1928831/). 쿠팡 + G마켓·옥션·11번가 등 약 12%로 추정"
+    },
+    "online_openmarket": {
+      "category": "ONLINE_SHOP",
+      "level": "txn",
+      "desc": "온라인쇼핑 중 오픈마켓(G마켓·11번가·옥션, 삼성카드 기준)",
+      "value": 0.12,
+      "range": [
+        0.08,
+        0.18
+      ],
+      "basis": "가정",
+      "source": "G마켓은 신세계 13.3%(SSG닷컴 포함) 안에 있고 11번가 최신 점유율은 찾지 못함. 위 보도를 참고한 가정값"
+    },
+    "online_social": {
+      "category": "ONLINE_SHOP",
+      "level": "txn",
+      "desc": "온라인쇼핑 중 소셜커머스(쿠팡·티몬·위메프, 삼성카드 기준)",
+      "value": 0.39,
+      "range": [
+        0.33,
+        0.45
+      ],
+      "basis": "추정",
+      "source": "쿠팡 2024년 39.2% (위 보도). 티몬·위메프는 반영하지 않음"
+    },
+    "cafe_starbucks_coffeebean": {
+      "category": "CAFE",
+      "level": "txn",
+      "desc": "카페 결제 중 스타벅스·커피빈",
+      "value": 0.25,
+      "range": [
+        0.2,
+        0.3
+      ],
+      "basis": "추정",
+      "source": "스타벅스코리아 2024년 매출 약 3조 원, 시장 점유율 약 25% (커피 프랜차이즈 분석 보도, https://www.koreabizreview.com/articles/kbr-legacy-7048). 커피빈은 미반영"
+    },
+    "convenience_gs25_cu": {
+      "category": "CONVENIENCE",
+      "level": "txn",
+      "desc": "편의점 결제 중 GS25·CU",
+      "value": 0.739,
+      "range": [
+        0.7,
+        0.76
+      ],
+      "basis": "출처",
+      "source": "와이즈앱·리테일 카드 결제 추정: GS25=100일 때 CU 96.1, 세븐일레븐 47.1, 이마트24 22.0 → GS25+CU 196.1 ÷ 265.2 (https://sateconomy.co.kr/news/view/1065573511169342). 4사 외 편의점은 분모에서 빠짐"
+    },
+    "delivery_baemin_yogiyo": {
+      "category": "DELIVERY",
+      "level": "txn",
+      "desc": "배달앱 결제 중 배달의민족·요기요",
+      "value": 0.55,
+      "range": [
+        0.5,
+        0.74
+      ],
+      "basis": "추정",
+      "source": "8개 카드사 결제액 분석(김남근 의원실, 2025년 8월): 배민-쿠팡이츠 전국 결제액 격차 800억 원대로 근접, 요기요 10% 미만 (https://www.heraldk.com/article/2025111018354139931). 상한 0.74는 2025년 1월 MAU 비율(배민 2,261만·요기요 522만 ÷ 3사 3,784만)"
+    },
+    "culture_cgv_lotte": {
+      "category": "CULTURE_OTT",
+      "level": "txn",
+      "desc": "영화·OTT·구독 결제 중 CGV·롯데시네마",
+      "value": 0.2,
+      "range": [
+        0.1,
+        0.35
+      ],
+      "basis": "가정",
+      "source": "생성 데이터의 CULTURE_OTT(영화·OTT·구독) 구성 자료가 없음"
+    },
+    "culture_cgv": {
+      "category": "CULTURE_OTT",
+      "level": "txn",
+      "desc": "영화·OTT·구독 결제 중 CGV",
+      "value": 0.12,
+      "range": [
+        0.06,
+        0.2
+      ],
+      "basis": "가정",
+      "source": "위와 같음. CGV·롯데시네마의 60% 수준으로 가정"
+    },
+    "culture_netflix_youtube": {
+      "category": "CULTURE_OTT",
+      "level": "txn",
+      "desc": "영화·OTT·구독 결제 중 넷플릭스·유튜브 프리미엄",
+      "value": 0.35,
+      "range": [
+        0.2,
+        0.5
+      ],
+      "basis": "가정",
+      "source": "위와 같음"
+    },
+    "transit_postpaid_option": {
+      "category": "TRANSIT",
+      "level": "customer",
+      "desc": "후불교통 기능을 선택한 가입자 비율 (taptap O 대중교통 할인 조건)",
+      "value": 0.7,
+      "range": [
+        0.5,
+        0.9
+      ],
+      "basis": "가정",
+      "source": "후불교통 기능 선택률 공개 자료를 찾지 못함"
+    }
+  },
+  "fuel_price_per_liter": {
+    "desc": "리터당 할인을 금액으로 바꿀 때 쓰는 보통휘발유 평균 판매가격 (원/L)",
+    "value": 1680.6,
+    "range": [
+      1636.0,
+      1740.0
+    ],
+    "basis": "출처",
+    "source": "한국석유공사 「주유소 제품별 평균 판매가격」 보통휘발유 2025년 월평균 12개의 평균 (KOSIS TX_31802_A000, data/reference/raw/kosis_318_TX_31802_A000_2025.json). 범위는 2025년 월별 최저·최고"
+  }
+}
