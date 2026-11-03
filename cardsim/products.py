@@ -13,6 +13,7 @@ from .params import load_params
 ROOT = Path(__file__).resolve().parent.parent
 PRODUCTS_DIR = ROOT / "config" / "products"
 SHARES_PATH = ROOT / "config" / "merchant_shares.json"
+PNL_PATH = ROOT / "config" / "pnl_assumptions.json"
 
 CARD_KINDS = {"credit", "check"}
 BENEFIT_KINDS = {"rate", "points", "fixed", "per_liter"}
@@ -130,3 +131,12 @@ def load_all_products(directory=None, params=None, shares=None):
     params = params or load_params()
     shares = shares or load_shares()
     return {p.stem: load_product(p, params, shares) for p in sorted(Path(directory or PRODUCTS_DIR).glob("*.json"))}
+
+
+def load_pnl_assumptions(path=None):
+    """손익 요율 (설계서 2.3). 값이 범위 안에 있고 근거 구분이 붙어 있는지 확인한다."""
+    with open(path or PNL_PATH, encoding="utf-8") as f:
+        pnl = json.load(f)
+    for key, spec in pnl["rates"].items():
+        _check_value(key, spec, (0.0, float("inf")))
+    return pnl

@@ -141,3 +141,12 @@ def test_merchant_shares_within_range():
     for key, spec in shares["shares"].items():
         lo, hi = spec["range"]
         assert 0 <= lo <= spec["value"] <= hi <= 1, key
+
+
+def test_pnl_assumptions_valid():
+    from cardsim.products import load_pnl_assumptions
+    rates = load_pnl_assumptions()["rates"]
+    for key in ("merchant_fee_rate_credit", "merchant_fee_rate_check", "funding_rate_annual",
+                "credit_loss_rate", "float_days", "point_cost_per_point"):
+        assert key in rates
+    assert rates["merchant_fee_rate_check"]["value"] < rates["merchant_fee_rate_credit"]["value"]

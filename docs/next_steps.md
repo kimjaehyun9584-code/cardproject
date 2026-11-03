@@ -13,11 +13,11 @@
   - 시드 42: 월 사용액 +8.9%, 결제 건수 +5.0%, 건당 금액 +2.9%, 체크카드 +2.5%p
 - 확인하지 못한 것: 업종별 건당 금액(카드승인실적에 건수 없음), 금액 기준 온라인 비중, 세그먼트별 사용액(연령·소득별 카드 사용액 통계 미확보)
 
-## 바로 할 일: 손익 시뮬레이터 (`docs/simulator_design.md` v0.6)
+## 바로 할 일: 손익 시뮬레이터 (`docs/simulator_design.md` v0.7)
 - 범위 확정: 신용·체크카드 상품, 공헌이익 수준 손익, 주력카드 비율 + 실적 맞추기, 세그먼트별 가입률
 - 상품 확정 (2026-10-28): 실제 카드 5종을 `config/products/*.json`으로 정의, `cardsim/products.py`로 검증
 1. ✅ 가맹점 비중 16개 + 휘발유 가격 (설계서 2.5, v0.6): 출처 2·추정 13·가정 1(후불교통 선택률). 근거를 끝까지 못 찾는 값만 가정으로 둠 (사용자 확정)
-2. 손익 요율 자료 수집 (설계서 5장)
+2. ✅ 손익 요율 12개 수집 (설계서 2.3·5장, v0.7): 추정 8·가정 4. `gongsi.crefia.or.kr`·`www.cardsales.or.kr` 허용 시 체크카드 수수료율·대손율 재확인 가능
 3. (사용자 확인 필요) 행동 가정: 세그먼트별 가입률, 주력카드 비율, 실적 맞추기 범위·확률
 4. 구현: 혜택 계산 엔진 → 손익 계산 → 리포트
 - PR: https://github.com/kimjaehyun9584-code/cardproject/pull/1 (이 브랜치에 푸시하면 갱신됨)
@@ -26,10 +26,11 @@
 ## 네트워크·API 메모
 - KOSIS에서 쓴 표: 카드승인실적(435/DT_435001N_001), 가계동향(101/DT_1L9U105), 소매업태별 판매액(101/DT_1K41003), 주유소 판매가격(318/TX_31802_A000)
 - 허용됨: www.bok.or.kr, file-cdn.bok.or.kr(`curl --http1.1` 필요), ecos.bok.or.kr, kosis.kr(OpenAPI만), www.data.go.kr, jumin.mois.go.kr
+- 신한카드 상품공시실(`/pconts/html/helpdesk/guide/CONFM90022/CONFM90022R02.html`)에 할부 금리 분포·가맹점 수수료율 구간·조달금리 공시가 있음
 - 허용됨 (2026-10-02 추가): card.kbcard.com, www.shinhancard.com, www.samsungcard.com, www.hyundaicard.com, www.bccard.com, www.banksalad.com, v.daum.net
   - 뱅크샐러드 상품 페이지(`/product/cards/CARD000004` 형식)의 `__NEXT_DATA__`에 상품 조건이 구조화되어 있음. 목록 페이지는 없어 검색으로 상품 ID를 찾음
   - card-gorilla.com은 www.card-gorilla.com으로 리다이렉트되는데 www는 아직 허용 안 됨
-- 안 됨: www.crefia.or.kr(사이트가 연결을 끊음), KOSIS 통계표 화면(sso.kosis.kr 로그인 경유)
+- 안 됨: www.crefia.or.kr(사이트가 연결을 끊음), gongsi.crefia.or.kr·www.cardsales.or.kr·file.alphasquare.co.kr·static12.samsungcard.com(정책 403), KOSIS 통계표 화면(sso.kosis.kr 로그인 경유)
 - KOSIS OpenAPI는 환경 변수 `KOSIS_API_KEY` 사용 (키 값은 로그·파일·커밋에 남기지 않기). 가끔 연결이 끊겨서 `curl --retry 5 --retry-all-errors` 권장
   - 메타 조회: `statisticsData.do?method=getMeta&type=ITM&...&orgId=435&tblId=DT_435001N_001`
   - 자료 조회: `Param/statisticsParameterData.do?method=getList&...&itmId=ALL&objL1=ALL&prdSe=M&startPrdDe=202501&endPrdDe=202512`
