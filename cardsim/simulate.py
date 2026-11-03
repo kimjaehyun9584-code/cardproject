@@ -449,16 +449,22 @@ def ranking_flips(base, rows, subset=None):
 
 # ---------------------------------------------------------------- 리포트
 
+def display_name(prod):
+    """상품명 옆에 신용·체크 구분을 붙인다."""
+    kind = "신용카드" if prod["card_kind"] == "credit" else "체크카드"
+    return f"{prod['name']} [{kind}]"
+
+
 def write_report(path, products, res, base, rows, meta):
     esc = html.escape
-    names = {pid: p["name"] for pid, p in products.items()}
+    names = {pid: display_name(p) for pid, p in products.items()}
     pids = sorted(res, key=lambda k: base[k], reverse=True)
     order, flips = ranking_flips(base, rows)
 
     def won(v):
         return f"{v:,.0f}"
 
-    head = "".join(f"<th>{esc(names[p])}<br><span class='sub'>{'신용' if products[p]['card_kind']=='credit' else '체크'}</span></th>" for p in pids)
+    head = "".join(f"<th>{esc(names[p])}</th>" for p in pids)
     summ = ("<tr><th>가입 가능 고객 (명)</th>" + "".join(f"<td>{res[p]['members']:,}</td>" for p in pids) + "</tr>"
             + "<tr><th>회원 1인 월 이 카드 사용액</th>" + "".join(f"<td>{won(res[p]['spend'])}</td>" for p in pids) + "</tr>")
     for line in LINES:
@@ -589,7 +595,7 @@ def main(argv=None):
                   "sample": min(args.sample, len(cust))})
     for pid in sorted(res, key=lambda k: -base[k]):
         r = res[pid]
-        print(f"  {products[pid]['name']:<32} 공헌이익 {r['lines']['공헌이익']:>8,.0f}원/월  혜택률 {r['benefit_rate']:.2%}  "
+        print(f"  {display_name(products[pid]):<40} 공헌이익 {r['lines']['공헌이익']:>8,.0f}원/월  혜택률 {r['benefit_rate']:.2%}  "
               f"음수 회원 {r['neg_share']:.0%}")
     print(f"리포트: {args.report}")
     return 0
