@@ -198,6 +198,45 @@
       ],
       "basis": "가정",
       "source": "후불교통 기능 선택률이나 교통카드 선불·후불 비중 공개 통계를 찾지 못함. 대전교통공사 '선후불 교통카드 통행량'(공공데이터포털 15137263)을 받았지만 현재 공개 파일에 선불·후불 구분 열이 없음"
+    },
+    "utility_mgmt_fee": {
+      "category": "UTILITY_INS",
+      "level": "txn",
+      "desc": "공과금·보험료 결제 중 아파트관리비 등",
+      "value": 0.233,
+      "range": [
+        0.15,
+        0.233
+      ],
+      "basis": "추정",
+      "source": "통계청 가계동향조사 2025 (KOSIS DT_1L9U105, data/reference/raw/kosis_101_DT_1L9U105_2025.json): 주거관련 기타(관리비 등) 71,219원 ÷ 305,366원 (전체 305,366 − 상하수도 24,647 − 연료비 111,856 − 보험 97,644). 아파트 비거주 가구도 포함된 평균이라 카드 자동납부 비중과는 다를 수 있음",
+      "after": "utility_water"
+    },
+    "utility_insurance": {
+      "category": "UTILITY_INS",
+      "level": "txn",
+      "desc": "공과금·보험료 결제 중 민간 보험료(생명·손해)",
+      "value": 0.32,
+      "range": [
+        0.25,
+        0.32
+      ],
+      "basis": "추정",
+      "source": "통계청 가계동향조사 2025 (KOSIS DT_1L9U105, data/reference/raw/kosis_101_DT_1L9U105_2025.json): 보험 97,644원 ÷ 305,366원. 사회보험(건강·연금 등)은 이 합계에 없음. 네 구간(전기·가스+상하수도+관리비+보험) 합이 1이라 관리비·보험 상한은 현재 값",
+      "after": "utility_mgmt_fee"
+    },
+    "online_coupang_kurly": {
+      "category": "ONLINE_SHOP",
+      "level": "txn",
+      "desc": "온라인쇼핑 중 쿠팡·컬리",
+      "value": 0.392,
+      "range": [
+        0.2,
+        0.45
+      ],
+      "basis": "추정",
+      "source": "online_social과 같은 자료: 쿠팡 2024년 39.2% (실물 이커머스 기준). 하한 0.20은 전체 온라인쇼핑 기준 쿠팡 20%. 컬리 비중은 자료를 찾지 못해 반영하지 않음 (과소 쪽)",
+      "after": "online_openmarket"
     }
   },
   "fuel_price_per_liter": {

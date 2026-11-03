@@ -47,7 +47,15 @@ def load_shares(path=None):
     return shares
 
 
+CHANNELS = {"online", "offline"}
+
+
 def _check_match(m, where, categories, shares):
+    unknown = set(m) - {"category", "merchant_share", "customer_share", "overseas", "channel"}
+    if unknown:
+        raise ProductError(f"{where}: 알 수 없는 조건 {sorted(unknown)}")
+    if "channel" in m and m["channel"] not in CHANNELS:
+        raise ProductError(f"{where}: channel은 online 또는 offline")
     cat = m.get("category")
     if cat != "*" and cat not in categories:
         raise ProductError(f"{where}: 알 수 없는 업종 {cat!r}")
@@ -87,7 +95,11 @@ def validate_product(prod, categories, shares):
 
     valid_tiers = {0, *tiers}
     for name, by_tier in prod["pools"].items():
+        if by_tier.get("period", "month") not in ("month", "day"):
+            raise ProductError(f"{pid}: 한도 {name!r}의 period는 month 또는 day")
         for t in by_tier:
+            if t == "period":
+                continue
             if int(t) not in valid_tiers:
                 raise ProductError(f"{pid}: 한도 {name!r}의 구간 {t}가 tiers에 없음")
 
@@ -105,6 +117,8 @@ def validate_product(prod, categories, shares):
             raise ProductError(f"{where}: match가 비어 있음")
         for i, m in enumerate(b["match"]):
             _check_match(m, f"{where}.match[{i}]", categories, shares)
+        for i, m in enumerate(b.get("exclude", [])):
+            _check_match(m, f"{where}.exclude[{i}]", categories, shares)
         mt = b.get("min_tier")
         if mt is not None and mt not in tiers:
             raise ProductError(f"{where}: min_tier {mt}가 tiers에 없음")

@@ -3,7 +3,7 @@
 사용 예:
     python -m cardsim.simulate --customers 10000 --seed 42
 
-합성 고객·거래 데이터에 상품 5종을 적용해 고객·월별 공헌이익을 계산하고,
+합성 고객·거래 데이터에 상품(config/products/*.json)을 적용해 고객·월별 공헌이익을 계산하고,
 가정값을 범위 양 끝으로 바꾼 민감도 분석과 함께 HTML 리포트를 만든다.
 """
 
@@ -36,6 +36,7 @@ def prepare(customers, txns, start, seed):
     """취소 거래와 그 원거래를 빼고, 시뮬레이션에 필요한 열과 난수를 붙인다."""
     cancelled = set(txns.loc[txns["is_cancelled"], "original_txn_id"])
     t = txns[~txns["is_cancelled"] & ~txns["txn_id"].isin(cancelled)].copy()
+    t = _monthly_transit(t)
     t = t.sort_values(["customer_id", "txn_datetime"]).reset_index(drop=True)
     y0, m0 = (int(x) for x in start.split("-"))
     dtm = t["txn_datetime"]
@@ -43,7 +44,7 @@ def prepare(customers, txns, start, seed):
     t["day"] = (dtm.dt.normalize() - pd.Timestamp("1970-01-01")).dt.days.astype(np.int32)
     t["year"] = dtm.dt.year.astype(np.int16)
     t["hour"] = dtm.dt.hour.astype(np.int8)
-    t["weekday"] = dtm.dt.dayofweek.astype(np.int8)
+    t["weekday"] = dtm.dt.day_of_week.astype(np.int8)
     rng = np.random.default_rng([seed, 101])
     t["u_merchant"] = rng.random(len(t))        # 업종 안 가맹점 구간 판정용 (거래별 1개)
     t["u_assign"] = rng.random(len(t))          # 이 카드로 결제할지
@@ -55,11 +56,36 @@ def prepare(customers, txns, start, seed):
     return cust, t
 
 
+def _monthly_transit(t):
+    """대중교통은 후불교통으로 월 단위 합산 청구된다. 고객·결제수단·월별 1건(말일)으로 묶는다.
+
+    한 고객의 후불교통은 카드 한 장에 연결되므로, 이 카드로 올지도 월 단위로 정해진다.
+    """
+    is_tr = (t["category"] == "TRANSIT").to_numpy()
+    if not is_tr.any():
+        return t
+    tr = t[is_tr]
+    per = tr["txn_datetime"].dt.to_period("M")
+    g = tr.groupby([tr["customer_id"], tr["payment_type"], per], sort=False)
+    agg = g.agg(txn_id=("txn_id", "first"), amount=("amount", "sum"), rides=("amount", "size"),
+                channel=("channel", "first"), is_overseas=("is_overseas", "first"),
+                excluded_from_performance=("excluded_from_performance", "first")).reset_index()
+    agg = agg.rename(columns={"txn_datetime": "period"})
+    agg["txn_datetime"] = agg["period"].dt.to_timestamp(how="end").dt.normalize() + pd.Timedelta(hours=23)
+    agg["txn_datetime"] = agg["txn_datetime"].astype(t["txn_datetime"].dtype)
+    agg["category"] = "TRANSIT"
+    agg["installment_months"] = 0
+    agg["is_cancelled"] = False
+    agg["original_txn_id"] = None
+    agg = agg.drop(columns="period")
+    rest = t[~is_tr].copy()
+    rest["rides"] = 1
+    return pd.concat([rest, agg[rest.columns]], ignore_index=True)
+
+
 def _share_interval(shares, key):
     spec = shares["shares"][key]
-    lo = 0.0
-    if "after" in spec:
-        lo = shares["shares"][spec["after"]]["value"]
+    lo = _share_interval(shares, spec["after"])[1] if "after" in spec else 0.0  # 구간을 이어 붙임
     return lo, lo + spec["value"]
 
 
@@ -76,6 +102,8 @@ def _match_mask(t, cust_u, m, shares):
         mask &= (u >= lo) & (u < hi)
     if m.get("overseas"):
         mask &= t["is_overseas"].to_numpy()
+    if "channel" in m:
+        mask &= t["channel"].to_numpy() == m["channel"]
     return mask
 
 
@@ -89,6 +117,10 @@ def _benefit_mask(t, cust_u, b, shares):
         mask &= ((hr >= h0) & (hr < h1)) if h0 < h1 else ((hr >= h0) | (hr < h1))
     if "weekdays" in b:
         mask &= np.isin(t["weekday"].to_numpy(), b["weekdays"])
+    for m in b.get("exclude", []):
+        mask &= ~_match_mask(t, cust_u, m, shares)
+    if b.get("lump_only"):
+        mask &= t["installment_months"].to_numpy() == 0
     if b.get("min_txn_amount"):
         mask &= t["amount"].to_numpy() >= b["min_txn_amount"]
     return mask
@@ -104,7 +136,7 @@ def _tier_value(perf, tiers):
 
 
 def _pool_limit(by_tier, tier):
-    keys = sorted(int(k) for k in by_tier)
+    keys = sorted(int(k) for k in by_tier if k != "period")
     lim = 0
     for k in keys:
         if tier >= k:
@@ -115,56 +147,83 @@ def _pool_limit(by_tier, tier):
 # ---------------------------------------------------------------- 상품 1개 계산
 
 def run_product(prod, cust, t_all, shares, behavior, seed, n_months, all_on_card=False):
+    """상품 1개를 가입 가능 고객 전원에게 적용한다. 월 단위로 구간 → 실적 맞추기 → 혜택 → 실적 순서로 계산."""
     kind = prod["card_kind"]
     members = cust.index[cust["has_credit_card"]] if kind == "credit" else cust.index
     mem_mask = cust.index.isin(members)
     t = t_all[(t_all["payment_type"] == kind).to_numpy() & mem_mask[t_all["cust_idx"].to_numpy()]].reset_index(drop=True)
     cust_u = cust["u_customer"].to_numpy()
+    n_c = len(cust)
 
     # 고객별 이 카드 비율 (베타분포)
     k = behavior["share_concentration"]["value"]
     if kind == "credit":
         spec = behavior["main_card_share_credit"]
-        scale = spec.get("_scale", 1.0)
-        mean = cust["segment"].map(spec["value"]).to_numpy() * scale
+        mean = cust["segment"].map(spec["value"]).to_numpy() * spec.get("_scale", 1.0)
     else:
-        mean = np.full(len(cust), behavior["main_card_share_check"]["value"])
+        mean = np.full(n_c, behavior["main_card_share_check"]["value"])
     mean = np.clip(mean, 0.02, 0.95)
-    rng = np.random.default_rng([seed, 201])
-    share = rng.beta(mean * k, (1 - mean) * k)
+    share = np.random.default_rng([seed, 201]).beta(mean * k, (1 - mean) * k)
 
-    # 결제 배정: 자동납부는 고객·업종 단위, 나머지는 거래 단위
+    # 결제 배정: 자동납부 업종은 고객·업종 단위, 나머지는 거래 단위 (대중교통은 이미 고객·월 1건)
     s_txn = share[t["cust_idx"].to_numpy()]
     on = t["u_assign"].to_numpy() < s_txn
+    autopay = t["category"].isin(AUTOPAY).to_numpy().copy()
     if all_on_card:  # 테스트용: 모든 결제를 이 카드로
         on[:] = True
-    autopay = t["category"].isin(AUTOPAY).to_numpy().copy()
-    if autopay.any() and not all_on_card:
-        u_ap = np.random.default_rng([seed, 202]).random((len(cust), len(AUTOPAY)))
+    elif autopay.any():
+        u_ap = np.random.default_rng([seed, 202]).random((n_c, len(AUTOPAY)))
         cat_i = t.loc[autopay, "category"].map({c: i for i, c in enumerate(AUTOPAY)}).to_numpy()
         on[autopay] = u_ap[t.loc[autopay, "cust_idx"].to_numpy(), cat_i] < s_txn[autopay]
 
-    # 실적 제외
-    perf_ex = t["category"].isin(prod["performance"].get("exclude_categories", [])).to_numpy().copy()
-    for m in prod["performance"].get("exclude_shares", []):
+    perf_spec = prod["performance"]
+    perf_ex = t["category"].isin(perf_spec.get("exclude_categories", [])).to_numpy().copy()
+    for m in perf_spec.get("exclude_shares", []):
         perf_ex |= _match_mask(t, cust_u, m, shares)
+    excl_disc = perf_spec.get("exclude_discounted", False)
 
-    tiers = prod["performance"]["tiers"]
+    tiers = perf_spec["tiers"]
     month = t["month"].to_numpy()
     ci = t["cust_idx"].to_numpy()
     amt = t["amount"].to_numpy().astype(float)
-    n_c = len(cust)
-    perf = np.zeros((n_c, n_months))
-    chased = np.zeros((n_c, n_months), bool)
     window, prob = behavior["chase_window"]["value"], behavior["chase_prob"]["value"]
     u_chase = cust["u_chase"].to_numpy()
     can_move = ~perf_ex & ~autopay
+    grace = perf_spec.get("grace")
+    fuel_price = shares["fuel_price_per_liter"]["value"]
+
+    # 혜택별 대상 거래 (배정과 무관하게 한 번만 계산)
+    bens = prod["benefits"]
+    bmask = []
+    for b in bens:
+        mk = _benefit_mask(t, cust_u, b, shares)
+        bmask.append(mk)
+    simple = [i for i, b in enumerate(bens) if not (b.get("pools") or b.get("per_day") or b.get("per_month")
+                                                     or b.get("per_year") or b.get("monthly_eligible_cap"))]
+    complex_ = [i for i in range(len(bens)) if i not in simple]
+
+    perf = np.zeros((n_c, n_months))
+    tier_cm = np.zeros((n_c, n_months))
+    chased = np.zeros((n_c, n_months), bool)
+    disc = np.zeros(len(t))
+    pts = np.zeros(len(t))
+    used_by_benefit = {}
+    day, year = t["day"].to_numpy(), t["year"].to_numpy()
+    pools = prod["pools"]
+    cnt_y_all = {}  # 연간 횟수는 월을 넘어 이어짐
 
     for mo in range(n_months):
         in_m = month == mo
+        # 이번 달 구간 = 전월실적, 신규 회원 면제 기간
+        if mo > 0:
+            tier_cm[:, mo] = _tier_value(perf[:, mo - 1], tiers)
+        if grace and mo < grace["months"]:
+            tier_cm[:, mo] = np.maximum(tier_cm[:, mo], grace["tier"])
+
+        # 실적 맞추기: 이번 달 실적이 다음 구간에 조금 못 미치면 다른 카드 결제를 옮김
         sel = in_m & on & ~perf_ex
         p = np.bincount(ci[sel], weights=amt[sel], minlength=n_c)
-        if tiers and prob > 0:
+        if tiers and prob > 0 and not all_on_card:
             edges = np.asarray(tiers, float)
             nxt_idx = np.searchsorted(edges, p, side="right")
             has_next = nxt_idx < len(edges)
@@ -174,126 +233,103 @@ def run_product(prod, cust, t_all, shares, behavior, seed, n_months, all_on_card
             if cand.any():
                 pool = np.flatnonzero(in_m & ~on & can_move & cand[ci])
                 if len(pool):
-                    order = pool[::-1]  # 월말부터 거꾸로 (같은 고객 안에서 최근 거래 먼저)
+                    order = pool[::-1]  # 월말부터 거꾸로
                     df = pd.DataFrame({"i": order, "c": ci[order], "a": amt[order]})
                     df["cum"] = df.groupby("c")["a"].cumsum()
                     df["need"] = gap[df["c"].to_numpy()]
-                    prev = df["cum"] - df["a"]
-                    moved = df.loc[prev < df["need"], ["i", "c"]]
+                    moved = df.loc[df["cum"] - df["a"] < df["need"], ["i", "c"]]
                     reached = df.groupby("c")["cum"].max() >= df.groupby("c")["need"].first()
                     ok_c = reached[reached].index
                     moved = moved[moved["c"].isin(ok_c)]
                     on[moved["i"].to_numpy()] = True
                     chased[ok_c.to_numpy(), mo] = True
-                    sel = in_m & on & ~perf_ex
-                    p = np.bincount(ci[sel], weights=amt[sel], minlength=n_c)
-        perf[:, mo] = p
 
-    # 이번 달 구간 = 전월실적 기준, 신규 회원 면제 기간 반영
-    tier_cm = np.zeros((n_c, n_months))
-    tier_cm[:, 1:] = _tier_value(perf[:, :-1], tiers)
-    g = prod["performance"].get("grace")
-    if g:
-        tier_cm[:, : g["months"]] = np.maximum(tier_cm[:, : g["months"]], g["tier"])
-
-    # ---- 혜택 계산
-    t_on = np.flatnonzero(on)
-    tt = t.iloc[t_on].reset_index(drop=True)
-    tci, tmo = tt["cust_idx"].to_numpy(), tt["month"].to_numpy()
-    tamt = tt["amount"].to_numpy().astype(float)
-    tier_txn = tier_cm[tci, tmo]
-    disc = np.zeros(len(tt))
-    pts = np.zeros(len(tt))
-    fuel_price = shares["fuel_price_per_liter"]["value"]
-    used_by_benefit = {}
-
-    simple, complex_ = [], []
-    for bi, b in enumerate(prod["benefits"]):
-        is_simple = not (b.get("pools") or b.get("per_day") or b.get("per_month") or b.get("per_year")
-                         or b.get("monthly_eligible_cap"))
-        (simple if is_simple else complex_).append((bi, b))
-
-    for bi, b in simple:
-        mask = _benefit_mask(tt, cust_u, b, shares)
-        if b.get("min_tier") is not None:
-            mask &= tier_txn >= b["min_tier"]
-        base = np.minimum(tamt, b.get("max_eligible_per_txn", np.inf))
-        val = _benefit_value(b, base, fuel_price)
-        if b["kind"] == "points":
-            pts += np.where(mask, val, 0)
-        else:
-            disc += np.where(mask, val, 0)
-        used_by_benefit[b["id"]] = float(np.where(mask, val, 0).sum())
-
-    if complex_:
-        rows, bids = [], []
-        for bi, b in complex_:
-            mask = _benefit_mask(tt, cust_u, b, shares)
-            if b.get("min_tier") is not None:
-                mask &= tier_txn >= b["min_tier"]
-            idx = np.flatnonzero(mask)
-            rows.append(idx)
-            bids.append(np.full(len(idx), bi))
-        rows, bids = np.concatenate(rows), np.concatenate(bids)
-        order = np.lexsort((bids, rows))  # tt는 고객·시간순으로 정렬되어 있음
-        rows, bids = rows[order], bids[order]
-        day, year = tt["day"].to_numpy(), tt["year"].to_numpy()
-        pools = prod["pools"]
-        cur_cm, cur_day, cur_year = None, None, None
-        pool_used, cnt_m, cnt_d, cnt_y, cap_used = {}, {}, {}, {}, {}
-        bens = prod["benefits"]
-        for r, bi in zip(rows.tolist(), bids.tolist()):
-            c, mo = tci[r], tmo[r]
+        # 혜택 (이번 달, 이 카드 결제만)
+        cur = in_m & on
+        tier_txn = tier_cm[ci, mo]
+        for bi in simple:
             b = bens[bi]
-            if (c, mo) != cur_cm:
-                cur_cm, pool_used, cnt_m, cap_used = (c, mo), {}, {}, {}
-            if (c, day[r]) != cur_day:
-                cur_day, cnt_d = (c, day[r]), {}
-            if (c, year[r]) != cur_year:
-                cur_year, cnt_y = (c, year[r]), {}
-            if b.get("per_day") and cnt_d.get(bi, 0) >= b["per_day"]:
+            mk = bmask[bi] & cur
+            if b.get("min_tier") is not None:
+                mk &= tier_txn >= b["min_tier"]
+            idx = np.flatnonzero(mk)
+            if not len(idx):
                 continue
-            if b.get("per_month") and cnt_m.get(bi, 0) >= b["per_month"]:
-                continue
-            if b.get("per_year") and cnt_y.get(bi, 0) >= b["per_year"]:
-                continue
-            base = min(tamt[r], b.get("max_eligible_per_txn", float("inf")))
-            if b.get("monthly_eligible_cap"):
-                base = min(base, b["monthly_eligible_cap"] - cap_used.get(bi, 0.0))
-                if base <= 0:
+            val = _benefit_value(b, np.minimum(amt[idx], b.get("max_eligible_per_txn", np.inf)), fuel_price)
+            (pts if b["kind"] == "points" else disc)[idx] += val
+            used_by_benefit[b["id"]] = used_by_benefit.get(b["id"], 0.0) + float(val.sum())
+        if complex_:
+            rows, bids = [], []
+            for bi in complex_:
+                b = bens[bi]
+                mk = bmask[bi] & cur
+                if b.get("min_tier") is not None:
+                    mk &= tier_txn >= b["min_tier"]
+                idx = np.flatnonzero(mk)
+                rows.append(idx)
+                bids.append(np.full(len(idx), bi))
+            rows, bids = np.concatenate(rows), np.concatenate(bids)
+            order = np.lexsort((bids, rows))  # t는 고객·시간순 정렬
+            cur_c, cur_day = None, None
+            pool_used, pool_day, cnt_m, cnt_d, cap_used = {}, {}, {}, {}, {}
+            for r, bi in zip(rows[order].tolist(), bids[order].tolist()):
+                c = ci[r]
+                b = bens[bi]
+                if c != cur_c:
+                    cur_c, pool_used, cnt_m, cap_used = c, {}, {}, {}
+                if (c, day[r]) != cur_day:
+                    cur_day, cnt_d, pool_day = (c, day[r]), {}, {}
+                ykey = (c, year[r], bi)
+                if b.get("per_day") and cnt_d.get(bi, 0) >= b["per_day"]:
                     continue
-            val = float(_benefit_value(b, np.array([base]), fuel_price)[0])
-            tier = tier_cm[c, mo]
-            for p in b.get("pools", []):
-                val = min(val, _pool_limit(pools[p], tier) - pool_used.get(p, 0.0))
-            if val <= 0:
-                continue
-            for p in b.get("pools", []):
-                pool_used[p] = pool_used.get(p, 0.0) + val
-            cnt_d[bi] = cnt_d.get(bi, 0) + 1
-            cnt_m[bi] = cnt_m.get(bi, 0) + 1
-            cnt_y[bi] = cnt_y.get(bi, 0) + 1
-            if b.get("monthly_eligible_cap"):
-                cap_used[bi] = cap_used.get(bi, 0.0) + base
-            if b["kind"] == "points":
-                pts[r] += val
-            else:
-                disc[r] += val
-            used_by_benefit[b["id"]] = used_by_benefit.get(b["id"], 0.0) + val
+                if b.get("per_month") and cnt_m.get(bi, 0) >= b["per_month"]:
+                    continue
+                if b.get("per_year") and cnt_y_all.get(ykey, 0) >= b["per_year"]:
+                    continue
+                base = min(amt[r], b.get("max_eligible_per_txn", float("inf")))
+                if b.get("monthly_eligible_cap"):
+                    base = min(base, b["monthly_eligible_cap"] - cap_used.get(bi, 0.0))
+                    if base <= 0:
+                        continue
+                val = float(_benefit_value(b, np.array([base]), fuel_price)[0])
+                tier = tier_cm[c, mo]
+                for pn in b.get("pools", []):
+                    used = pool_day if pools[pn].get("period") == "day" else pool_used
+                    val = min(val, _pool_limit(pools[pn], tier) - used.get(pn, 0.0))
+                if val <= 0:
+                    continue
+                for pn in b.get("pools", []):
+                    used = pool_day if pools[pn].get("period") == "day" else pool_used
+                    used[pn] = used.get(pn, 0.0) + val
+                cnt_d[bi] = cnt_d.get(bi, 0) + 1
+                cnt_m[bi] = cnt_m.get(bi, 0) + 1
+                cnt_y_all[ykey] = cnt_y_all.get(ykey, 0) + 1
+                if b.get("monthly_eligible_cap"):
+                    cap_used[bi] = cap_used.get(bi, 0.0) + base
+                if b["kind"] == "points":
+                    pts[r] += val
+                else:
+                    disc[r] += val
+                used_by_benefit[b["id"]] = used_by_benefit.get(b["id"], 0.0) + val
+
+        # 이번 달 실적 (다음 달 구간 결정). 할인받은 결제를 빼는 상품도 있음
+        sel = in_m & on & ~perf_ex
+        if excl_disc:
+            sel &= disc == 0
+        perf[:, mo] = np.bincount(ci[sel], weights=amt[sel], minlength=n_c)
 
     # ---- 고객·월별 기초 수량 (요율을 곱하기 전)
-    inst = tt["installment_months"].to_numpy()
-    is_transit = (tt["category"] == "TRANSIT").to_numpy()
+    t_on = np.flatnonzero(on)
+    inst = t["installment_months"].to_numpy()[t_on]
+    a_on = amt[t_on]
     q = pd.DataFrame({
-        # 대중교통은 후불교통으로 월 단위 합산 청구되므로 승인 처리 건수는 고객·월 1건 (아래에서 더함)
-        "c": tci, "m": tmo, "amount": tamt, "count": np.where(is_transit, 0.0, 1.0), "transit": is_transit.astype(float),
-        "lump": np.where(inst == 0, tamt, 0.0),
-        "inst_bal": np.where(inst > 0, tamt * (inst + 1) / 2 / 12, 0.0),  # 할부 원금 × 평균 잔액 기간(년)
-        "disc": disc, "pts": pts,
+        "c": ci[t_on], "m": month[t_on], "amount": a_on, "count": 1.0,
+        "lump": np.where(inst == 0, a_on, 0.0),
+        "inst_bal": np.where(inst > 0, a_on * (inst + 1) / 2 / 12, 0.0),  # 할부 원금 × 평균 잔액 기간(년)
+        "disc": disc[t_on], "pts": pts[t_on],
     }).groupby(["c", "m"]).sum()
     full = pd.MultiIndex.from_product([np.flatnonzero(mem_mask), range(n_months)], names=["c", "m"])
     q = q.reindex(full, fill_value=0.0)
-    q["count"] += (q.pop("transit") > 0).astype(float)
     q["tier"] = tier_cm[q.index.get_level_values(0), q.index.get_level_values(1)]
     q["chased"] = chased[q.index.get_level_values(0), q.index.get_level_values(1)]
     q["segment"] = cust["segment"].to_numpy()[q.index.get_level_values(0)]
@@ -498,13 +534,17 @@ def write_report(path, products, res, base, rows, meta):
         ben_rows += f"<tr><th>{esc(names[p])}</th><td class='l'>{esc(txt)}</td><td class='l'>{esc(unm)}</td></tr>"
 
     credit_ids = {p for p in pids if products[p]["card_kind"] == "credit"}
-    _, flips_credit = ranking_flips(base, rows, credit_ids)
+    order_credit, flips_credit = ranking_flips(base, rows, credit_ids)
 
-    def verdict(label, fl):
+    def verdict(label, od, fl):
         if not fl:
             return f"{label}: 모든 가정값 범위에서 순위 유지 (견고)."
-        return f"{label}: 다음 가정값에 따라 순위가 바뀜 → " + ", ".join(sorted({k for k, _, _ in fl})) + "."
-    robust = verdict("전체 5종 순위", flips) + " " + verdict("신용카드 4종끼리의 순위", flips_credit)
+        top = sorted({k for k, _, o in fl if o[0] != od[0]})
+        top_txt = (f" 1위({products[od[0]]['name']})는 " +
+                   ("모든 범위에서 유지." if not top else "다음 값에서 바뀜 → " + ", ".join(top) + "."))
+        return f"{label}: 다음 가정값에 따라 순위가 바뀜 → " + ", ".join(sorted({k for k, _, _ in fl})) + "." + top_txt
+    robust = (verdict(f"전체 {len(pids)}종 순위", order, flips) + " " +
+              verdict(f"신용카드 {len(credit_ids)}종끼리의 순위", order_credit, flips_credit))
     sens = []
     for grp, key, basis, rng_, lo_hi in rows:
         swing = max(abs(lo_hi[i][p] - base[p]) for i in range(2) for p in pids)

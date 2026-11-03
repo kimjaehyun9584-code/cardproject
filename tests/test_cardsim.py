@@ -199,3 +199,45 @@ def test_benefit_fixed_amount_and_previous_month_tier():
     # 1월은 전월실적이 없어 구간 미달, 2월은 1월 실적 42.1만 원으로 30만 원 구간 → 1만 원 이상 첫 건만 1,000원
     assert q["disc"].xs(0, level="m").sum() == 0
     assert q["disc"].xs(1, level="m").sum() == pytest.approx(1000)
+
+
+def test_transit_aggregated_per_month():
+    # 대중교통 3회(1월) + 2회(2월) → 고객·월별 1건씩, 금액 합산, 말일 23시
+    rows = [("2025-01-03 08:00", "TRANSIT", 1500), ("2025-01-04 08:00", "TRANSIT", 1500), ("2025-01-20 08:00", "TRANSIT", 1700),
+            ("2025-02-03 08:00", "TRANSIT", 1500), ("2025-02-04 08:00", "TRANSIT", 1500), ("2025-01-05 12:00", "CAFE", 5000)]
+    _, t = _tiny_case(rows)
+    tr = t[t["category"] == "TRANSIT"].sort_values("month")
+    assert tr["amount"].tolist() == [4700, 3000]
+    assert tr["rides"].tolist() == [3, 2]
+    assert tr["txn_datetime"].iloc[0] == pd.Timestamp("2025-01-31 23:00")
+
+
+def test_discounted_txn_excluded_from_performance():
+    from cardsim.products import load_shares
+    from cardsim.simulate import load_behavior, run_product
+    # 1월 카페 10만 원 할인 + 기타 25만 원. 할인 건을 빼면 실적 25만 원 → 2월 구간 미달
+    rows = [("2025-01-05 12:00", "CAFE", 100000), ("2025-01-06 12:00", "ETC", 250000), ("2025-02-05 12:00", "CAFE", 10000)]
+    cust, t = _tiny_case(rows)
+    ben = [{"id": "cafe", "kind": "rate", "rate": 0.10, "match": [{"category": "CAFE"}], "min_tier": 300000, "pools": []}]
+    grace = {"months": 1, "tier": 300000}
+    prod = _tiny_product(ben, {}, tiers=[300000], grace=grace)
+    q, _ = run_product(prod, cust, t, load_shares(), load_behavior(), 1, 2, all_on_card=True)
+    assert q["disc"].xs(1, level="m").sum() == pytest.approx(1000)  # 할인 건도 실적 포함 → 35만 원
+    prod["performance"]["exclude_discounted"] = True
+    q, _ = run_product(prod, cust, t, load_shares(), load_behavior(), 1, 2, all_on_card=True)
+    assert q["disc"].xs(0, level="m").sum() == pytest.approx(10000)  # 1월은 신규 면제
+    assert q["disc"].xs(1, level="m").sum() == 0
+
+
+def test_day_pool_channel_and_exclude():
+    from cardsim.products import load_shares
+    from cardsim.simulate import load_behavior, run_product
+    rows = [("2025-01-02 12:00", "RESTAURANT", 10000)] * 3 + [("2025-01-03 12:00", "RESTAURANT", 10000), ("2025-01-03 13:00", "TRANSIT", 1500)]
+    cust, t = _tiny_case(rows)
+    ben = [{"id": "r", "kind": "points", "rate": 0.05, "match": [{"category": "*", "channel": "offline"}],
+            "exclude": [{"category": "TRANSIT"}], "pools": ["d"]}]
+    q, _ = run_product(_tiny_product(ben, {"d": {"period": "day", "0": 1000}}), cust, t, load_shares(), load_behavior(), 1, 1, all_on_card=True)
+    assert q["pts"].sum() == pytest.approx(1000 + 500)  # 첫날 1,500 → 1,000, 둘째 날 500, 대중교통 제외
+    ben[0]["match"][0]["channel"] = "online"
+    q, _ = run_product(_tiny_product(ben, {"d": {"period": "day", "0": 1000}}), cust, t, load_shares(), load_behavior(), 1, 1, all_on_card=True)
+    assert q["pts"].sum() == 0

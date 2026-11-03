@@ -1,0 +1,57 @@
+{
+  "id": "shinhan_cheoeum",
+  "name": "신한카드 처음(ANNIVERSE)",
+  "issuer": "신한카드",
+  "card_kind": "credit",
+  "annual_fee": 15000,
+  "source": "data/reference/raw/products/banksalad_CARD004343.json (뱅크샐러드, 2026-11-03 다운로드). 연회비는 국내전용 15,000원, 해외겸용 18,000원",
+  "performance": {
+    "tiers": [300000, 500000, 1000000],
+    "exclude_categories": [],
+    "exclude_shares": [
+      {"category": "UTILITY_INS", "merchant_share": "utility_electric_gas"},
+      {"category": "UTILITY_INS", "merchant_share": "utility_water"},
+      {"category": "UTILITY_INS", "merchant_share": "utility_mgmt_fee"}
+    ],
+    "grace": {"months": 2, "tier": 300000},
+    "_note": "실적 제외: 수도요금·도시가스·전기요금·아파트관리비, 국세·지방세·4대보험, 등록금 등. 신규 회원은 등록월+1개월까지 30~50만 원 구간"
+  },
+  "benefits": [
+    {"id": "restaurant", "name": "[오늘도] 음식점 5% 적립", "kind": "points", "rate": 0.05,
+     "match": [{"category": "RESTAURANT", "channel": "offline"}],
+     "max_eligible_per_txn": 10000, "min_tier": 300000, "pools": ["today_day", "today", "total"]},
+    {"id": "cafe", "name": "[오늘도] 커피전문점 5% 적립", "kind": "points", "rate": 0.05,
+     "match": [{"category": "CAFE"}],
+     "max_eligible_per_txn": 10000, "min_tier": 300000, "pools": ["today_day", "today", "total"],
+     "_note": "오프라인만이지만 스타벅스·투썸 스마트오더 포함이라 채널 구분 없이 적용"},
+    {"id": "convenience", "name": "[오늘도] 편의점 5% 적립", "kind": "points", "rate": 0.05,
+     "match": [{"category": "CONVENIENCE", "channel": "offline"}],
+     "max_eligible_per_txn": 10000, "min_tier": 300000, "pools": ["today_day", "today", "total"]},
+    {"id": "coupang_kurly", "name": "[오늘도] 쿠팡·컬리 5% 적립", "kind": "points", "rate": 0.05,
+     "match": [{"category": "ONLINE_SHOP", "merchant_share": "online_coupang_kurly"}],
+     "max_eligible_per_txn": 10000, "min_tier": 300000, "pools": ["today_day", "today", "total"]},
+    {"id": "overseas", "name": "[일상 속] 해외 일시불 5% 적립", "kind": "points", "rate": 0.05,
+     "match": [{"category": "*", "overseas": true}], "lump_only": true,
+     "max_eligible_per_txn": 50000, "min_tier": 300000, "pools": ["daily", "total"]},
+    {"id": "telecom", "name": "[정기결제] 이동통신 10% 적립", "kind": "points", "rate": 0.10,
+     "match": [{"category": "TELECOM", "customer_share": "telecom_mno3"}],
+     "max_eligible_per_txn": 30000, "per_month": 1, "min_tier": 300000, "pools": ["subscription", "total"]},
+    {"id": "ott", "name": "[정기결제] OTT 15% 적립", "kind": "points", "rate": 0.15,
+     "match": [{"category": "CULTURE_OTT", "merchant_share": "culture_netflix_youtube"}],
+     "min_tier": 500000, "pools": ["ott", "subscription", "total"],
+     "_note": "OTT 한도가 50만 원 구간부터 있어 30만 원 구간은 적립 없음"}
+  ],
+  "pools": {
+    "today_day":    {"period": "day", "300000": 1000, "500000": 1000, "1000000": 1000},
+    "today":        {"300000": 5000, "500000": 10000, "1000000": 20000},
+    "daily":        {"300000": 5000, "500000": 10000, "1000000": 20000},
+    "ott":          {"500000": 10000, "1000000": 20000},
+    "subscription": {"300000": 5000, "500000": 10000, "1000000": 20000},
+    "total":        {"300000": 18000, "500000": 36000, "1000000": 70000}
+  },
+  "unmodeled_benefits": [
+    {"name": "[일상 속] 올리브영·다이소·오늘의집, 택시·KTX, 무신사 등 패션 5%", "reason": "해당 가맹점이 생성 데이터 업종에서 분리되지 않고 비중 자료도 없음"},
+    {"name": "[정기결제] 쿠팡 와우·네이버플러스 멤버십 20%", "reason": "멤버십 요금 업종이 없음"},
+    {"name": "[소비관리 보너스] 계획소비·즉시결제", "reason": "고객 행동(목표 설정, 선결제) 자료 없음"}
+  ]
+}

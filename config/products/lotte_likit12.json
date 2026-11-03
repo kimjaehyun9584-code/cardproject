@@ -1,0 +1,29 @@
+{
+  "id": "lotte_likit12",
+  "name": "롯데 LOCA LIKIT 1.2",
+  "issuer": "롯데카드",
+  "card_kind": "credit",
+  "annual_fee": 10000,
+  "source": "data/reference/raw/products/banksalad_CARD000038.json (뱅크샐러드, 2026-11-03 다운로드)",
+  "performance": {"tiers": [], "exclude_categories": [], "grace": null,
+                  "_note": "실적 조건·할인 한도 없음"},
+  "benefits": [
+    {"id": "offline", "name": "국내외 가맹점 1.2%", "kind": "rate", "rate": 0.012,
+     "match": [{"category": "*", "channel": "offline"}],
+     "exclude": [{"category": "TRANSIT"},
+                 {"category": "UTILITY_INS", "merchant_share": "utility_electric_gas"},
+                 {"category": "UTILITY_INS", "merchant_share": "utility_water"},
+                 {"category": "UTILITY_INS", "merchant_share": "utility_mgmt_fee"}]},
+    {"id": "online", "name": "온라인 1.5%", "kind": "rate", "rate": 0.015,
+     "match": [{"category": "*", "channel": "online"}],
+     "exclude": [{"category": "TRANSIT"},
+                 {"category": "UTILITY_INS", "merchant_share": "utility_electric_gas"},
+                 {"category": "UTILITY_INS", "merchant_share": "utility_water"},
+                 {"category": "UTILITY_INS", "merchant_share": "utility_mgmt_fee"}],
+     "_note": "1.2%와 중복 없이 큰 혜택 적용 → 온라인은 1.5%만"}
+  ],
+  "pools": {},
+  "unmodeled_benefits": [
+    {"name": "할인 제외: 무이자할부, 국세·지방세·4대보험, 등록금, 상품권, 택시", "reason": "생성 데이터에 구분이 없어 혜택이 약간 과대"}
+  ]
+}
