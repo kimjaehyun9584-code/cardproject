@@ -13,25 +13,27 @@
   - 시드 42: 월 사용액 +8.9%, 결제 건수 +5.0%, 건당 금액 +2.9%, 체크카드 +2.5%p
 - 확인하지 못한 것: 업종별 건당 금액(카드승인실적에 건수 없음), 금액 기준 온라인 비중, 세그먼트별 사용액(연령·소득별 카드 사용액 통계 미확보)
 
-## 바로 할 일: 손익 시뮬레이터 (`docs/simulator_design.md` v0.8)
+## 바로 할 일: 손익 시뮬레이터 (`docs/simulator_design.md` v0.9)
 - 범위 확정: 신용·체크카드 상품, 공헌이익 수준 손익, 주력카드 비율 + 실적 맞추기, 세그먼트별 가입률
 - 상품 확정 (2026-10-28): 실제 카드 5종을 `config/products/*.json`으로 정의, `cardsim/products.py`로 검증
 1. ✅ 가맹점 비중 16개 + 휘발유 가격 (설계서 2.5, v0.6): 출처 2·추정 13·가정 1(후불교통 선택률). 근거를 끝까지 못 찾는 값만 가정으로 둠 (사용자 확정)
 2. ✅ 손익 요율 12개 수집 (설계서 2.3·5장, v0.7): 추정 8·가정 4. `gongsi.crefia.or.kr`·`www.cardsales.or.kr` 허용 시 체크카드 수수료율·대손율 재확인 가능
 3. ✅ 행동 가정 (설계서 2.4): 주력카드 비율은 한국은행 조사로 추정, 실적 맞추기·체크카드 비율·가입률은 가정
 4. ✅ 엔진·민감도·리포트 구현: `python -m cardsim.simulate --customers 10000 --seed 42` (약 4분) → `reports/simulation_report.html`, 첫 결과는 설계서 7장
-5. 다음 후보 (사용자 확인 필요): 결론을 흔드는 가정값 재확인(체크카드 수수료율·대손율 → 여신금융협회 공시, 모집비 안분 기간), 대상 세그먼트 가입률 시나리오, 혜택 누수 진단기
+5. ✅ 결론을 흔든 값 재확인 (v0.9): 체크카드 수수료율·신판 대손율을 추정으로 교체. 신용카드끼리 순위는 견고, 노리2(체크) vs Mr.Life(신용)는 판단 불가 수준으로 근접
+6. 다음 후보 (사용자 확인 필요): 모집 비용 안분 기간(카드 유지 기간) 자료, 대상 세그먼트 가입률 시나리오, 혜택 누수 진단기
 - PR: https://github.com/kimjaehyun9584-code/cardproject/pull/1 (이 브랜치에 푸시하면 갱신됨)
 - 합성 데이터에서 사용자와 함께 확정한 값은 유지: S1 대학생 신용카드 보유 확률 8%, 카페 가격대(3.2.2), 음식점 간편식(3.2.3), 대학생 편의점 횟수 8회·계수 0.45, 대중교통 1,500원 하한, 대학생 월 사용액 70~80만 원(현재 약 73만)
 
 ## 네트워크·API 메모
 - KOSIS에서 쓴 표: 카드승인실적(435/DT_435001N_001), 가계동향(101/DT_1L9U105), 소매업태별 판매액(101/DT_1K41003), 주유소 판매가격(318/TX_31802_A000)
 - 허용됨: www.bok.or.kr, file-cdn.bok.or.kr(`curl --http1.1` 필요), ecos.bok.or.kr, kosis.kr(OpenAPI만), www.data.go.kr, jumin.mois.go.kr
+- 신한카드 IR 자료: `POST /mob/MOBFM12003N/MOBFM12003R05.ajax` {"page":1}로 목록, `/mob/MOBFM12003N/RetrieveFile.ajax?ancGdSeqN=..&hmpBlbBsnCCd=HPC&factBookGubun=N`으로 PDF (`curl --http1.1` 권장)
 - 신한카드 상품공시실(`/pconts/html/helpdesk/guide/CONFM90022/CONFM90022R02.html`)에 할부 금리 분포·가맹점 수수료율 구간·조달금리 공시가 있음
 - 허용됨 (2026-10-02 추가): card.kbcard.com, www.shinhancard.com, www.samsungcard.com, www.hyundaicard.com, www.bccard.com, www.banksalad.com, v.daum.net
   - 뱅크샐러드 상품 페이지(`/product/cards/CARD000004` 형식)의 `__NEXT_DATA__`에 상품 조건이 구조화되어 있음. 목록 페이지는 없어 검색으로 상품 ID를 찾음
   - card-gorilla.com은 www.card-gorilla.com으로 리다이렉트되는데 www는 아직 허용 안 됨
-- 안 됨: www.crefia.or.kr(사이트가 연결을 끊음), gongsi.crefia.or.kr·www.cardsales.or.kr·file.alphasquare.co.kr·static12.samsungcard.com(정책 403), KOSIS 통계표 화면(sso.kosis.kr 로그인 경유)
+- 안 됨: www.crefia.or.kr·gongsi.crefia.or.kr·www.cardsales.or.kr(허용 도메인이지만 상대 서버가 연결을 끊음), file.alphasquare.co.kr·static12.samsungcard.com(정책 403), KOSIS 통계표 화면(sso.kosis.kr 로그인 경유)
 - KOSIS OpenAPI는 환경 변수 `KOSIS_API_KEY` 사용 (키 값은 로그·파일·커밋에 남기지 않기). 가끔 연결이 끊겨서 `curl --retry 5 --retry-all-errors` 권장
   - 메타 조회: `statisticsData.do?method=getMeta&type=ITM&...&orgId=435&tblId=DT_435001N_001`
   - 자료 조회: `Param/statisticsParameterData.do?method=getList&...&itmId=ALL&objL1=ALL&prdSe=M&startPrdDe=202501&endPrdDe=202512`
