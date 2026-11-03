@@ -37,11 +37,21 @@ cardsim/expected.py     설정값으로 계산한 기대값 (설계서 3.4.1)
 cardsim/validate.py     검증 항목과 HTML 리포트 (설계서 5장)
 cardsim/generate.py     CLI
 cardsim/products.py     카드 상품 정의 로드·검증 (손익 시뮬레이터 설계서 2.2)
+cardsim/simulate.py     손익 시뮬레이터·민감도 분석·리포트 (손익 시뮬레이터 설계서)
 config/products/        실제 카드 5종 상품 정의
 config/merchant_shares.json  업종 내 가맹점 비중 (출처·추정·가정 구분)
 config/pnl_assumptions.json 손익 요율 (출처·추정·가정 구분)
+config/behavior.json    주력카드 비율·실적 맞추기 등 행동 가정
 tests/                  pytest
 ```
+
+## 손익 시뮬레이션
+
+```bash
+python -m cardsim.simulate --customers 10000 --seed 42
+```
+
+실제 카드 5종을 합성 고객에게 적용해 회원 1인 월 공헌이익을 계산하고, 가정값마다 범위 양 끝으로 바꾼 민감도 분석과 함께 `reports/simulation_report.html`을 만듭니다 (약 4분). 상품 구조를 비교하는 상대 지표이며 실제 손익 예측이 아닙니다.
 
 ## 테스트
 ```bash

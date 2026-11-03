@@ -150,3 +150,52 @@ def test_pnl_assumptions_valid():
                 "credit_loss_rate", "float_days", "point_cost_per_point"):
         assert key in rates
     assert rates["merchant_fee_rate_check"]["value"] < rates["merchant_fee_rate_credit"]["value"]
+
+
+def _tiny_case(rows):
+    """고객 1명, 신용카드 거래 목록 [(일시, 업종, 금액), ...]으로 시뮬레이터 입력을 만든다."""
+    from cardsim.simulate import prepare
+    customers = pd.DataFrame({"customer_id": ["C1"], "segment": ["S2_YOUNG_WORKER"], "has_credit_card": [True]})
+    txns = pd.DataFrame({
+        "txn_id": [f"T{i}" for i in range(len(rows))], "customer_id": "C1",
+        "txn_datetime": pd.to_datetime([r[0] for r in rows]), "category": [r[1] for r in rows],
+        "amount": [r[2] for r in rows], "channel": "offline", "payment_type": "credit", "is_overseas": False,
+        "installment_months": 0, "is_cancelled": False, "excluded_from_performance": False, "original_txn_id": None,
+    })
+    return prepare(customers, txns, "2025-01", 1)
+
+
+def _tiny_product(benefits, pools, tiers=(), grace=None):
+    return {"id": "x", "name": "x", "card_kind": "credit", "annual_fee": 0, "source": "test",
+            "performance": {"tiers": list(tiers), "exclude_categories": [], "grace": grace},
+            "benefits": benefits, "pools": pools}
+
+
+def test_benefit_daily_monthly_limits_and_pool():
+    from cardsim.products import load_shares
+    from cardsim.simulate import load_behavior, run_product
+    # 1월: 같은 날 3건(일 1회라 1건만) + 다른 날 6건(월 5회 제한) → 할인 5건 × 1,000원, 한도 3,000원
+    rows = [("2025-01-02 12:00", "CONVENIENCE", 20000)] * 3 + [(f"2025-01-{d:02d} 12:00", "CONVENIENCE", 20000) for d in range(5, 11)]
+    cust, t = _tiny_case(rows)
+    ben = [{"id": "conv", "kind": "rate", "rate": 0.10, "match": [{"category": "CONVENIENCE"}],
+            "max_eligible_per_txn": 10000, "per_day": 1, "per_month": 5, "min_tier": None, "pools": ["p"]}]
+    q, _ = run_product(_tiny_product(ben, {"p": {"0": 3000}}), cust, t, load_shares(), load_behavior(), 1, 1, all_on_card=True)
+    assert q["disc"].sum() == pytest.approx(3000)
+    q, _ = run_product(_tiny_product(ben, {"p": {"0": 100000}}), cust, t, load_shares(), load_behavior(), 1, 1, all_on_card=True)
+    assert q["disc"].sum() == pytest.approx(5000)
+
+
+def test_benefit_fixed_amount_and_previous_month_tier():
+    from cardsim.products import load_shares
+    from cardsim.simulate import load_behavior, run_product
+    rows = [("2025-01-03 10:00", "ETC", 400000),
+            ("2025-01-10 10:00", "DELIVERY", 9000), ("2025-01-11 10:00", "DELIVERY", 12000),
+            ("2025-02-10 10:00", "DELIVERY", 9000), ("2025-02-11 10:00", "DELIVERY", 12000), ("2025-02-12 10:00", "DELIVERY", 15000)]
+    cust, t = _tiny_case(rows)
+    ben = [{"id": "dlv", "kind": "fixed", "amount": 1000, "match": [{"category": "DELIVERY"}],
+            "min_txn_amount": 10000, "per_month": 1, "min_tier": 300000, "pools": ["p"]}]
+    prod = _tiny_product(ben, {"p": {"300000": 1000}}, tiers=[300000])
+    q, _ = run_product(prod, cust, t, load_shares(), load_behavior(), 1, 2, all_on_card=True)
+    # 1월은 전월실적이 없어 구간 미달, 2월은 1월 실적 42.1만 원으로 30만 원 구간 → 1만 원 이상 첫 건만 1,000원
+    assert q["disc"].xs(0, level="m").sum() == 0
+    assert q["disc"].xs(1, level="m").sum() == pytest.approx(1000)
