@@ -1,0 +1,290 @@
+{
+ "_source": "https://www.banksalad.com/product/cards/CARD004109",
+ "_downloaded": "2026-11-03",
+ "card": {
+  "productGuid": "CARD004109",
+  "organization": {
+   "guid": "CRD0003",
+   "name": "현대카드",
+   "logoImageUrl": "https://cdn.banksalad.com/graphic/color/logo/circle/hyundaicard.png",
+   "industryEnum": "INDUSTRY_CARD",
+   "objectid": "5880ec0575c8e8fbdc00ace9",
+   "subIndustryEnum": "SUB_INDUSTRY_UNSET",
+   "mydatacenterOrganizationCode": "D1AAFO0000"
+  },
+  "name": "현대카드 M Edition3",
+  "catchphrase": "강력한 포인트카드",
+  "cardTypeEnum": "CARD_TYPE_CREDIT",
+  "isPremiumCard": false,
+  "isStopped": true,
+  "isContracted": false,
+  "imageUrl": "https://cdn.banksalad.com/resources/images/cards/hyundai_m_edition3.png",
+  "shouldDisplayImageVertically": true,
+  "annualCosts": [
+   {
+    "brandName": "VISA",
+    "amountKrw0f": "30000"
+   },
+   {
+    "brandName": "MASTER",
+    "amountKrw0f": "30000"
+   },
+   {
+    "brandName": "국내전용",
+    "amountKrw0f": "30000"
+   }
+  ],
+  "majorBenefits": [
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/coffee_takeout_cup_bef9bbec20.png",
+    "text": "카페 3%"
+   },
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/film_reel_31197b89aa.png",
+    "text": "영화 3%"
+   },
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/bus_3f92db0b67.png",
+    "text": "교통 2%"
+   },
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/bread_bb2c515630.png",
+    "text": "베이커리 2%"
+   }
+  ],
+  "minimumPreviousMonthPaymentAmountKrw0f": "500000",
+  "prevMonthPaymentAmountKrw0fOptions": [
+   "500000",
+   "1000000"
+  ],
+  "chartBenefits": [
+   {
+    "id": "5026412",
+    "title": "카페",
+    "summary": "스타벅스, 폴 바셋, 이디야커피에서 최대 4.5% 적립",
+    "description": "<figure class=\"table\"><table><thead><tr><th>조건</th><th>혜택</th></tr></thead><tbody><tr><td>전월 실적 50만원 이상 시</td><td>M포인트 3% 적립</td></tr><tr><td>전월 실적 100만원 이상 시</td><td>M포인트 4.5% 적립</td></tr></tbody></table></figure><p><br>&nbsp;</p><p>*대상 가맹점: 스타벅스, 폴 바셋, 이디야커피</p>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/coffee_takeout_cup_circle_cfb51018ed.png",
+    "bdsIconName": "coffee-takeout-cup",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "5026413",
+    "title": "영화",
+    "summary": "CGV, 롯데시네마, 메가박스에서 최대 4.5% 적립",
+    "description": "<figure class=\"table\"><table><thead><tr><th>조건</th><th>혜택</th></tr></thead><tbody><tr><td>전월 실적 50만원 이상 시</td><td>M포인트 3% 적립</td></tr><tr><td>전월 실적 100만원 이상 시</td><td>M포인트 4.5% 적립</td></tr></tbody></table></figure><p><br>&nbsp;</p><p>*대상 가맹점: CGV, 롯데시네마, 메가박스</p>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/film_reel_circle_12f75640fa.png",
+    "bdsIconName": "film-reel",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "5026414",
+    "title": "교통",
+    "summary": "버스, 지하철, 택시에서 최대 3% 적립",
+    "description": "<figure class=\"table\"><table><thead><tr><th>조건</th><th>혜택</th></tr></thead><tbody><tr><td>전월 실적 50만원 이상 시</td><td>M포인트 2% 적립</td></tr><tr><td>전월 실적 100만원 이상 시</td><td>M포인트 3% 적립</td></tr></tbody></table></figure><p><br>&nbsp;</p><p>*대상 가맹점: 버스, 지하철, 택시</p><p><br>&nbsp;</p><p>당월 이용금액 50만원 이상 시 M포인트 적립<br><br>신규 발급 시 발급일 포함 2회차 결제일자에 포함되는 이용 건까지<br>50만원 미만 이용 시에도 업종별 적립률 제공<br><br>M포인트 적립 실적 기준은 당월 결제일자에 청구된<br>본인+가족카드의 일시불 및 할부 이용금액 기준</p>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/bus_circle_edebbddf34.png",
+    "bdsIconName": "bus",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "5026415",
+    "title": "베이커리",
+    "summary": "파리바게뜨, 뚜레쥬르, 파리크라상에서 최대 3% 적립",
+    "description": "<figure class=\"table\"><table><thead><tr><th>조건</th><th>혜택</th></tr></thead><tbody><tr><td>전월 실적 50만원 이상 시</td><td>M포인트 2% 적립</td></tr><tr><td>전월 실적 100만원 이상 시</td><td>M포인트 3% 적립</td></tr></tbody></table></figure><p><br>&nbsp;</p><p>*대상 가맹점: 파리바게뜨, 뚜레쥬르, 파리크라상</p><p><br>&nbsp;</p><p>당월 이용금액 50만원 이상 시 M포인트 적립<br><br>신규 발급 시 발급일 포함 2회차 결제일자에 포함되는 이용 건까지<br>50만원 미만 이용 시에도 업종별 적립률 제공<br><br>M포인트 적립 실적 기준은 당월 결제일자에 청구된<br>본인+가족카드의 일시불 및 할부 이용금액 기준</p>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/bread_circle_129187616c.png",
+    "bdsIconName": "bread",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "5026416",
+    "title": "편의점",
+    "summary": "편의점, 학원업종에서 최대 1.5% 적립",
+    "description": "<figure class=\"table\"><table><thead><tr><th>조건</th><th>혜택</th></tr></thead><tbody><tr><td>전월 실적 50만원 이상 시</td><td>M포인트 1% 적립</td></tr><tr><td>전월 실적 100만원 이상 시</td><td>M포인트 1.5% 적립</td></tr></tbody></table></figure><p><br>&nbsp;</p><p>*대상 가맹점: 편의점, 학원업종</p><p><br>&nbsp;</p><p>당월 이용금액 50만원 이상 시 M포인트 적립<br><br>신규 발급 시 발급일 포함 2회차 결제일자에 포함되는 이용 건까지<br>50만원 미만 이용 시에도 업종별 적립률 제공<br><br>M포인트 적립 실적 기준은 당월 결제일자에 청구된<br>본인+가족카드의 일시불 및 할부 이용금액 기준</p>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/convenience_store_circle_5592955e1c.png",
+    "bdsIconName": "convenience-store",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "5026417",
+    "title": "외식",
+    "summary": "일반음식점에서 최대 1.05% 적립",
+    "description": "<figure class=\"table\"><table><thead><tr><th>조건</th><th>혜택</th></tr></thead><tbody><tr><td>전월 실적 50만원 이상 시</td><td>M포인트 0.7% 적립</td></tr><tr><td>전월 실적 100만원 이상 시</td><td>M포인트 1.05% 적립</td></tr></tbody></table></figure><p><br>&nbsp;</p><p>*대상 가맹점: 일반음식점, 통신</p><p><br>&nbsp;</p><p>당월 이용금액 50만원 이상 시 M포인트 적립<br><br>신규 발급 시 발급일 포함 2회차 결제일자에 포함되는 이용 건까지<br>50만원 미만 이용 시에도 업종별 적립률 제공<br><br>M포인트 적립 실적 기준은 당월 결제일자에 청구된<br>본인+가족카드의 일시불 및 할부 이용금액 기준</p>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/fork_knife_circle_7fe7a88d6b.png",
+    "bdsIconName": "fork-knife",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "5026418",
+    "title": "통신",
+    "summary": "통신에서 최대 1.05% 적립",
+    "description": "<figure class=\"table\"><table><thead><tr><th>조건</th><th>혜택</th></tr></thead><tbody><tr><td>전월 실적 50만원 이상 시</td><td>M포인트 0.7% 적립</td></tr><tr><td>전월 실적 100만원 이상 시</td><td>M포인트 1.05% 적립</td></tr></tbody></table></figure><p><br>&nbsp;</p><p>*대상 가맹점: 일반음식점, 통신</p><p><br>&nbsp;</p><p>당월 이용금액 50만원 이상 시 M포인트 적립<br><br>신규 발급 시 발급일 포함 2회차 결제일자에 포함되는 이용 건까지<br>50만원 미만 이용 시에도 업종별 적립률 제공<br><br>M포인트 적립 실적 기준은 당월 결제일자에 청구된<br>본인+가족카드의 일시불 및 할부 이용금액 기준</p>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/phone_wifi_circle_a640350a8f.png",
+    "bdsIconName": "phone-wifi",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "5026419",
+    "title": "그 외 가맹점",
+    "summary": "커피, 영화, 베이커리 외 18개 가맹점에서 0.5% 적립",
+    "description": "<figure class=\"table\"><table><thead><tr><th>조건</th><th>혜택</th></tr></thead><tbody><tr><td>전월 실적 50만원 이상 시</td><td>M포인트 0.5% 적립</td></tr><tr><td>전월 실적 100만원 이상 시</td><td>M포인트 0.75% 적립</td></tr></tbody></table></figure><p><br>&nbsp;</p><p>*대상 가맹점: 커피, 영화, 베이커리, 보험, 화장품, 미용실, 온라인쇼핑, 의류, 제화 업종, 잡화 업종, 백화점, 면세점, 대형마트 업종(코스트코 포함), 서점, 병원업종, 약국업종, 항공사 업종, 자동차정비, 하이패스, 자동차 구매, 해외가맹점</p><p><br>&nbsp;</p><p>당월 이용금액 50만원 이상 시 M포인트 적립<br><br>신규 발급 시 발급일 포함 2회차 결제일자에 포함되는 이용 건까지<br>50만원 미만 이용 시에도 업종별 적립률 제공<br><br>M포인트 적립 실적 기준은 당월 결제일자에 청구된<br>본인+가족카드의 일시불 및 할부 이용금액 기준</p>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/red_store_circle_55ffce00f1.png",
+    "bdsIconName": "red-store",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "5026420",
+    "title": "자동차",
+    "summary": "현대자동차, 기아자동차에서 1.5% 적립",
+    "description": "<figure class=\"table\"><table><thead><tr><th>혜택</th></tr></thead><tbody><tr><td>M포인트 1.5% 적립</td></tr></tbody></table></figure><br/><p>*대상 가맹점: 현대자동차, 기아자동차</p><br/><p>- 무이자할부 이용 시 적립 제외<br/><br/>- 특별 적립은 당월 이용금액과 무관하게 적립<br/>- 특별 적립은 기본 적립(이용금액에 따른 업종별 배수 적립)과 중복 적용 불가</p>",
+    "grades": [
+     {
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/car_circle_aafb334b7b.png",
+    "bdsIconName": "car",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "5026421",
+    "title": "주유",
+    "summary": "GS칼텍스에서 휘발유 리터당 60M포인트 적립",
+    "description": "<figure class=\"table\"><table><thead><tr><th>혜택</th><th>한도</th></tr></thead><tbody><tr><td>M포인트 휘발유 리터당 60M포인트 적립</td><td>결제 당 최대 10만원<br>월 2회 한도</td></tr></tbody></table></figure><p><br>&nbsp;</p><p>*대상 가맹점: GS칼텍스</p><p><br>&nbsp;</p><p>- 일 2회, 1회 10만원 한도(회당 10만원 초과 주유금액은 M포인트 적립 제외), LPG 이용금액 적립 제외<br>- GS칼텍스가 카드사에 통지한 고시가 기준으로 주유량(리터)을 산정하여 M포인트 적립 제공(등유 및 경유는 휘발유 기준 환산 적용)<br>- 적립 대상 리터 측정 시 소수점 둘째 자리 이하 절사<br>(예시 : 해당 월 카드사 통지 휘발유가 1,891원인 경우, 10만원 주유 시 100,000원/1,891원=52.882079772리터로 계산되어 52.88리터 적용)<br>- 일부 주유소는 M포인트 적립 제외(제휴사의 등록 요청이 없는 경우 등)<br><br>- 특별 적립은 당월 이용금액과 무관하게 적립<br>- 특별 적립은 기본 적립(이용금액에 따른 업종별 배수 적립)과 중복 적용 불가</p>",
+    "grades": [
+     {
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/oil_barrel_circle_a32aff5eab.png",
+    "bdsIconName": "oil-barrel",
+    "isExtraBenefit": false
+   }
+  ],
+  "chartBenefitLimits": [],
+  "cardBenefitCalculationLevelEnum": "CARD_BENEFIT_CALCULATION_LEVEL_NOT_CALCULABLE",
+  "cardBenefitTypeEnum": "CARD_BENEFIT_TYPE_POINT",
+  "issueUrls": [
+   {
+    "channel": "CARD_ISSUE_CHANNEL_WEB",
+    "url": "https://www.hyundaicard.com/cpc/cr/CPCCR0201_01.hc?cardWcd=ME3"
+   },
+   {
+    "channel": "CARD_ISSUE_CHANNEL_APP",
+    "url": "https://www.hyundaicard.com/cpc/cr/CPCCR0201_01.hc?cardWcd=ME3"
+   }
+  ],
+  "footerDescription": "<h2>특별서비스</h2><hr><h3>기타 특별서비스</h3><h4>기타</h4><p>추가 M포인트</p><p>[온라인쇼핑] 현대카드 홈페이지를 통해 제휴 온라인쇼핑몰에 접속하여 결제 시 M포인트 추가 적립 [M포인트 신차구매통장] 조건 없이 누구나 가입하고, 자동으로 통장포인트 월 2% 적립 받아 신차 구매 시 사용<br>&nbsp;</p><p>M포인트 적립 및 관리 기준</p><p>[기본적립] 업종별 0.5~3% M포인트 적립 - 당월 이용금액 100만원 이상 시 1.5배 적립(0.75~4.5%) - 당월 이용금액 50만원 미만 시 적립 제외 - 신규 발급 시 발급일 이후 2회차 결제일자에 포함되는 이용 건까지는 이용금액 50만원 미만도 업종별 적립률 제공 - 세이브-오토(선지급 포인트 서비스) 등 별도 약정서비스를 이용하는 경우 기본 적립은 해당 서비스의 적립 기준 적용 [당월 이용금액 산정 기준] 당월 이용금액은 결제일자에 청구된 kt-현대카드M Edition3(통신할인형) (본인+가족카드)의 일시불 및 할부 이용금액 - 예시 : 결제일이 25일인 경우, 전월 14일 ~ 당월 13일에 이용한 금액을 청구 - 할부, 일부결제금액이월약정(리볼빙) 이용 시 최초 결제일자 이용금액에 포함 - 결제일자 변경, 전표매입 지연, 매출 취소, 세이브-오토(선지급 포인트 서비스)의 경우 이용금액 합산 기간 및 금액이 달라질 수 있음 [당월 이용금액 합산 제외 기준] - 장기카드대출(카드론), 단기카드대출(현금서비스), 연회비, 제수수료, 이자 이용금액 제외 - kt-현대카드M Edition3(통신할인형) 이용금액만 인정되며, 그 외 M계열카드를 포함한 모든 카드 이용금액은 합산 제외 [적립 대상] 국내 및 해외에서 사용한 모든 물품 구매 및 서비스 이용대금의 입금액 - 1회 이용금액 1,000원 단위 미만은 절사 후 적립 - 입금액 기준으로 적립(부분 입금 및 연체금액 입금 시에도 M포인트 적립) - 부분 입금 및 결제일 이후 연체금액 입금 시 M포인트 적립 - 부분 입금 시에는 단일 결제 건별로 완납 처리되어야 해당 건 M포인트 적립 - 부분 입금 시 현행 입금공제 순서에 따라 입금 인정되며, 입금 인정된 금액에 한하여 M포인트 적립 - 입금 공제 순서(우선 순위 순) ① 전월 미납금 &gt; 당월 납부금 ② 지연 배상금 &gt; 수수료 &gt; 할부 &gt; 일시불 &gt; 단기카드대출(현금서비스) ③ 최초 이용금액부터 순차적으로 입금액 인정 - 연체대금 입금액에 대한 M포인트는 입금 완료된 날로부터 10일 이후 확인 가능 - 카드 이용 실적에 따른 업종별 적립률은 카드 이용일 기준으로 적용 - 부분 무이자할부 이용 시 수수료 납부 개월에 대한 이용금액에 한해 포인트 적립 [적립 제외] - 장기카드대출(카드론), 단기카드대출(현금서비스), 연회비, 제수수료, 이자 - 공과금 납부액(국세, 관세, 지방세, 지방세외수입, 상하수도요금, 벌과금, 과태료, 인지세, 송달료, - 민원 발급수수료 등 국가 또는 공공단체가 부과하는 부담금) - 전기요금, 도시가스요금, 아파트관리비, 자동납부서비스 이용수수료 - 초·중·고교 학교납입금, 대학·대학원 등록금 납부 결제건 - 상품권 등 현금성 유가증권 구매 및 선불카드 구매·충전금액 - 건강보험,국민연금, 고용보험, 산재보험 및 장애인 고용부담금 - 고속도로 통행요금, 고속버스(차내 단말기 및 고속버스 앱결제) - 당사의 모든 할인서비스 및 무이자할부 이용금액 [적립 시기] - 결제일 또는 이용대금 입금 완료된 날로부터 2~10일 이내 적립 - 부분입금 및 연체금액 입금 포함 - 단, M포인트 조정 작업 및 결제대금 입금 반영 지연 등으로 인해 최장 40일 정도 소요될 수 있음 - 선입금 시 원 결제일로부터 2~10일 이내 적립 - 세이브-오토(선지급 포인트 서비스) 이용 회원의 경우 적립 시기 상이 [적립 기준] - 카드 소지 회원의 주민등록번호 기준으로 적립 및 사용됨 - M포인트가 적립되는 카드 2종 이상 보유 시 각 카드별 M포인트 적립금액은 보유 회원의 주민등록번호 1개로 합산하여 적립 - 가족카드 이용 시 본인 및 가족 회원 각각의 주민등록번호로 별도 적립 - 가족카드 이용 시 본인 및 가족 회원의 M포인트를 상호 양도하여 사용 가능 - 양도 방법 : 현대카드 홈페이지 로그인 또는 고객센터(1577-6000) 연결 후 M포인트 양도 신청 [적립 한도] - 1회 및 연간 적립한도 제한 없음 - 이용금액에 따라 횟수 제한 없이 적립, 일부 특별 적립 및 추가 적립의 경우 별도 기준 적용 - 단, 적립 대상 이용금액에 한해 적립(자세한 내용은 적립 대상 및 적립 제외 내용 참고) [유효기간] - 최초 M포인트 적립월로부터 60개월(5년)간 유효하며, 미사용 M포인트는 적립 60개월 경과 후 선입선출에 의거 월 단위로 자동 소멸 - M포인트 유효기간은 이용대금명세서 내 명시 - 유효기간 만료 및 만료예정 M포인트는 현대카드 홈페이지에서 조회 가능 - 유효기간 만료에 따른 M포인트 자동 소멸은 해당 월 첫 번째 일요일에 일괄 처리(자동 소멸 전일(토요일)까지 M포인트 사용 가능) - M포인트 사용 시 우선 적립된 순서대로 소진 [정지(연체 등)/해지/탈회 회원] - 정지(연체 등)/해지/탈회 등 카드 이용 계약 종료 시 회원의 잔여 M포인트는 기존에 부여된 유효기간까지 유지되며, 예외적으로 유효한 카드가 없는 경우에도 카드사가 정한 일부 사용처에서 사용 가능 - 카드 해지 시 잔여 M포인트는 H-Coin으로 전환하여 회원의 선택에 따라 미상환 카드대금을 결제하거나, 회원의 카드대금 출금계좌로 입금 가능 - 잔여 M포인트 유효기간 내 회원이 재가입하여 정상적으로 카드 이용이 가능할 때, 해당 잔여 M포인트도 사용 가능 - 기타 포인트 소멸과 관련된 내용은 현대카드 개인회원 약관 제15조 제1항에 따름<br>&nbsp;</p><p>유의사항</p><p>- 상기 업종별 적립 M포인트는 대표 가맹점 업종에 따른 예시이므로 실제 적립내역과 다를 수 있음 - 당사 모든 할인서비스 및 무이자할부 이용금액은 M포인트 적립 제외되며, 자세한 내용은 'M포인트 적립 및 관리 기준' 참고 - 공동가맹점이란? ∙ 가맹점 사정에 따라 일부 가맹점의 경우 현대카드와 가맹점 계약 체결이 없을 수 있으며, 이 경우에도 [가맹점 공동 이용제도]에 따라 회원에 대한 거래 승인을 일반 가맹점과 동일한 방법으로 신용카드 조회기를 이용하여 거래 승인 가능 ∙ 공동가맹점 이용 제도 : 여러 신용카드 가맹점에 가입하지 않고 1개 이상의 카드사에만 가맹점으로 가입하면 국내에서 발행된 모든 신용카드에 대하여 신용판매할 수 있는 제도 - 약관 제15조 제3항에 따라 회원에게 제공되는 M포인트 적립/사용서비스는 당사의 영업정책이나 제휴사의 사정에 따라 변경 또는 중단될 수 있으며 그 내용은 사전에 공지<br>&nbsp;</p><p>일상사용처</p><p>일상생활 속 다양한 가맹점에서 이용금액 일부를 M포인트로 사용 [주유/정비] GS칼텍스, 현대자동차·기아 공식 서비스센터 등 [외식] 아웃백스테이크하우스, 투썸플레이스 등 [편의/쇼핑] 세븐일레븐, 미니스톱 등 [영화] 롯데시네마, 메가박스 등 [여행/레저] 설악 워터피아, 경주 뽀로로 아쿠아빌리지 아산 스파비스 등 [보험/금융] 현대해상 다이렉트, 푸본현대생명 등<br>&nbsp;</p><p>M포인트 교환</p><p>H-Coin 전환, 현대카드 Gift카드, 항공 마일리지, 연회비 결제 등 M포인트를 현금처럼 사용 [H-coin 전환] - 300 M포인트 = 200 H-Coin - H-Coin 일상사용처, 카드 이용대금 차감 등 100% 사용 가능(1 M포인트 = 2/3 H-Coin으로 환산되어 적용) [현대카드 Gift카드] - 15만 M포인트 = 현대카드 Gift카드 10만원권 - 15만 M포인트 단위로 교환(1 M포인트 = 2/3원으로 환산되어 적용) [연회비 결제] - M포인트로 연회비의 100%까지 결제 - 13.5만 M포인트 = 연회비 9만원, 9만 M포인트 = 연회비 6만원 등(1 M포인트 = 2/3원으로 환산되어 적용) [항공 마일리지] - M포인트를 항공 마일리지로 전환 - 대한항공 : 3.5만 M포인트 = 1,000 마일리지(연간 2만 마일리지 한도) - 아시아나항공 : 10만 M포인트 = 5,000 마일리지(연간 2만 마일리지 한도)<br>&nbsp;</p><p>M포인트 온라인쇼핑</p><p>온라인쇼핑몰에서 5~100%까지 M포인트 사용 [현대카드 M포인트몰] 일상생활 용품 구매 시 50~100% M포인트 사용이 가능한 현대카드 회원 전용몰 [제휴몰 M포인트 부분 사용] 5~10% M포인트 사용이 가능한 다양한 온라인쇼핑 제휴몰<br>&nbsp;</p><p>자동차 구매</p><p>현대자동차·기아 자동차 구매 시 5년간 200만 M포인트까지 사용 [세이브-오토(선지급 포인트 서비스)] 차종에 따라 20만~50만원 선포인트 받아 사용 후 최장 1~36개월 이내 카드 이용금액에 대해 M포인트 적립하여 상환 [M포인트 신차구매통장] M포인트에 통장포인트까지 추가 적립해 사용 M포인트+세이브-오토 포인트+통장포인트+가족 M포인트+S카드 오토 포인트 통합한도<br>&nbsp;</p><p>M포인트 사용 기준</p><p>[사용기준] - M포인트는 본인 M포인트에 한해 사용 가능 ∙ M포인트가 적립되는 카드 2종 이상 보유 시 각 카드별 M포인트 적립금액은 보유 회원의 주민등록번호 1개로 합산하여 적립 ∙ 가족카드 이용 시 본인과 가족 각각의 주민등록번호로 별도 적립되어 각각 사용 가능 - 가족카드 이용 시 본인 회원과 가족카드 소지 회원의 M포인트를 합산하여 사용 가능 (현대카드 홈페이지 및 고객센터(1577-6000) 통해 M포인트 양도 신청) - 가족카드 소지 회원이 아닌 경우에도 신차 구매 시 배우자 및 직계존비속에 한해 가족명의 M포인트 합산 사용 가능 [사용처] - 자동차, 주유, 외식, 쇼핑 등 M포인트 제휴 가맹점에서 사용(그 외 일반 가맹점에서는 사용 불가) [사용 방법] - 사용 가맹점을 직접 방문하여 M포인트가 적립되는 카드로 결제 시 M포인트 사용 요청 - M포인트몰, 제휴 온라인몰 또는 현대카드 홈페이지 연결 사이트를 통해 M포인트가 적립되는 카드로 결제 시 M포인트 사용 [사용 제한] - 정지(연체 등), 해지, 탈회 회원의 경우 일부 사용처에서는 M포인트 사용이 제한될 수 있음(해당 사유 해소 시 M포인트 사용 제한도 해제됨) - M포인트 사용 제휴 가맹점에서 이용금액 일부만 M포인트 사용 가능하며, 그 외 일반 가맹점에서는 사용 불가 [사용 취소] - 사용 M포인트에 대해 당일 취소 원칙이나, 일부 가맹점의 경우 취소 불가하므로 상세 내용 확인 후 이용 (예시 : 항공 마일리지 전환 후 취소 불가) [사용내역 확인] - 현대카드 홈페이지 &gt; My Account &gt; 이용내역 &gt; 포인트/마일리지/할인/캐시백 [사용한도] - 각 포인트 사용 가맹점별 연간한도라 함은, 매년 1월 1일 ~ 12월 31일 1년간을 말하며, 1년 후 1월 1일을 기준으로 새로이 한도 부여 [포인트 환산] - 일상사용처, M포인트몰, 제휴몰 M포인트 부분 사용, 자동차 구매 등은 1 M포인트=1원 기준으로 환산 - 단, H-Coin 전환, 현대카드 Gift카드, 연회비 결제 등 결제금액 전액을 M포인트로 사용할 수 있는 경우 1 M포인트=2/3원 기준으로 환산 [기타] - M포인트 사용금액의 원 단위는 절사 - M포인트 사용 전 각 안내사항 및 이용한도 등 유의 - M포인트 사용 시 우선 적립 순서대로 소진 [유의사항] - M포인트 제휴 가맹점에서만 사용 가능하며, 그 외 일반 가맹점에서는 사용 불가 - 약관 제15조 제3항에 따라 회원에게 제공되는 M포인트 적립/사용서비스는 당사의 영업정책이나 제휴사의 사정에 따라 변경 또는 중단될 수 있으며 그 내용은 사전에 공지</p>",
+  "legalReview": null,
+  "isExposed": true,
+  "alfredCardId": "4167",
+  "cardBenefitSimulationLevelEnum": "CARD_BENEFIT_SIMULATION_LEVEL_FULL_AVAILABLE",
+  "isDetailPageAccessible": true
+ }
+}

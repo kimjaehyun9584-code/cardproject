@@ -1,0 +1,309 @@
+{
+ "_source": "https://www.banksalad.com/product/cards/CARD000037",
+ "_downloaded": "2026-11-03",
+ "card": {
+  "productGuid": "CARD000037",
+  "organization": {
+   "guid": "CRD0005",
+   "name": "롯데카드",
+   "logoImageUrl": "https://cdn.banksalad.com/graphic/color/logo/circle/lotte-card.png",
+   "industryEnum": "INDUSTRY_CARD",
+   "objectid": "5880ec0575c8e8fbdc00acf0",
+   "subIndustryEnum": "SUB_INDUSTRY_UNSET",
+   "mydatacenterOrganizationCode": "D1AADO0000"
+  },
+  "name": "LOCA 365",
+  "catchphrase": "생활업종 월 최대 36,500원 결제일 할인",
+  "cardTypeEnum": "CARD_TYPE_CREDIT",
+  "isPremiumCard": false,
+  "isStopped": false,
+  "isContracted": true,
+  "imageUrl": "https://financialshopping-cdn.banksalad.com/lotte_loca365_5502fbd49e.png",
+  "shouldDisplayImageVertically": false,
+  "annualCosts": [
+   {
+    "brandName": "국내전용",
+    "amountKrw0f": "20000"
+   },
+   {
+    "brandName": "MASTER",
+    "amountKrw0f": "20000"
+   },
+   {
+    "brandName": "AMEX",
+    "amountKrw0f": "20000"
+   },
+   {
+    "brandName": "VISA",
+    "amountKrw0f": "20000"
+   }
+  ],
+  "majorBenefits": [
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/house_4bd96c0a56.png",
+    "text": "아파트관리비 10%"
+   },
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/receipt_5ef490633e.png",
+    "text": "공과금 10%"
+   },
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/phone_wifi_b047a82a70.png",
+    "text": "이동통신 10%"
+   },
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/bus_3f92db0b67.png",
+    "text": "대중교통 10%"
+   }
+  ],
+  "minimumPreviousMonthPaymentAmountKrw0f": "500000",
+  "prevMonthPaymentAmountKrw0fOptions": [
+   "500000"
+  ],
+  "chartBenefits": [
+   {
+    "id": "5029277",
+    "title": "무이자 할부",
+    "summary": "국내가맹점 2~3개월 무이자 할부",
+    "description": "<ul><li>국내 가맹점에서 5만원 이상 2~3개월 할부 결제 시 무이자 할부 혜택이 제공됩니다.</li><li><u>해외 및 일시불 이용 건을 할부로 전환하거나, 할부 개월 수 변경 시 무이자 할부 혜택이 제공되지 않습니다.</u></li><li><u>무이자 할부 혜택이 제공된 결제 건은 다른 결제일 할인 및 포인트 적립 혜택이 제공되지 않습니다.</u></li><li>무이자 할부 적용 제외 대상 : 국세, 지방세, 건강보험, 국민연금, 고용보험, 산재보험, 초·중·고교 납입금, 대학등록금, LH·SH 공사 공공임대료, 부동산 임대료, 장애인 고용부담금, 오토·스마트 캐시백 신청 이용금액, 기프트·선불카드 충전 및 구매, 포인트충전, 상품권(모바일 상품권 포함)구매, 택시, 고속버스, 고속도로 통행요금, 무승인전표(자판기, 터널통행료, 항공 기내 이용), 벌금, 과태료, 민원 발급 수수료, 관세납부, 인지세, 송달료, 단기카드대출 (현금서비스), 장기카드대출(카드론), 연회비, 이자 및 각종 수수료</li></ul>",
+    "grades": [],
+    "canToggleBenefitCalculation": false,
+    "altTextForToggleButton": "2~3개월",
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/circle_etc_circle_9f7b9f6fd1.png",
+    "bdsIconName": "circle-etc",
+    "isExtraBenefit": true
+   },
+   {
+    "id": "5029269",
+    "title": "아파트관리비",
+    "summary": "아파트관리비 10% 할인",
+    "description": "<p>&nbsp;</p><p style=\"text-align:center;\"><strong>생활 업종 월 통합 할인 한도</strong></p><figure class=\"table\"><table><thead><tr><th><p style=\"text-align:center;\">항목</p></th><th><p style=\"text-align:center;\">대상</p></th><th><p style=\"text-align:center;\">할인율</p></th><th><p style=\"text-align:center;\">할인한도</p></th></tr></thead><tbody><tr><td><p style=\"text-align:center;\">아파트관리비</p></td><td><p style=\"text-align:center;\">아파트관리비</p></td><td rowspan=\"7\"><p style=\"text-align:center;\">10%</p></td><td rowspan=\"7\"><p style=\"text-align:center;\">월 35,000원</p><p style=\"text-align:center;\">(각 5,000원)</p></td></tr><tr><td><p style=\"text-align:center;\">공과금</p></td><td><p style=\"text-align:center;\">도시가스비, 전기료</p></td></tr><tr><td><p style=\"text-align:center;\">이동통신</p></td><td><p style=\"text-align:center;\">SKT, KT, LG U+</p></td></tr><tr><td><p style=\"text-align:center;\">대중교통</p></td><td><p style=\"text-align:center;\">버스, 지하철</p></td></tr><tr><td><p style=\"text-align:center;\">보험료</p></td><td><p style=\"text-align:center;\">생명보험, 손해보험</p></td></tr><tr><td><p style=\"text-align:center;\">학습지</p></td><td><p style=\"text-align:center;\">학습지</p></td></tr><tr><td><p style=\"text-align:center;\">배달앱</p></td><td><p style=\"text-align:center;\">배달의민족, 요기요, 쿠팡이츠</p></td></tr></tbody></table></figure><ul><li>아파트 관리비 자동납부 건만 혜택이 제공됩니다.</li><li>아파트 관리비 내 전기료, 도시가스가 있는 경우 아파트관리비만 할인이 적용됩니다. (결제된 업종으로 할인적용)</li><li>지난달 1일 ~ 말일까지 50만원 이상(본인, 가족카드 합산) 이용 시 혜택이 제공됩니다.</li><li>건당 2만원 이상 결제 건에 대해서 혜택이 제공됩니다.</li></ul><p>&nbsp;</p>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "5000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/house_circle_fd27b29ef6.png",
+    "bdsIconName": "house",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "5029270",
+    "title": "공과금",
+    "summary": "공과금 10% 할인",
+    "description": "<p style=\"text-align:center;\">&nbsp;</p><p style=\"text-align:center;\"><strong>생활 업종 월 통합 할인 한도</strong></p><figure class=\"table\"><table><thead><tr><th><p style=\"text-align:center;\">항목</p></th><th><p style=\"text-align:center;\">대상</p></th><th><p style=\"text-align:center;\">할인율</p></th><th><p style=\"text-align:center;\">할인한도</p></th></tr></thead><tbody><tr><td><p style=\"text-align:center;\">아파트관리비</p></td><td><p style=\"text-align:center;\">아파트관리비</p></td><td rowspan=\"7\"><p style=\"text-align:center;\">10%</p></td><td rowspan=\"7\"><p style=\"text-align:center;\">월 35,000원</p><p style=\"text-align:center;\">(각 5,000원)</p></td></tr><tr><td><p style=\"text-align:center;\">공과금</p></td><td><p style=\"text-align:center;\">도시가스비, 전기료</p></td></tr><tr><td><p style=\"text-align:center;\">이동통신</p></td><td><p style=\"text-align:center;\">SKT, KT, LG U+</p></td></tr><tr><td><p style=\"text-align:center;\">대중교통</p></td><td><p style=\"text-align:center;\">버스, 지하철</p></td></tr><tr><td><p style=\"text-align:center;\">보험료</p></td><td><p style=\"text-align:center;\">생명보험, 손해보험</p></td></tr><tr><td><p style=\"text-align:center;\">학습지</p></td><td><p style=\"text-align:center;\">학습지</p></td></tr><tr><td><p style=\"text-align:center;\">배달앱</p></td><td><p style=\"text-align:center;\">배달의민족, 요기요, 쿠팡이츠</p></td></tr></tbody></table></figure><ul><li>도시가스비, 전기료 자동납부 건만 혜택이 제공됩니다.</li><li>지난달 1일 ~ 말일까지 50만원 이상(본인, 가족카드 합산) 이용 시 혜택이 제공됩니다.</li><li>건당 2만원 이상 결제 건에 대해서 혜택이 제공됩니다.</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "5000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/receipt_circle_7f774c1f24.png",
+    "bdsIconName": "receipt",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "5029271",
+    "title": "이동통신",
+    "summary": "SKT, KT, LG U+ 10% 할인",
+    "description": "<p style=\"text-align:center;\">&nbsp;</p><p style=\"text-align:center;\"><strong>생활 업종 월 통합 할인 한도</strong></p><figure class=\"table\"><table><thead><tr><th><p style=\"text-align:center;\">항목</p></th><th><p style=\"text-align:center;\">대상</p></th><th><p style=\"text-align:center;\">할인율</p></th><th><p style=\"text-align:center;\">할인한도</p></th></tr></thead><tbody><tr><td><p style=\"text-align:center;\">아파트관리비</p></td><td><p style=\"text-align:center;\">아파트관리비</p></td><td rowspan=\"7\"><p style=\"text-align:center;\">10%</p></td><td rowspan=\"7\"><p style=\"text-align:center;\">월 35,000원</p><p style=\"text-align:center;\">(각 5,000원)</p></td></tr><tr><td><p style=\"text-align:center;\">공과금</p></td><td><p style=\"text-align:center;\">도시가스비, 전기료</p></td></tr><tr><td><p style=\"text-align:center;\">이동통신</p></td><td><p style=\"text-align:center;\">SKT, KT, LG U+</p></td></tr><tr><td><p style=\"text-align:center;\">대중교통</p></td><td><p style=\"text-align:center;\">버스, 지하철</p></td></tr><tr><td><p style=\"text-align:center;\">보험료</p></td><td><p style=\"text-align:center;\">생명보험, 손해보험</p></td></tr><tr><td><p style=\"text-align:center;\">학습지</p></td><td><p style=\"text-align:center;\">학습지</p></td></tr><tr><td><p style=\"text-align:center;\">배달앱</p></td><td><p style=\"text-align:center;\">배달의민족, 요기요, 쿠팡이츠</p></td></tr></tbody></table></figure><ul><li>이동통신요금 자동납부 건만 혜택이 제공되며, <u>인터넷, TV 등과 결합상품 및 알뜰폰 이용금액은 혜택이 제공되지 않습니다.</u></li><li>월 1회 제공됩니다.</li><li>지난달 1일 ~ 말일까지 50만원 이상(본인, 가족카드 합산) 이용 시 혜택이 제공됩니다.</li><li>건당 2만원 이상 결제 건에 대해서 혜택이 제공됩니다.</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "5000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/phone_wifi_circle_a640350a8f.png",
+    "bdsIconName": "phone-wifi",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "5029272",
+    "title": "대중교통",
+    "summary": "지하철, 시내버스 10% 할인",
+    "description": "<p style=\"text-align:center;\">&nbsp;</p><p style=\"text-align:center;\"><strong>생활 업종 월 통합 할인 한도</strong></p><figure class=\"table\"><table><thead><tr><th><p style=\"text-align:center;\">항목</p></th><th><p style=\"text-align:center;\">대상</p></th><th><p style=\"text-align:center;\">할인율</p></th><th><p style=\"text-align:center;\">할인한도</p></th></tr></thead><tbody><tr><td><p style=\"text-align:center;\">아파트관리비</p></td><td><p style=\"text-align:center;\">아파트관리비</p></td><td rowspan=\"7\"><p style=\"text-align:center;\">10%</p></td><td rowspan=\"7\"><p style=\"text-align:center;\">월 35,000원</p><p style=\"text-align:center;\">(각 5,000원)</p></td></tr><tr><td><p style=\"text-align:center;\">공과금</p></td><td><p style=\"text-align:center;\">도시가스비, 전기료</p></td></tr><tr><td><p style=\"text-align:center;\">이동통신</p></td><td><p style=\"text-align:center;\">SKT, KT, LG U+</p></td></tr><tr><td><p style=\"text-align:center;\">대중교통</p></td><td><p style=\"text-align:center;\">버스, 지하철</p></td></tr><tr><td><p style=\"text-align:center;\">보험료</p></td><td><p style=\"text-align:center;\">생명보험, 손해보험</p></td></tr><tr><td><p style=\"text-align:center;\">학습지</p></td><td><p style=\"text-align:center;\">학습지</p></td></tr><tr><td><p style=\"text-align:center;\">배달앱</p></td><td><p style=\"text-align:center;\">배달의민족, 요기요, 쿠팡이츠</p></td></tr></tbody></table></figure><ul><li>지하철, 시내버스 이용 건만 혜택이 제공되며 <u>택시, 고속버스, 시외버스 이용금액은 혜택이 제공되지 않습니다.</u></li><li>지난달 1일 ~ 말일까지 50만원 이상(본인, 가족카드 합산) 이용 시 혜택이 제공됩니다.</li><li>건당 2만원 이상 결제 건에 대해서 혜택이 제공됩니다.</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "5000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/bus_circle_edebbddf34.png",
+    "bdsIconName": "bus",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "5029273",
+    "title": "보험료",
+    "summary": "생명보험, 손해보험 자동납부 시 10% 할인",
+    "description": "<p style=\"text-align:center;\">&nbsp;</p><p style=\"text-align:center;\"><strong>생활 업종 월 통합 할인 한도</strong></p><figure class=\"table\"><table><thead><tr><th><p style=\"text-align:center;\">항목</p></th><th><p style=\"text-align:center;\">대상</p></th><th><p style=\"text-align:center;\">할인율</p></th><th><p style=\"text-align:center;\">할인한도</p></th></tr></thead><tbody><tr><td><p style=\"text-align:center;\">아파트관리비</p></td><td><p style=\"text-align:center;\">아파트관리비</p></td><td rowspan=\"7\"><p style=\"text-align:center;\">10%</p></td><td rowspan=\"7\"><p style=\"text-align:center;\">월 35,000원</p><p style=\"text-align:center;\">(각 5,000원)</p></td></tr><tr><td><p style=\"text-align:center;\">공과금</p></td><td><p style=\"text-align:center;\">도시가스비, 전기료</p></td></tr><tr><td><p style=\"text-align:center;\">이동통신</p></td><td><p style=\"text-align:center;\">SKT, KT, LG U+</p></td></tr><tr><td><p style=\"text-align:center;\">대중교통</p></td><td><p style=\"text-align:center;\">버스, 지하철</p></td></tr><tr><td><p style=\"text-align:center;\">보험료</p></td><td><p style=\"text-align:center;\">생명보험, 손해보험</p></td></tr><tr><td><p style=\"text-align:center;\">학습지</p></td><td><p style=\"text-align:center;\">학습지</p></td></tr><tr><td><p style=\"text-align:center;\">배달앱</p></td><td><p style=\"text-align:center;\">배달의민족, 요기요, 쿠팡이츠</p></td></tr></tbody></table></figure><ul><li>보험료 자동납부 건만 혜택이 제공되며, <u>모든 간편결제(카카오페이, 네이버페이, 페이코 등) 이용금액은 혜택이 제공되지 않습니다.</u></li><li>서비스 이용 전 보험사에 카드결제 가능 여부를 미리 확인하고 이용하시기 바랍니다.</li><li>지난달 1일 ~ 말일까지 50만원 이상(본인, 가족카드 합산) 이용 시 혜택이 제공됩니다.</li><li>건당 2만원 이상 결제 건에 대해서 혜택이 제공됩니다.</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "5000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/bank_circle_7443e38149.png",
+    "bdsIconName": "bank",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "5029274",
+    "title": "학습지",
+    "summary": "학습지 10% 할인",
+    "description": "<p style=\"text-align:center;\">&nbsp;</p><p style=\"text-align:center;\"><strong>생활 업종 월 통합 할인 한도</strong></p><figure class=\"table\"><table><thead><tr><th><p style=\"text-align:center;\">항목</p></th><th><p style=\"text-align:center;\">대상</p></th><th><p style=\"text-align:center;\">할인율</p></th><th><p style=\"text-align:center;\">할인한도</p></th></tr></thead><tbody><tr><td><p style=\"text-align:center;\">아파트관리비</p></td><td><p style=\"text-align:center;\">아파트관리비</p></td><td rowspan=\"7\"><p style=\"text-align:center;\">10%</p></td><td rowspan=\"7\"><p style=\"text-align:center;\">월 35,000원</p><p style=\"text-align:center;\">(각 5,000원)</p></td></tr><tr><td><p style=\"text-align:center;\">공과금</p></td><td><p style=\"text-align:center;\">도시가스비, 전기료</p></td></tr><tr><td><p style=\"text-align:center;\">이동통신</p></td><td><p style=\"text-align:center;\">SKT, KT, LG U+</p></td></tr><tr><td><p style=\"text-align:center;\">대중교통</p></td><td><p style=\"text-align:center;\">버스, 지하철</p></td></tr><tr><td><p style=\"text-align:center;\">보험료</p></td><td><p style=\"text-align:center;\">생명보험, 손해보험</p></td></tr><tr><td><p style=\"text-align:center;\">학습지</p></td><td><p style=\"text-align:center;\">학습지</p></td></tr><tr><td><p style=\"text-align:center;\">배달앱</p></td><td><p style=\"text-align:center;\">배달의민족, 요기요, 쿠팡이츠</p></td></tr></tbody></table></figure><ul><li>오프라인 이용 건만 혜택이 제공되며, <u>일부 PG(결제대행) 업체를 통해 결제 시 혜택이 제공되지 않습니다.</u></li><li>지난달 1일 ~ 말일까지 50만원 이상(본인, 가족카드 합산) 이용 시 혜택이 제공됩니다.</li><li>건당 2만원 이상 결제 건에 대해서 혜택이 제공됩니다.</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "5000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/bachelor_cap_circle_06d485a69a.png",
+    "bdsIconName": "bachelor-cap",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "5029275",
+    "title": "배달앱",
+    "summary": "배달의 민족, 요기요, 쿠팡이츠 배달앱 10% 할인",
+    "description": "<p style=\"text-align:center;\">&nbsp;</p><p style=\"text-align:center;\"><strong>생활 업종 월 통합 할인 한도</strong></p><figure class=\"table\"><table><thead><tr><th><p style=\"text-align:center;\">항목</p></th><th><p style=\"text-align:center;\">대상</p></th><th><p style=\"text-align:center;\">할인율</p></th><th><p style=\"text-align:center;\">할인한도</p></th></tr></thead><tbody><tr><td><p style=\"text-align:center;\">아파트관리비</p></td><td><p style=\"text-align:center;\">아파트관리비</p></td><td rowspan=\"7\"><p style=\"text-align:center;\">10%</p></td><td rowspan=\"7\"><p style=\"text-align:center;\">월 35,000원</p><p style=\"text-align:center;\">(각 5,000원)</p></td></tr><tr><td><p style=\"text-align:center;\">공과금</p></td><td><p style=\"text-align:center;\">도시가스비, 전기료</p></td></tr><tr><td><p style=\"text-align:center;\">이동통신</p></td><td><p style=\"text-align:center;\">SKT, KT, LG U+</p></td></tr><tr><td><p style=\"text-align:center;\">대중교통</p></td><td><p style=\"text-align:center;\">버스, 지하철</p></td></tr><tr><td><p style=\"text-align:center;\">보험료</p></td><td><p style=\"text-align:center;\">생명보험, 손해보험</p></td></tr><tr><td><p style=\"text-align:center;\">학습지</p></td><td><p style=\"text-align:center;\">학습지</p></td></tr><tr><td><p style=\"text-align:center;\">배달앱</p></td><td><p style=\"text-align:center;\">배달의민족, 요기요, 쿠팡이츠</p></td></tr></tbody></table></figure><ul><li>공식 앱을 통한 결제 시 혜택이 제공되며, <u>가맹점 직접 결제 건은 혜택이 제공되지 않습니다.</u></li><li>지난달 1일 ~ 말일까지 50만원 이상(본인, 가족카드 합산) 이용 시 혜택이 제공됩니다.</li><li>건당 2만원 이상 결제 건에 대해서 혜택이 제공됩니다.</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "5000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/motor_scooter_circle_16cf4d8cbc.png",
+    "bdsIconName": "motor-scooter",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "5029276",
+    "title": "스트리밍",
+    "summary": "넷플릭스, 유튜브, 왓챠, 멜론, 지니뮤직, 디즈니플러스 1,500원 할인 (월 1회)",
+    "description": "<ul><li>서비스 대상 가맹점 공식 홈페이지 또는 앱을 통해 직접 신청한 정기결제 (자동이체) 이용 건만 혜택이 제공되며, <u>1회성 일반구매 결제 및 통신요금 내 합산 청구, 앱마켓(구글플레이, 앱스토어 등) 결제와 같이 가맹점 구분이 불가한 경우에는 혜택이 제공되지 않습니다.</u></li><li>지난달 1일 ~ 말일까지 50만원 이상(본인, 가족카드 합산) 이용 시 혜택이 제공됩니다.</li><li>스트리밍 할인은 건당 결제금액에 상관없이 혜택이 제공됩니다.</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "1500",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/toggle_coin_won_circle_7ca8580d53.png",
+    "bdsIconName": "toggle-coin-won",
+    "isExtraBenefit": false
+   }
+  ],
+  "chartBenefitLimits": [
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "500000",
+    "chartBenefitIds": [
+     "5029269"
+    ],
+    "limitAmount": "5000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "500000",
+    "chartBenefitIds": [
+     "5029270"
+    ],
+    "limitAmount": "5000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "500000",
+    "chartBenefitIds": [
+     "5029271"
+    ],
+    "limitAmount": "5000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "500000",
+    "chartBenefitIds": [
+     "5029272"
+    ],
+    "limitAmount": "5000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "500000",
+    "chartBenefitIds": [
+     "5029273"
+    ],
+    "limitAmount": "5000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "500000",
+    "chartBenefitIds": [
+     "5029274"
+    ],
+    "limitAmount": "5000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "500000",
+    "chartBenefitIds": [
+     "5029275"
+    ],
+    "limitAmount": "5000",
+    "isIntegrationLimit": false
+   }
+  ],
+  "cardBenefitCalculationLevelEnum": "CARD_BENEFIT_CALCULATION_LEVEL_FULL_AVAILABLE",
+  "cardBenefitTypeEnum": "CARD_BENEFIT_TYPE_CASH",
+  "issueUrls": [
+   {
+    "channel": "CARD_ISSUE_CHANNEL_WEB",
+    "url": "http://www.lottecard.co.kr/app/LPBOHAA_V100.lc?bId=93929&vtCdKndC=P14028-A14028"
+   },
+   {
+    "channel": "CARD_ISSUE_CHANNEL_APP",
+    "url": "http://m.lottecard.co.kr/spa/card/booth?bId=93929&vtCdKndC=P14028-A14028"
+   }
+  ],
+  "footerDescription": "<h2><strong>유의사항</strong></h2><hr><h3><strong>실적 기준</strong></h3><ul><li>LOCA 365 카드를 최초 발급받은 경우 카드발급일~다음 달 말일까지 이용실적에 관계없이 생활업종 결제일 할인 혜택이 제공됩니다.</li><li>지난달 실적 산정 시 가족카드 이용금액도 동일한 기준으로 본인카드 이용실적에 합산됩니다.</li><li>할부 결제 건은 이용일을 기준으로 전체 이용금액이 실적에 합산됩니다.</li><li>해외 이용금액은 롯데카드에 접수되는 현지 매출일자를 기준으로 실적에 포함됩니다.</li><li>지난달 이용금액 중 실적에 포함된 매출을 취소하는 경우 지난달 이용실적 및 이번 달 할인한도가 변경될 수 있습니다.<br>예) 6월에 5월 승인 건 취소 시, 5월 이용실적에서 제외</li><li>한달 동안 이용한 금액이 다음 달에 결제되는 결제 건은(이동통신, 대중교통 등) 롯데카드에 접수되는 일자를 기준으로 실적에 포함됩니다.</li></ul><p>&nbsp;</p><h3><strong>이용실적 산정 시 제외 대상</strong></h3><ul><li>LOCA 365 카드가 아닌 롯데카드 이용금액, 모든 무이자할부 이용금액, 국세, 지방세, 건강보험, 국민연금, 고용보험, 산재보험, 초·중·고교 납입금, 대학등록금, LH·SH 공사 공공임대료, 부동산 임대료, 장애인 고용부담금, 오토·스마트 캐시백 신청 이용금액, 기프트·선불카드 충전 및 구매, 포인트충전, 상품권(모바일 상품권 포함)구매, 택시, 고속버스, 고속도로 통행요금, 무승인전표(자판기, 터널통행료, 항공 기내 이용), 벌금, 과태료, 민원 발급 수수료, 관세납부, 인지세, 송달료, 단기카드대출 (현금서비스), 장기카드대출(카드론), 연회비, 이자 및 각종 수수료</li></ul>",
+  "legalReview": {
+   "number": "<p>※ 여신금융협회 심의필 제2026-C1h-13551호 (2026.09.16 ~ 2027.09.15)</p>",
+   "description": "<p>&nbsp;</p><p>- 연회비 : 국내전용 20,000원, 해외겸용(MASTER, VISA, AMEX) 20,000원<br>- 계약체결 전 금융상품설명서와 약관을 확인하시기 바랍니다.<br>- 서비스 제공 업종은 롯데카드에 등록된 가맹점 업종을 기준으로 합니다.<br>- 신용카드 발급이 부적정한 경우(개인신용평점 낮음 등) 카드발급이 제한될 수 있습니다.<br>- 카드이용대금과 이에 수반되는 모든 수수료를 지정된 대금 결제일에 상환해야 합니다.<br>- 금융소비자는 금소법 제19조 제1항에 따라 해당상품 또는 서비스에 대하여 설명을 받을 권리가 있습니다.<br>- 뱅크샐러드는 롯데카드㈜ 의 신용카드 회원 모집 업무를 대리· 중개합니다.<br>- 뱅크샐러드는 다수의 금융회사를&nbsp;대리 · 중개합니다.<br>- 뱅크샐러드는 롯데카드㈜의 금융상품에 대한 계약체결 권한이 없습니다.<br>- 뱅크샐러드는 금융관계법률에 따라 롯데카드㈜와 위탁계약을 체결한 금융상품판매 대리·중개업자입니다.</p><p>&nbsp;</p><p><strong>※ 연체이자율 : 회원별·이용상품별 약정이율+최대 3%, 법정 최고금리(연20%)이내 </strong><br><strong>※ 단, 연체 발생 시점에 약정이율이 없는 경우 아래와 같이 약정이율을 적용 &nbsp;</strong><br><strong>- 일시불 거래 연체 시 : 거래 발생 시점의 최소기간(2개월) 유이자 할부 금리 &nbsp;&nbsp;</strong><br><strong>- 무이자 할부 거래 연체 시 : 거래 발생 시점의 동일한 할부 계약기간의 유이자 할부 금리 &nbsp;</strong><br><strong>- 그 외의 경우 : 약정이율은 상법상 상사법정이율과 상호금융 가계자금대출금리*중 높은 금리 적용 &nbsp;&nbsp;</strong><br><strong>* 한국은행에서 매월 발표하는 가장 최근의 비은행 금융기관 가중평균대출금리(신규대출 기준)</strong></p><p><strong>- 상환능력에 비해 신용카드 사용액이 과도할 경우 귀하의 개인신용평점이 하락할 수 있습니다.</strong><br><strong>- 개인신용평점 하락 시 금융거래와 관련된 불이익이 발생할 수 있습니다.</strong><br><strong>- 일정기간 원리금을 연체할 경우, 모든 원리금을 변제할 의무가 발생할 수 있습니다.</strong></p>",
+   "startDateMs": "1789516800000",
+   "endDateMs": "1820966400000",
+   "isLegalIssued": true
+  },
+  "cashbackPromotion": {
+   "startDateMs": "1793491200000",
+   "endDateMs": "1795996800000",
+   "cashbackAmountKrw0f": "850000",
+   "cardOrganizationPromotionId": "1266",
+   "applicationTerms": {
+    "termsTypeEnums": [
+     "TERMS_TYPE_CARD_PROMOTION_PERSONAL_INFORMATION_USE_AND_PROVIDE_FOR_THIRD_PARTY"
+    ],
+    "validConsentedAtMs": "1793458800000"
+   },
+   "isFinished": false
+  },
+  "isExposed": true,
+  "alfredCardId": "4265",
+  "cardBenefitSimulationLevelEnum": "CARD_BENEFIT_SIMULATION_LEVEL_FULL_AVAILABLE",
+  "isDetailPageAccessible": true
+ }
+}

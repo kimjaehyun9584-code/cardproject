@@ -1,0 +1,445 @@
+{
+ "_source": "https://www.banksalad.com/product/cards/CARD004248",
+ "_downloaded": "2026-10-02",
+ "card": {
+  "productGuid": "CARD004248",
+  "organization": {
+   "guid": "CRD0004",
+   "name": "KB국민카드",
+   "logoImageUrl": "https://cdn.banksalad.com/graphic/color/logo/circle/kb.png",
+   "industryEnum": "INDUSTRY_CARD",
+   "objectid": "5880ec0575c8e8fbdc00ace8",
+   "subIndustryEnum": "SUB_INDUSTRY_UNSET",
+   "mydatacenterOrganizationCode": "D1AAAF0000"
+  },
+  "name": "KB국민 노리2 체크카드(Global)",
+  "catchphrase": "국민 대표 체크카드 nori 시즌2 개막",
+  "cardTypeEnum": "CARD_TYPE_CHECK",
+  "isPremiumCard": false,
+  "isStopped": false,
+  "isContracted": true,
+  "imageUrl": "https://financialshopping-cdn.banksalad.com/kb_nori2_check_global_c7225c17a3.png",
+  "shouldDisplayImageVertically": true,
+  "annualCosts": [],
+  "majorBenefits": [
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/coffee_takeout_cup_bef9bbec20.png",
+    "text": "커피 10%"
+   },
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/lotion_bottle_two_84482906c1.png",
+    "text": "뷰티 5%"
+   },
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/toggle_coin_won_1d07100d79.png",
+    "text": "구독 1천원"
+   },
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/film_reel_31197b89aa.png",
+    "text": "영화 4천원"
+   }
+  ],
+  "minimumPreviousMonthPaymentAmountKrw0f": "200000",
+  "prevMonthPaymentAmountKrw0fOptions": [
+   "200000",
+   "300000",
+   "400000",
+   "600000",
+   "800000"
+  ],
+  "chartBenefits": [
+   {
+    "id": "4981789",
+    "title": "문화",
+    "summary": "인터파크 티켓 10% 환급할인",
+    "description": "<ul><li>월 7만원 이용금액까지 제공(월 할인한도 7천원)</li><li>전월실적 20만원 이상 시 제공</li><li><strong>일상 혜택 [문화] 할인은 공연 티켓 예매 시에만 제공</strong></li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "200000",
+      "calculatedMaxBenefitAmountKrw0f": "7000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/performing_arts_circle_9bfd13d65a.png",
+    "bdsIconName": "performing-arts",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4981790",
+    "title": "뷰티",
+    "summary": "올리브영, 미용실 업종 5% 환급할인",
+    "description": "<ul><li>월 4만원 이용금액까지 제공(월 할인한도 2천원)</li><li>전월실적 20만원 이상 시 제공</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "200000",
+      "calculatedMaxBenefitAmountKrw0f": "2000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/lotion_bottle_two_circle_67fa9a72b9.png",
+    "bdsIconName": "lotion-bottle-two",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4981791",
+    "title": "편의점",
+    "summary": "GS25, CU 5% 환급할인",
+    "description": "<ul><li>월 4만원 이용금액까지 제공(월 할인한도 2천원)</li><li>전월실적 20만원 이상 시 제공</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "200000",
+      "calculatedMaxBenefitAmountKrw0f": "2000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/convenience_store_circle_5592955e1c.png",
+    "bdsIconName": "convenience-store",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4981792",
+    "title": "구독",
+    "summary": "넷플릭스, 유튜브 프리미엄 1,000원 환급할인",
+    "description": "<ul><li>건당 1만원 이상 결제 시(월 2회, 할인한도 2천원)</li><li>전월실적 20만원 이상 시 제공</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "200000",
+      "calculatedMaxBenefitAmountKrw0f": "2000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/toggle_coin_won_circle_7ca8580d53.png",
+    "bdsIconName": "toggle-coin-won",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4981793",
+    "title": "배달",
+    "summary": "배달의 민족, 요기요 1,000원 환급할인",
+    "description": "<ul><li>건당 1만원 이상 결제 시 제공(월 1회, 할인한도 1천원)</li><li>전월실적 20만원 이상 시 제공</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "200000",
+      "calculatedMaxBenefitAmountKrw0f": "1000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/motor_scooter_circle_16cf4d8cbc.png",
+    "bdsIconName": "motor-scooter",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4981794",
+    "title": "이동통신",
+    "summary": "SKT, KT, LG U+, Liiv M 2,500원 환급할인",
+    "description": "<ul><li>건당 5만원 이상 결제 시 제공(월 1회, 할인한도 2천 5백원)</li><li>전월실적 20만원 이상 시 제공</li><li><strong>일상 혜택 [이동통신] 할인은 이동통신 요금 자동이체 납부금액 기준으로 제공</strong></li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "200000",
+      "calculatedMaxBenefitAmountKrw0f": "2500",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/phone_wifi_circle_a640350a8f.png",
+    "bdsIconName": "phone-wifi",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4981795",
+    "title": "영화",
+    "summary": "CGV 4,000원 환급할인",
+    "description": "<ul><li>건당 1만원 이상 결제 시 제공(월 2회, 할인한도 8천원)</li><li>전월실적 20만원 이상 시 제공</li><li><strong>일상 혜택 [영화] 할인은 현장 결제, 공식 홈페이지 및 모바일(앱) 결제 시 제공(상품권 구매 및 매점 이용분은 할인 제외)</strong></li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "200000",
+      "calculatedMaxBenefitAmountKrw0f": "8000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/film_reel_circle_12f75640fa.png",
+    "bdsIconName": "film-reel",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4981796",
+    "title": "놀이공원",
+    "summary": "에버랜드, 롯데월드 15,000원 환급할인",
+    "description": "<ul><li>건당 3만원 이상 결제 시(월 1회, 할인한도 1만 5천원)</li><li>전월실적 20만원 이상 시 제공</li><li><strong>일상 혜택 [놀이공원] 할인은 티켓 요금 결제 시 제공(상품권 구매 및 매점 이용분은 할인 제외</strong></li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "200000",
+      "calculatedMaxBenefitAmountKrw0f": "15000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/themepark_circle_31a53d39b8.png",
+    "bdsIconName": "themepark",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4981797",
+    "title": "해외가맹점",
+    "summary": "해외가맹점 결제 시 2% 추가 할인",
+    "description": "<ul><li>월 25만원 이용금액까지 제공(월 할인한도 5천원)</li><li>전월실적 30만원 이상 시 제공</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "300000",
+      "calculatedMaxBenefitAmountKrw0f": "5000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/game_die_double_circle_2fd591d78a.png",
+    "bdsIconName": "game-die-double",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4981798",
+    "title": "공항라운지",
+    "summary": "전 세계 공항 라운지 연 1 회 무료 제공(본인만)",
+    "description": "<ul><li>더라운지 멤버스(The Lounge Members)</li><li>전월실적 30만원 이상 시 제공</li><li>Global 혜택 [공항라운지] 서비스는 본인 회원 한정, 연 1회 제공되며, 더라운지멤버스(The Lounge Members) 앱 설치 및 회원가입, 카드 등록 후 이용 가능합니다.(전월 이용실적 충족 시 익월 서비스 제공)</li><li>Global 혜택 [공항라운지] 이용(이용권 발급, 취소 등) 관련 문의는 더라운지멤버스(The Lounge Members) 홈페이지 또는 고객센터(82-2-2664-7436)를 통해 문의 가능합니다.</li><li>[공항라운지] 이용권은 발급 후 24시간 동안 유효하며, 기간 내 미사용 시 자동 취소됩니다.(취소 후 재발급 가능)</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "300000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/airport_lounge_circle_feb6188233.png",
+    "bdsIconName": "airport-lounge",
+    "isExtraBenefit": true
+   },
+   {
+    "id": "4981787",
+    "title": "커피",
+    "summary": "스타벅스(사이렌오더 포함), 커피빈 10% 환급할인",
+    "description": "<ul><li>월 3만원 이용분까지 제공(월 할인한도 3천원)</li><li>일상 혜택 [커피] 할인은 전월실적 없이도 제공</li></ul><p>&nbsp;</p>",
+    "grades": [
+     {
+      "calculatedMaxBenefitAmountKrw0f": "3000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/coffee_takeout_cup_circle_cfb51018ed.png",
+    "bdsIconName": "coffee-takeout-cup",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4981788",
+    "title": "모바일",
+    "summary": "구글 플레이 스토어, 앱스토어 10% 환급할인",
+    "description": "<ul><li>월 5만원 이용분까지 제공(월 할인한도 5천원)</li><li>전월실적 20만원 이상 시 제공</li><li><strong>일상 혜택 [모바일] 할인은 가맹점명이 ‘구글 플레이 스토어’ 또는 ‘앱스토어’로 등록된 KB국민카드 가맹점에 한하여 제공</strong></li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "200000",
+      "calculatedMaxBenefitAmountKrw0f": "5000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/globe_showing_americas_circle_f1c24b50c4.png",
+    "bdsIconName": "globe-showing-americas",
+    "isExtraBenefit": false
+   }
+  ],
+  "chartBenefitLimits": [
+   {
+    "chartBenefitIds": [
+     "4981787"
+    ],
+    "limitAmount": "3000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "200000",
+    "chartBenefitIds": [
+     "4981788"
+    ],
+    "limitAmount": "5000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "200000",
+    "chartBenefitIds": [
+     "4981789"
+    ],
+    "limitAmount": "7000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "200000",
+    "chartBenefitIds": [
+     "4981790"
+    ],
+    "limitAmount": "2000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "200000",
+    "chartBenefitIds": [
+     "4981791"
+    ],
+    "limitAmount": "2000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "200000",
+    "chartBenefitIds": [
+     "4981792"
+    ],
+    "limitAmount": "2000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "200000",
+    "chartBenefitIds": [
+     "4981793"
+    ],
+    "limitAmount": "1000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "200000",
+    "chartBenefitIds": [
+     "4981794"
+    ],
+    "limitAmount": "2500",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "200000",
+    "chartBenefitIds": [
+     "4981795"
+    ],
+    "limitAmount": "8000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "200000",
+    "chartBenefitIds": [
+     "4981796"
+    ],
+    "limitAmount": "15000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "300000",
+    "chartBenefitIds": [
+     "4981797"
+    ],
+    "limitAmount": "5000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "200000",
+    "chartBenefitIds": [
+     "4981787",
+     "4981788",
+     "4981789",
+     "4981790",
+     "4981791",
+     "4981792",
+     "4981793",
+     "4981794",
+     "4981795",
+     "4981796",
+     "4981797",
+     "4981798"
+    ],
+    "limitAmount": "20000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "400000",
+    "chartBenefitIds": [
+     "4981787",
+     "4981788",
+     "4981789",
+     "4981790",
+     "4981791",
+     "4981792",
+     "4981793",
+     "4981794",
+     "4981795",
+     "4981796",
+     "4981797",
+     "4981798"
+    ],
+    "limitAmount": "30000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "600000",
+    "chartBenefitIds": [
+     "4981787",
+     "4981788",
+     "4981789",
+     "4981790",
+     "4981791",
+     "4981792",
+     "4981793",
+     "4981794",
+     "4981795",
+     "4981796",
+     "4981797",
+     "4981798"
+    ],
+    "limitAmount": "40000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "800000",
+    "chartBenefitIds": [
+     "4981787",
+     "4981788",
+     "4981789",
+     "4981790",
+     "4981791",
+     "4981792",
+     "4981793",
+     "4981794",
+     "4981795",
+     "4981796",
+     "4981797",
+     "4981798"
+    ],
+    "limitAmount": "50000",
+    "isIntegrationLimit": false
+   }
+  ],
+  "cardBenefitCalculationLevelEnum": "CARD_BENEFIT_CALCULATION_LEVEL_NOT_CALCULABLE",
+  "cardBenefitTypeEnum": "CARD_BENEFIT_TYPE_CASH",
+  "issueUrls": [
+   {
+    "channel": "CARD_ISSUE_CHANNEL_WEB",
+    "url": "https://m.kbcard.com/CRD/DVIEW/MCAMCXHIACRC0002?mainCC=b&allianceCode=07972&solicitorcode=7030170001 "
+   },
+   {
+    "channel": "CARD_ISSUE_CHANNEL_APP",
+    "url": "https://m.kbcard.com/CRD/DVIEW/MCAMCXHIACRC0002?mainCC=b&allianceCode=07972&solicitorcode=7030170002 "
+   }
+  ],
+  "footerDescription": "<h2><strong>유의사항</strong></h2><hr><p>※ 연회비 없음</p><p>&nbsp;</p><h3><strong>월간 통합할인한도</strong></h3><p>월간 통합할인한도는 다음과 같으며, 일상 혜택, Global 혜택이 모두 포함됩니다.</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>전월실적 구간</strong></th><th style=\"text-align:center;\"><strong>20만원 미만</strong></th><th style=\"text-align:center;\"><strong>20만원 이상</strong></th><th style=\"text-align:center;\"><strong>40만원 이상</strong></th><th style=\"text-align:center;\"><strong>60만원 이상</strong></th><th style=\"text-align:center;\">80만원 이상</th></tr></thead><tbody><tr><td style=\"text-align:center;\">월간 통합할인한도</td><td style=\"text-align:center;\">일상 혜택 커피 할인</td><td style=\"text-align:center;\">20,000원</td><td style=\"text-align:center;\">30,000원</td><td style=\"text-align:center;\">40,000원</td><td style=\"text-align:center;\">50,000원</td></tr></tbody></table></figure><p>&nbsp;</p><h3><strong>이용실적 기준</strong></h3><ul><li>전월1일 ~ 말일(승인시점 기준) KB국민 노리2 체크카드(KB Pay), KB국민 노리2 체크카드(Global) 각각의 승인(이용)금액 기준<ul><li>KB국민 노리2 체크카드(KB Pay), KB국민 노리2 체크카드(Global)는 동일계열 카드가 아니므로, 전월이용실적 및 할인한도가 합산되지 않습니다.</li></ul></li><li>해외이용금액은 전월 1일 ~ 말일까지 매입완료 기준이며, 취소금액은 취소전표가 당사에 접수된 월의 실적에서 차감<br>이용실적 제외 대상</li></ul><p>&nbsp;</p><h3><strong>이용실적 제외 대상</strong></h3><p><strong>후불교통요금, 무승인금액(자판기, 터널통행료, 기차/고속버스 취소 반환 수수료 등), 정부지원금 이용금액(보육료, 유치원보조비, 바우처 이용금액 등), 포인트리 충전금액, 대학(대학원) 등록금, 상품권 및 선불카드(선불전자지급수단 포함) 구입(충전)금액, 연체료, 지방세(지방세, 상하수도, 세외수입), 취소금액, 각종 수수료 및 이자</strong></p><p>&nbsp;</p>",
+  "legalReview": {
+   "number": "<ul><li>준법감시인 심의필 : 231024-04195-HPM (2023.10.24)</li></ul>",
+   "description": "<ol><li>계약을 체결하기 전에 상품설명서와 약관을 확인하시기 바랍니다.</li><li><strong>연체이자율: 회원별 / 이용상품별 정상이자율 + 3%p, 최고 연 20% 이내</strong><br><strong>※ 단, 연체발생시점에 정상이자율이 없는 경우 아래와 같이 적용함</strong><br><strong>&nbsp; &nbsp; &nbsp; &nbsp; - 일시불 거래 연체 시: 거래발생시점의 최소기간(2개월) 유이자 할부수수료율 적용</strong><br><strong>&nbsp; &nbsp; &nbsp; &nbsp; - 무이자할부 거래 연체 시: 거래발생시점의 동일한 할부계약기간의 유이자할부수수료율 적용</strong><br><strong>&nbsp; &nbsp; &nbsp; &nbsp; - 그 외의 경우: 정상이자율은 상법상 상사법정이율과 상호금융가계자금대출금리* 중 높은 금리 적용</strong><br><strong>*한국은행에서 매월 발표하는 가장 최근의 비은행 금융기관 가중평균대출금리(신규대출 기준)</strong></li><li><strong>상환능력에 비해 신용카드 사용액이 과도할 경우, 귀하의 개인신용평점이 하락할 수 있습니다.</strong></li><li><strong>개인신용평점 하락시 금융거래와 관련된 불이익이 발생할 수 있습니다.</strong></li><li><strong>일정기간 원리금을 연체할 경우, 모든 원리금을 변제할 의무가 발생할 수 있습니다.</strong></li><li>본 행사는 KB국민카드 영업정책 및 제휴업체의 사정으로 변경 또는 중단될 수 있습니다.</li></ol>",
+   "startDateMs": "1698105600000",
+   "endDateMs": "2177366400000",
+   "isLegalIssued": true
+  },
+  "isExposed": true,
+  "annualCostHtmlToDisplay": "<p>없음</p>",
+  "cardBenefitSimulationLevelEnum": "CARD_BENEFIT_SIMULATION_LEVEL_FULL_AVAILABLE",
+  "isDetailPageAccessible": true
+ }
+}

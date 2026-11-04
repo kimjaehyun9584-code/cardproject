@@ -1,0 +1,636 @@
+{
+ "_source": "https://www.banksalad.com/product/cards/CARD000004",
+ "_downloaded": "2026-10-02",
+ "card": {
+  "productGuid": "CARD000004",
+  "organization": {
+   "guid": "CRD0001",
+   "name": "신한카드",
+   "logoImageUrl": "https://cdn.banksalad.com/graphic/color/logo/circle/shinhan.png",
+   "industryEnum": "INDUSTRY_CARD",
+   "objectid": "5880ec0575c8e8fbdc00aced",
+   "subIndustryEnum": "SUB_INDUSTRY_UNSET",
+   "mydatacenterOrganizationCode": "D1AAEX0000"
+  },
+  "name": "신한카드 Mr.Life",
+  "catchphrase": "Essential For Every Lifestyle",
+  "cardTypeEnum": "CARD_TYPE_CREDIT",
+  "isPremiumCard": false,
+  "isStopped": false,
+  "isContracted": true,
+  "imageUrl": "https://financialshopping-cdn.banksalad.com/shinhan_mr_life_7a7a221370.png",
+  "shouldDisplayImageVertically": true,
+  "annualCosts": [
+   {
+    "brandName": "S&",
+    "amountKrw0f": "15000"
+   },
+   {
+    "brandName": "VISA",
+    "amountKrw0f": "18000"
+   }
+  ],
+  "majorBenefits": [
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/receipt_5ef490633e.png",
+    "text": "공과금 10%"
+   },
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/oil_barrel_5fc6eb13e1.png",
+    "text": "주유 리터당 60원"
+   },
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/convenience_store_2f0cfc3edf.png",
+    "text": "편의점 10%"
+   },
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/shopping_bag_cursor_1bc8333814.png",
+    "text": "온라인쇼핑 10%"
+   }
+  ],
+  "minimumPreviousMonthPaymentAmountKrw0f": "300000",
+  "prevMonthPaymentAmountKrw0fOptions": [
+   "300000",
+   "500000",
+   "1000000"
+  ],
+  "chartBenefits": [
+   {
+    "id": "4941512",
+    "title": "인테이크몰",
+    "summary": "[특화 서비스]\n인테이크몰 결제 시 20% 할인",
+    "description": "<ul><li>건강한 음식을 배달해주는 인테이크 온라인 몰에서 Mr. Life로 결제 시, 전월 신판이용금액 (일시불+할부) 유실적 고객 대상 20% 할인이 제공됩니다.(월 4회)</li></ul>",
+    "grades": [
+     {
+      "calculatedMaxBenefitAmountKrw0f": "8000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "altTextForToggleButton": "최대 20% 할인",
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/shopping_bag_cursor_circle_059aa42a50.png",
+    "bdsIconName": "shopping-bag-cursor",
+    "isExtraBenefit": true
+   },
+   {
+    "id": "4941503",
+    "title": "공과금",
+    "summary": "[월납 할인서비스]\n공과금 10% 할인",
+    "description": "<p>&nbsp;</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>전월 실적</strong></th><th style=\"text-align:center;\"><strong>30~50만원</strong></th><th style=\"text-align:center;\"><strong>50~100만원</strong></th><th style=\"text-align:center;\"><strong>100만원 이상</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">할인한도</td><td style=\"text-align:center;\">3천원</td><td style=\"text-align:center;\">7천원</td><td style=\"text-align:center;\">1만원</td></tr></tbody></table></figure><p>&nbsp;</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>구분</strong></th><th style=\"text-align:center;\"><strong>서비스 대상</strong></th><th style=\"text-align:center;\"><strong>서비스 제공</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">공과금</td><td><ul><li>전기요금</li><li>도시가스요금</li><li>SKT, LG U+, KT 통신요금(인터넷, 집전화, 이동통신요금, 결합상품 포함)</li></ul></td><td><ul><li>일 1회 할인 적용</li><li>1회 승인금액 5만원까지 할인 적용(1회 최대 5천원 할인)</li></ul></td></tr></tbody></table></figure>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "300000",
+      "calculatedMaxBenefitAmountKrw0f": "3000",
+      "isCalculatedBenefitAccurate": true
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "7000",
+      "isCalculatedBenefitAccurate": true
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+      "calculatedMaxBenefitAmountKrw0f": "10000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/receipt_circle_7f774c1f24.png",
+    "bdsIconName": "receipt",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4941504",
+    "title": "마트",
+    "summary": "[주말 할인 서비스]\n3대 할인마트 10% 할인",
+    "description": "<p>&nbsp;</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>전월 실적</strong></th><th style=\"text-align:center;\"><strong>30~50만원</strong></th><th style=\"text-align:center;\"><strong>50~100만원</strong></th><th style=\"text-align:center;\"><strong>100만원 이상</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">할인한도</td><td style=\"text-align:center;\">3천원</td><td style=\"text-align:center;\">7천원</td><td style=\"text-align:center;\">1만원</td></tr></tbody></table></figure><p>&nbsp;</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>구분</strong></th><th style=\"text-align:center;\"><strong>서비스 대상</strong></th><th style=\"text-align:center;\"><strong>서비스 제공</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">3대 할인마트</td><td><ul><li>이마트, 롯데마트, 홈플러스</li><li>기업형 슈퍼마켓/온라인몰 포함, 상품권 제외</li></ul></td><td><ul><li>일 1회 할인 적용</li><li>1회 승인금액 5만원까지 할인 적용(1회 최대 5천원 할인)</li></ul></td></tr><tr><td style=\"text-align:center;\">4대 주유소</td><td><ul><li>SK에너지, GS칼텍스, 에이치디현대오일뱅크, S-Oil</li><li>휘발유, 등유, 경유(LPG 제외)</li></ul></td><td><ul><li>일 1회 할인 적용</li><li>1회 승인금액 10만원까지 할인 적용</li><li>월 승인금액 30만원까지 할인 적용</li></ul></td></tr></tbody></table></figure><p>&nbsp;</p><ul><li>주말 할인 서비스는 공휴일 여부와 상관없이 토요일, 일요일에 해당되며, 토요일, 일요일 외 공휴일은 해당되지 않습니다.</li><li>정유사공시 기준 휘발유가로 적용되어 할인되며, 등유/경유 거래도 휘발유가 기준으로 환산하여 서비스제공됩니다.&nbsp;</li><li>각 주유소 유가 차이 및 유류에 따라 할인금액 차이가 발생할 수 있습니다.</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "300000",
+      "calculatedMaxBenefitAmountKrw0f": "3000",
+      "isCalculatedBenefitAccurate": true
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "7000",
+      "isCalculatedBenefitAccurate": true
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+      "calculatedMaxBenefitAmountKrw0f": "10000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/basket_circle_6276dc31cb.png",
+    "bdsIconName": "basket",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4941505",
+    "title": "주유",
+    "summary": "[주말 할인 서비스]\n4대 주유소 리터당 60원 할인",
+    "description": "<p>&nbsp;</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>전월 실적</strong></th><th style=\"text-align:center;\"><strong>30~50만원</strong></th><th style=\"text-align:center;\"><strong>50~100만원</strong></th><th style=\"text-align:center;\"><strong>100만원 이상</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">할인한도</td><td style=\"text-align:center;\">3천원</td><td style=\"text-align:center;\">7천원</td><td style=\"text-align:center;\">1만원</td></tr></tbody></table></figure><p>&nbsp;</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>구분</strong></th><th style=\"text-align:center;\"><strong>서비스 대상</strong></th><th style=\"text-align:center;\"><strong>서비스 제공</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">3대 할인마트</td><td><ul><li>이마트, 롯데마트, 홈플러스</li><li>기업형 슈퍼마켓/온라인몰 포함, 상품권 제외</li></ul></td><td><ul><li>일 1회 할인 적용</li><li>1회 승인금액 5만원까지 할인 적용(1회 최대 5천원 할인)</li></ul></td></tr><tr><td style=\"text-align:center;\">4대 주유소</td><td><ul><li>SK에너지, GS칼텍스, 에이치디현대오일뱅크, S-Oil</li><li>휘발유, 등유, 경유(LPG 제외)</li></ul></td><td><ul><li>일 1회 할인 적용</li><li>1회 승인금액 10만원까지 할인 적용</li><li>월 승인금액 30만원까지 할인 적용</li></ul></td></tr></tbody></table></figure><p>&nbsp;</p><ul><li>주말 할인 서비스는 공휴일 여부와 상관없이 토요일, 일요일에 해당되며, 토요일, 일요일 외 공휴일은 해당되지 않습니다.</li><li>정유사공시 기준 휘발유가로 적용되어 할인되며, 등유/경유 거래도 휘발유가 기준으로 환산하여 서비스제공됩니다.&nbsp;</li><li>각 주유소 유가 차이 및 유류에 따라 할인금액 차이가 발생할 수 있습니다.</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "300000",
+      "calculatedMaxBenefitAmountKrw0f": "3000",
+      "isCalculatedBenefitAccurate": true
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "7000",
+      "isCalculatedBenefitAccurate": true
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+      "calculatedMaxBenefitAmountKrw0f": "10000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/oil_barrel_circle_a32aff5eab.png",
+    "bdsIconName": "oil-barrel",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4941506",
+    "title": "편의점",
+    "summary": "[Time 할인 All Day 서비스]\n편의점 10% 할인",
+    "description": "<p>&nbsp;</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>전월 실적</strong></th><th style=\"text-align:center;\"><strong>30~50만원</strong></th><th style=\"text-align:center;\"><strong>50~100만원</strong></th><th style=\"text-align:center;\"><strong>100만원 이상</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">할인한도</td><td style=\"text-align:center;\">1만원</td><td style=\"text-align:center;\">2만원</td><td style=\"text-align:center;\">3만원</td></tr></tbody></table></figure><p>&nbsp;</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>구분</strong></th><th style=\"text-align:center;\"><strong>서비스 대상</strong></th><th style=\"text-align:center;\"><strong>서비스 제공</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">편의점</td><td style=\"text-align:center;\">편의점 업종</td><td rowspan=\"3\"><p>구분 영역별 각각</p><ul><li>일 1회, 월 5회 할인 적용</li><li>1회 승인금액 1만원까지 할인 적용(1회 최대 1천원 할인)</li></ul></td></tr><tr><td style=\"text-align:center;\">병원, 약국</td><td style=\"text-align:center;\">병원, 약국 업종</td></tr><tr><td style=\"text-align:center;\">세탁비</td><td style=\"text-align:center;\">세탁소 업종</td></tr></tbody></table></figure>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "300000",
+      "calculatedMaxBenefitAmountKrw0f": "10000",
+      "isCalculatedBenefitAccurate": true
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "20000",
+      "isCalculatedBenefitAccurate": true
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+      "calculatedMaxBenefitAmountKrw0f": "30000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/convenience_store_circle_5592955e1c.png",
+    "bdsIconName": "convenience-store",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4941507",
+    "title": "병원, 약국",
+    "summary": "[Time 할인 All Day 서비스]\n병원, 약국 10% 할인",
+    "description": "<p>&nbsp;</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>전월 실적</strong></th><th style=\"text-align:center;\"><strong>30~50만원</strong></th><th style=\"text-align:center;\"><strong>50~100만원</strong></th><th style=\"text-align:center;\"><strong>100만원 이상</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">할인한도</td><td style=\"text-align:center;\">1만원</td><td style=\"text-align:center;\">2만원</td><td style=\"text-align:center;\">3만원</td></tr></tbody></table></figure><p>&nbsp;</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>구분</strong></th><th style=\"text-align:center;\"><strong>서비스 대상</strong></th><th style=\"text-align:center;\"><strong>서비스 제공</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">편의점</td><td style=\"text-align:center;\">편의점 업종</td><td rowspan=\"3\"><p>구분 영역별 각각</p><ul><li>일 1회, 월 5회 할인 적용</li><li>1회 승인금액 1만원까지 할인 적용(1회 최대 1천원 할인)</li></ul></td></tr><tr><td style=\"text-align:center;\">병원, 약국</td><td style=\"text-align:center;\">병원, 약국 업종</td></tr><tr><td style=\"text-align:center;\">세탁비</td><td style=\"text-align:center;\">세탁소 업종</td></tr></tbody></table></figure>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "300000",
+      "calculatedMaxBenefitAmountKrw0f": "10000",
+      "isCalculatedBenefitAccurate": true
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "20000",
+      "isCalculatedBenefitAccurate": true
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+      "calculatedMaxBenefitAmountKrw0f": "30000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/hospital_circle_f23128d080.png",
+    "bdsIconName": "hospital",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4941508",
+    "title": "세탁비",
+    "summary": "[Time 할인 All Day 서비스]\n세탁비 10% 할인",
+    "description": "<p>&nbsp;</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>전월 실적</strong></th><th style=\"text-align:center;\"><strong>30~50만원</strong></th><th style=\"text-align:center;\"><strong>50~100만원</strong></th><th style=\"text-align:center;\"><strong>100만원 이상</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">할인한도</td><td style=\"text-align:center;\">1만원</td><td style=\"text-align:center;\">2만원</td><td style=\"text-align:center;\">3만원</td></tr></tbody></table></figure><p>&nbsp;</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>구분</strong></th><th style=\"text-align:center;\"><strong>서비스 대상</strong></th><th style=\"text-align:center;\"><strong>서비스 제공</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">편의점</td><td style=\"text-align:center;\">편의점 업종</td><td rowspan=\"3\"><p>구분 영역별 각각</p><ul><li>일 1회, 월 5회 할인 적용</li><li>1회 승인금액 1만원까지 할인 적용(1회 최대 1천원 할인)</li></ul></td></tr><tr><td style=\"text-align:center;\">병원, 약국</td><td style=\"text-align:center;\">병원, 약국 업종</td></tr><tr><td style=\"text-align:center;\">세탁비</td><td style=\"text-align:center;\">세탁소 업종</td></tr></tbody></table></figure>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "300000",
+      "calculatedMaxBenefitAmountKrw0f": "10000",
+      "isCalculatedBenefitAccurate": true
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "20000",
+      "isCalculatedBenefitAccurate": true
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+      "calculatedMaxBenefitAmountKrw0f": "30000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/house_circle_fd27b29ef6.png",
+    "bdsIconName": "house",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4941509",
+    "title": "온라인쇼핑",
+    "summary": "[Time 할인 Night 서비스]\n오후 9시 ~ 오전 9시까지\n옥션, G마켓, AK몰, 11번가, 티켓몬스터, 위메프, 쿠팡 10% 할인",
+    "description": "<p>&nbsp;</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>전월 실적</strong></th><th style=\"text-align:center;\"><strong>30~50만원</strong></th><th style=\"text-align:center;\"><strong>50~100만원</strong></th><th style=\"text-align:center;\"><strong>100만원 이상</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">할인한도</td><td style=\"text-align:center;\">1만원</td><td style=\"text-align:center;\">2만원</td><td style=\"text-align:center;\">3만원</td></tr></tbody></table></figure><p>&nbsp;</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>구분</strong></th><th style=\"text-align:center;\"><strong>서비스 대상</strong></th><th style=\"text-align:center;\"><strong>서비스 제공</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">온라인쇼핑</td><td style=\"text-align:center;\">옥션, G마켓, AK몰, 11번가, 티켓몬스터, 위메프, 쿠팡&nbsp;</td><td rowspan=\"3\"><p>구분 영역별 각각</p><ul><li>일 1회 / 월 10회 할인 적용</li><li>1회 승인금액 1만원까지 할인 적용(1회 최대 1천원 할인)</li></ul></td></tr><tr><td style=\"text-align:center;\">택시</td><td style=\"text-align:center;\">후불교통, 비교통 카드 모두 적용</td></tr><tr><td style=\"text-align:center;\">식음료</td><td style=\"text-align:center;\">한식, 양식, 일식, 중식, 뷔페, 일반 대중음식점, 패스트푸드, 커피전문점 업종</td></tr></tbody></table></figure>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "300000",
+      "calculatedMaxBenefitAmountKrw0f": "10000",
+      "isCalculatedBenefitAccurate": true
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "20000",
+      "isCalculatedBenefitAccurate": true
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+      "calculatedMaxBenefitAmountKrw0f": "30000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/shopping_bag_cursor_circle_059aa42a50.png",
+    "bdsIconName": "shopping-bag-cursor",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4941510",
+    "title": "택시",
+    "summary": "[Time 할인 Night 서비스]\n오후 9시 ~ 오전 9시까지\n택시 10% 할인",
+    "description": "<p>&nbsp;</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>전월 실적</strong></th><th style=\"text-align:center;\"><strong>30~50만원</strong></th><th style=\"text-align:center;\"><strong>50~100만원</strong></th><th style=\"text-align:center;\"><strong>100만원 이상</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">할인한도</td><td style=\"text-align:center;\">1만원</td><td style=\"text-align:center;\">2만원</td><td style=\"text-align:center;\">3만원</td></tr></tbody></table></figure><p>&nbsp;</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>구분</strong></th><th style=\"text-align:center;\"><strong>서비스 대상</strong></th><th style=\"text-align:center;\"><strong>서비스 제공</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">온라인쇼핑</td><td style=\"text-align:center;\">옥션, G마켓, AK몰, 11번가, 티켓몬스터, 위메프, 쿠팡&nbsp;</td><td rowspan=\"3\"><p>구분 영역별 각각</p><ul><li>일 1회 / 월 10회 할인 적용</li><li>1회 승인금액 1만원까지 할인 적용(1회 최대 1천원 할인)</li></ul></td></tr><tr><td style=\"text-align:center;\">택시</td><td style=\"text-align:center;\">후불교통, 비교통 카드 모두 적용</td></tr><tr><td style=\"text-align:center;\">식음료</td><td style=\"text-align:center;\">한식, 양식, 일식, 중식, 뷔페, 일반 대중음식점, 패스트푸드, 커피전문점 업종</td></tr></tbody></table></figure>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "300000",
+      "calculatedMaxBenefitAmountKrw0f": "10000",
+      "isCalculatedBenefitAccurate": true
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "20000",
+      "isCalculatedBenefitAccurate": true
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+      "calculatedMaxBenefitAmountKrw0f": "30000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/taxi_circle_9c757892ee.png",
+    "bdsIconName": "taxi",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4941511",
+    "title": "식음료",
+    "summary": "[Time 할인 Night 서비스]\n오후 9시 ~ 오전 9시까지\n한식, 양식, 일식, 중식, 뷔페, 일반 대중음식점, 패스트푸드, 커피전문점 업종 10% 할인",
+    "description": "<p>&nbsp;</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>전월 실적</strong></th><th style=\"text-align:center;\"><strong>30~50만원</strong></th><th style=\"text-align:center;\"><strong>50~100만원</strong></th><th style=\"text-align:center;\"><strong>100만원 이상</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">할인한도</td><td style=\"text-align:center;\">1만원</td><td style=\"text-align:center;\">2만원</td><td style=\"text-align:center;\">3만원</td></tr></tbody></table></figure><p>&nbsp;</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>구분</strong></th><th style=\"text-align:center;\"><strong>서비스 대상</strong></th><th style=\"text-align:center;\"><strong>서비스 제공</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">온라인쇼핑</td><td style=\"text-align:center;\">옥션, G마켓, AK몰, 11번가, 티켓몬스터, 위메프, 쿠팡&nbsp;</td><td rowspan=\"3\"><p>구분 영역별 각각</p><ul><li>일 1회 / 월 10회 할인 적용</li><li>1회 승인금액 1만원까지 할인 적용(1회 최대 1천원 할인)</li></ul></td></tr><tr><td style=\"text-align:center;\">택시</td><td style=\"text-align:center;\">후불교통, 비교통 카드 모두 적용</td></tr><tr><td style=\"text-align:center;\">식음료</td><td style=\"text-align:center;\">한식, 양식, 일식, 중식, 뷔페, 일반 대중음식점, 패스트푸드, 커피전문점 업종</td></tr></tbody></table></figure>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "300000",
+      "calculatedMaxBenefitAmountKrw0f": "10000",
+      "isCalculatedBenefitAccurate": true
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "500000",
+      "calculatedMaxBenefitAmountKrw0f": "20000",
+      "isCalculatedBenefitAccurate": true
+     },
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+      "calculatedMaxBenefitAmountKrw0f": "30000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/fork_knife_circle_7fe7a88d6b.png",
+    "bdsIconName": "fork-knife",
+    "isExtraBenefit": false
+   }
+  ],
+  "chartBenefitLimits": [
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "300000",
+    "chartBenefitIds": [
+     "4941503"
+    ],
+    "limitAmount": "3000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "500000",
+    "chartBenefitIds": [
+     "4941503"
+    ],
+    "limitAmount": "7000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+    "chartBenefitIds": [
+     "4941503"
+    ],
+    "limitAmount": "10000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "300000",
+    "chartBenefitIds": [
+     "4941504"
+    ],
+    "limitAmount": "3000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "500000",
+    "chartBenefitIds": [
+     "4941504"
+    ],
+    "limitAmount": "7000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+    "chartBenefitIds": [
+     "4941504"
+    ],
+    "limitAmount": "10000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "300000",
+    "chartBenefitIds": [
+     "4941505"
+    ],
+    "limitAmount": "3000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "500000",
+    "chartBenefitIds": [
+     "4941505"
+    ],
+    "limitAmount": "7000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+    "chartBenefitIds": [
+     "4941505"
+    ],
+    "limitAmount": "10000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "300000",
+    "chartBenefitIds": [
+     "4941504",
+     "4941505"
+    ],
+    "limitAmount": "3000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "500000",
+    "chartBenefitIds": [
+     "4941504",
+     "4941505"
+    ],
+    "limitAmount": "7000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+    "chartBenefitIds": [
+     "4941504",
+     "4941505"
+    ],
+    "limitAmount": "10000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "300000",
+    "chartBenefitIds": [
+     "4941506"
+    ],
+    "limitAmount": "10000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "500000",
+    "chartBenefitIds": [
+     "4941506"
+    ],
+    "limitAmount": "20000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+    "chartBenefitIds": [
+     "4941506"
+    ],
+    "limitAmount": "30000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "300000",
+    "chartBenefitIds": [
+     "4941507"
+    ],
+    "limitAmount": "10000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "500000",
+    "chartBenefitIds": [
+     "4941507"
+    ],
+    "limitAmount": "20000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+    "chartBenefitIds": [
+     "4941507"
+    ],
+    "limitAmount": "30000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "300000",
+    "chartBenefitIds": [
+     "4941508"
+    ],
+    "limitAmount": "10000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "500000",
+    "chartBenefitIds": [
+     "4941508"
+    ],
+    "limitAmount": "20000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+    "chartBenefitIds": [
+     "4941508"
+    ],
+    "limitAmount": "30000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "300000",
+    "chartBenefitIds": [
+     "4941509"
+    ],
+    "limitAmount": "10000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "500000",
+    "chartBenefitIds": [
+     "4941509"
+    ],
+    "limitAmount": "20000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+    "chartBenefitIds": [
+     "4941509"
+    ],
+    "limitAmount": "30000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "300000",
+    "chartBenefitIds": [
+     "4941510"
+    ],
+    "limitAmount": "10000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "500000",
+    "chartBenefitIds": [
+     "4941510"
+    ],
+    "limitAmount": "20000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+    "chartBenefitIds": [
+     "4941510"
+    ],
+    "limitAmount": "30000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "300000",
+    "chartBenefitIds": [
+     "4941511"
+    ],
+    "limitAmount": "10000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "500000",
+    "chartBenefitIds": [
+     "4941511"
+    ],
+    "limitAmount": "20000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+    "chartBenefitIds": [
+     "4941511"
+    ],
+    "limitAmount": "30000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "300000",
+    "chartBenefitIds": [
+     "4941506",
+     "4941507",
+     "4941508",
+     "4941509",
+     "4941510",
+     "4941511"
+    ],
+    "limitAmount": "10000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "500000",
+    "chartBenefitIds": [
+     "4941506",
+     "4941507",
+     "4941508",
+     "4941509",
+     "4941510",
+     "4941511"
+    ],
+    "limitAmount": "20000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "1000000",
+    "chartBenefitIds": [
+     "4941506",
+     "4941507",
+     "4941508",
+     "4941509",
+     "4941510",
+     "4941511"
+    ],
+    "limitAmount": "30000",
+    "isIntegrationLimit": false
+   }
+  ],
+  "cardBenefitCalculationLevelEnum": "CARD_BENEFIT_CALCULATION_LEVEL_FULL_AVAILABLE",
+  "cardBenefitTypeEnum": "CARD_BENEFIT_TYPE_CASH",
+  "issueUrls": [
+   {
+    "channel": "CARD_ISSUE_CHANNEL_WEB",
+    "url": "https://www.shinhancard.com/pconts/html/card/apply/credit/1187937_2207.html?EntryLoc2=2774&empSeq=991&btnApp=DP0T1U3"
+   },
+   {
+    "channel": "CARD_ISSUE_CHANNEL_APP",
+    "url": "https://www.shinhancard.com/pconts/html/card/apply/credit/1187937_2207.html?EntryLoc2=2774&empSeq=992&btnApp=DP0T1U3"
+   }
+  ],
+  "footerDescription": "<h2><strong>유의사항</strong></h2><hr><ul><li>서비스 대상 거래건 중 신한카드 전표 매입 순서대로 결제일 할인이 적용됩니다.</li><li>신규 발급 회원에 대해서는 카드사용 등록월의 익월말(등록월+1개월)까지 전월실적 30~50만원 구간의 할인한도가 제공됩니다.</li><li>교통이용금액은 전전월 이용금액 기준이며, 해외이용금액은 매입일자를 기준으로 적용됩니다.</li><li>장·단기 카드 대출/연회비/각종수수료/이자/기프트카드 구매금액/선불카드 충전금액/거래취소금액은 전월 이용금액에서 제외됩니다.</li><li>할인서비스는 전월 이용금액 구간에 따라 제공된 서비스별 월 할인 한도 내에서 제공됩니다.</li></ul>",
+  "legalReview": {
+   "number": "<ul><li>여신금융협회 심의필 제2025-C1h-15334호(2025.10.21~2026.10.20)</li></ul>",
+   "description": "<p>※ 뱅크샐러드는 신한카드㈜의 신용카드 모집 업무를 대리·중개합니다.<br>※ 뱅크샐러드는 다수의 여신전문금융회사를 대리하거나 중개합니다.<br>※ 뱅크샐러드는 신한카드㈜의 금융상품에 대한 계약 체결 권한이 없습니다.<br>※ 뱅크샐러드는 금융관계법률에 따라 신한카드㈜와 위탁 계약을 체결한 금융상품 판매 대리 중개업자입니다.</p><ul><li>계약체결 전 카드 상품별 연회비, 이용조건 등에 관한 상세사항은 상품설명서, 약관 및 홈페이지 참조 바랍니다.</li><li>금융소비자는 금융소비자보호법 제19조 제1항에 따라 해당 금융상품 또는 서비스에 대하여 설명받을 권리가 있습니다.</li><li><strong>연체이자율은 \"회원별, 이용상품별 약정금리+최대 연3%, 법정 최고금리(연20%)이내\"에서 적용됩니다.</strong><br><strong>단,연체 발생 시점에 약정금리가 없는 경우 약정금리는 아래와 같이 적용함</strong><br><strong>- 일시불 거래 연체 시 : 거래 발생 시점의 최소기간(2개월) 유이자 할부 금리</strong><br><strong>- 무이자 할부 거래 연체 시 : 거래 발생 시점의 동일한 할부 계약기간의 유이자 할부 금리</strong></li><li>신용카드 발급이 부적정한 경우(개인신용평점 낮음,연체(단기 포함) 사유 발생 등), 카드발급이 제한될 수 있습니다.</li><li>카드 이용대금과 이에 수반되는 모든 수수료는 고객님께서 지정하신 결제일에 상환하여야 합니다.</li><li><strong>상환능력에 비해 신용카드 사용액이 과도할 경우, 귀하의 개인신용평점이 하락할 수 있습니다.</strong></li><li><strong>개인신용평점 하락시 금융거래와 관련된 불이익이 발생할 수 있습니다.</strong></li><li><strong>일정기간 신용카드 이용대금을 연체할 경우, 결제일이 도래하지 않은 모든 신용카드 이용대금을 변제할 의무가 발생할 수 있습니다.</strong></li></ul>",
+   "startDateMs": "1761004800000",
+   "endDateMs": "1792454400000",
+   "isLegalIssued": true
+  },
+  "cashbackPromotion": {
+   "startDateMs": "1790812800000",
+   "endDateMs": "1793404800000",
+   "cashbackAmountKrw0f": "860000",
+   "cardOrganizationPromotionId": "1225",
+   "isFinished": false
+  },
+  "isExposed": true,
+  "alfredCardId": "2396",
+  "annualCostHtmlToDisplay": "<p>국내용(S&amp;) 15,000원<br>해외겸용 18,000원</p>",
+  "cardBenefitSimulationLevelEnum": "CARD_BENEFIT_SIMULATION_LEVEL_FULL_AVAILABLE",
+  "isDetailPageAccessible": true
+ }
+}

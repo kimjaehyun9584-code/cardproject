@@ -1,0 +1,99 @@
+{
+ "_source": "https://www.banksalad.com/product/cards/CARD004293",
+ "_downloaded": "2026-10-02",
+ "card": {
+  "productGuid": "CARD004293",
+  "organization": {
+   "guid": "CRD0003",
+   "name": "현대카드",
+   "logoImageUrl": "https://cdn.banksalad.com/graphic/color/logo/circle/hyundaicard.png",
+   "industryEnum": "INDUSTRY_CARD",
+   "objectid": "5880ec0575c8e8fbdc00ace9",
+   "subIndustryEnum": "SUB_INDUSTRY_UNSET",
+   "mydatacenterOrganizationCode": "D1AAFO0000"
+  },
+  "name": "현대카드ZERO Edition3(할인형)",
+  "catchphrase": "실적 조건 없고, 할인 한도도 없는 카드",
+  "cardTypeEnum": "CARD_TYPE_CREDIT",
+  "isPremiumCard": false,
+  "isStopped": false,
+  "isContracted": true,
+  "imageUrl": "https://financialshopping-cdn.banksalad.com/hyundai_ZERO_6eb4fa8616.png",
+  "shouldDisplayImageVertically": true,
+  "annualCosts": [
+   {
+    "brandName": "국내전용",
+    "amountKrw0f": "15000",
+    "textToDisplay": "국내전용 15,000원"
+   },
+   {
+    "brandName": "VISA",
+    "amountKrw0f": "15000",
+    "textToDisplay": "Visa 15,000원"
+   },
+   {
+    "brandName": "AMEX",
+    "amountKrw0f": "15000",
+    "textToDisplay": "Amex 15,000원"
+   }
+  ],
+  "majorBenefits": [
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/red_store_c484d33818.png",
+    "text": "국내외 가맹점 0.8%"
+   }
+  ],
+  "prevMonthPaymentAmountKrw0fOptions": [],
+  "chartBenefits": [
+   {
+    "id": "4982337",
+    "title": "국내외 가맹점",
+    "summary": "국내외 가맹점 이용 금액의 0.8% 청구 할인",
+    "description": "<ul><li>국내외 가맹점은 현대카드 가맹점 등록 기준&nbsp;</li><li>해외 이용 금액 할인은 국내외겸용 카드에 한해 적용&nbsp;</li><li>국제브랜드 수수료 및 해외서비스 수수료는 할인 제외</li><li>해외 가맹점 이용 시 별도의 수수료가 부과되니, 국제브랜드 수수료 관련 자세한 내용은 상품설명서 '카드 이용 유의사항' 참고</li></ul>",
+    "grades": [
+     {
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "altTextForToggleButton": "0.8% 할인",
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/red_store_circle_55ffce00f1.png",
+    "bdsIconName": "red-store",
+    "isExtraBenefit": false
+   }
+  ],
+  "chartBenefitLimits": [],
+  "cardBenefitCalculationLevelEnum": "CARD_BENEFIT_CALCULATION_LEVEL_NOT_CALCULABLE",
+  "cardBenefitTypeEnum": "CARD_BENEFIT_TYPE_CASH",
+  "issueUrls": [
+   {
+    "channel": "CARD_ISSUE_CHANNEL_WEB",
+    "url": "https://www.hyundaicard.com/cpc/cr/CPCCR0201_01.hc?cardWcd=ZROE3&eventCode=BAK5G&agentCode=L500103200000"
+   },
+   {
+    "channel": "CARD_ISSUE_CHANNEL_APP",
+    "url": "https://www.hyundaicard.com/cpc/cr/CPCCR0201_01.hc?cardWcd=ZROE3&eventCode=BAK62&agentCode=L500103200000"
+   }
+  ],
+  "footerDescription": "<h2><strong>유의사항</strong></h2><hr><h3><strong>할인 제외 기준</strong></h3><ul><li>장기카드대출(카드론), 단기카드대출(현금서비스), 연회비, 제수수료, 이자</li><li>국제브랜드 수수료 및 해외서비스 수수료</li><li>공과금 납부액(국세, 관세, 지방세, 지방세외수입, 상하수도 요금, 벌과금, 과태료, 인지세, 송달료, 민원 발급 수수료 등 국가 또는 공공단체가 부과하는 부담금)</li><li>전기 요금, 도시가스 요금, 아파트 관리비, 자동납부 서비스 이용 수수료</li><li>초·중·고교 학교 납입금, 사립유치원 교육비, 대학·대학원 등록금 납부 결제 건</li><li>상품권 등 현금성 유가증권 구매 및 선불 카드 구매·충전 금액</li><li>건강보험, 국민연금, 고용보험, 산재보험 및 장애인 고용 부담금</li><li>고속도로 통행 요금, 후불하이패스카드 이용 금액, 고속버스(차내 단말기 및 고속버스 앱 결제 포함)</li><li>현대카드의 모든 할인 서비스 및 무이자 할부 이용 금액</li></ul><p>&nbsp;</p><h3><strong>기타 기준</strong></h3><ul><li>정상 금액 결제 후 할인 적용된 금액으로 회원별 카드 이용 대금 결제일에 청구</li><li>모든 가맹점은 현대카드 가맹점 등록 기준</li><li>자세한 내용은 현대카드 홈페이지 참고</li></ul>",
+  "legalReview": {
+   "number": "<ul><li>여신금융협회 심의필 제 2026 - C1h - 00367호 ( 2026.01.05 ~ 2027.01.04 )</li></ul>",
+   "description": "<ul><li><strong>카드 이용 대금 연체 시 약정 금리 + 연체 가산 금리 3%의 연체 금리 적용(회원별, 이용 상품별 차등 적용/법정 최고 금리 20% 이내)</strong><br><strong>단, 연체 발생 시점에 약정 금리가 없는 경우 아래와 같이 적용</strong><br><strong>- 일시불 : 거래 발생 시점 기준 최소 기간(2개월)의 유이자 할부 약정 금리 + 연체 가산 금리 3%</strong><br><strong>- 무이자 할부 : 거래 발생 시점 기준 동일한 할부 계약 기간의 유이자 할부 약정 금리 + 연체 가산 금리 3%</strong></li><li><strong>그 외의 경우 약정 금리는 상법상 상사법정이율과 상호금융 가계자금대출 금리* 중 높은 금리 적용&nbsp;</strong><br><strong>*한국은행에서 매달 발표하는 가장 최근의 비은행금융기관 가중평균대출 금리(신규 대출 기준)</strong></li><li><strong>상환능력에 비해 신용카드 이용금액이 과도할 경우, 귀하의 개인신용평점이 하락할 수 있습니다.</strong></li><li><strong>개인신용평점 하락 시 금융거래와 관련된 불이익이 발생할 수 있습니다.</strong></li><li><strong>일정기간 원리금을 연체할 경우, 모든 원리금을 변제할 의무가 발생할 수 있습니다.</strong></li><li>신용카드 발급이 부적정한 경우(연체금보유, 개인신용폄점 낮음 등) 카드 발급이 제한될 수 있습니다.&nbsp;</li><li>카드이용대금과 이에 수반되는 모든 수수료를 지정된 대금 결제일에 상환합니다.</li><li>금융소비자는 금융소비자보호법 제19조 제1항에 따라 해당 상품 또는 서비스에 대하여 설명을 받을 권리가 있습니다.</li><li>자세한 내용 및 이용 조건은 카드 신청 전 현대카드 홈페이지 및 상품설명서, 약관 참고<br>- (주)뱅크샐러드는 현대카드의 신용카드 회원 모집 업무를 대리 중개합니다.<br>- (주)뱅크샐러드는 다수의 금융회사를 대리하거나 중개합니다.<br>- (주)뱅크샐러드는 현대카드의 금융상품에 대한 계약체결 권한이 없습니다.<br>- (주)뱅크샐러드는 금융관계법률에 따라 현대카드와 회원모집 위탁계약을 체결한 금융상품판매대리중개업자입니다.</li></ul><p>&nbsp;</p>",
+   "startDateMs": "1767571200000",
+   "endDateMs": "1799020800000",
+   "isLegalIssued": true
+  },
+  "annualCostPromotion": {
+   "startDateMs": "1790812800000",
+   "endDateMs": "1793404800000",
+   "discountPercentage": 100,
+   "cardOrganizationPromotionId": "1197",
+   "isFinished": false
+  },
+  "isExposed": true,
+  "annualCostHtmlToDisplay": "<p>Visa 15,000원</p><p>국내전용 15,000원</p>",
+  "cardBenefitSimulationLevelEnum": "CARD_BENEFIT_SIMULATION_LEVEL_FULL_AVAILABLE",
+  "isDetailPageAccessible": true
+ }
+}

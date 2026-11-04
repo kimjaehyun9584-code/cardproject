@@ -1,0 +1,160 @@
+{
+ "id": "kbank_one_here",
+ "name": "케이뱅크 ONE 체크카드 (여기서 더 캐시백)",
+ "issuer": "케이뱅크",
+ "card_kind": "check",
+ "annual_fee": 0,
+ "source": "data/reference/raw/products/kbank_one_card_benefits.json (케이뱅크 ONE 체크카드 상세, 2026-11-04 다운로드). 시즌6 프로모션 기간 2026.09.01~2026.12.31. 카드고릴라 2025 인기 체크카드 1위",
+ "performance": {
+  "tiers": [],
+  "exclude_categories": [],
+  "grace": null,
+  "_note": "이용실적 조건 없음 (캐시백 3종 중 매달 1개 선택)"
+ },
+ "benefits": [
+  {
+   "id": "coffee",
+   "name": "스타벅스·커피빈 5% (1만 원 이상, 일 700원)",
+   "kind": "rate",
+   "rate": 0.05,
+   "match": [
+    {
+     "category": "CAFE",
+     "merchant_share": "cafe_starbucks_coffeebean"
+    }
+   ],
+   "min_txn_amount": 10000,
+   "pools": [
+    "day_coffee",
+    "month"
+   ]
+  },
+  {
+   "id": "conv",
+   "name": "편의점(CU·GS25·이마트24) 5% (1만 원 이상, 일 700원)",
+   "kind": "rate",
+   "rate": 0.05,
+   "match": [
+    {
+     "category": "CONVENIENCE",
+     "merchant_share": "convenience_gs25_cu"
+    }
+   ],
+   "min_txn_amount": 10000,
+   "pools": [
+    "day_conv",
+    "month"
+   ]
+  },
+  {
+   "id": "ott",
+   "name": "OTT 5% (1만 원 이상, 일 700원)",
+   "kind": "rate",
+   "rate": 0.05,
+   "match": [
+    {
+     "category": "CULTURE_OTT",
+     "merchant_share": "culture_netflix_youtube"
+    }
+   ],
+   "min_txn_amount": 10000,
+   "pools": [
+    "day_ott",
+    "month"
+   ]
+  },
+  {
+   "id": "delivery",
+   "name": "배달앱(배민·쿠팡이츠·요기요) 5% (1만 원 이상, 일 700원)",
+   "kind": "rate",
+   "rate": 0.05,
+   "match": [
+    {
+     "category": "DELIVERY"
+    }
+   ],
+   "min_txn_amount": 10000,
+   "pools": [
+    "day_delivery",
+    "month"
+   ]
+  },
+  {
+   "id": "movie",
+   "name": "영화관 5% (1만 원 이상, 일 700원)",
+   "kind": "rate",
+   "rate": 0.05,
+   "match": [
+    {
+     "category": "CULTURE_OTT",
+     "merchant_share": "culture_cgv_lotte"
+    }
+   ],
+   "min_txn_amount": 10000,
+   "pools": [
+    "day_movie",
+    "month"
+   ]
+  },
+  {
+   "id": "telecom",
+   "name": "통신 3사 5% (5천 원 이상, 일 1천 원)",
+   "kind": "rate",
+   "rate": 0.05,
+   "match": [
+    {
+     "category": "TELECOM",
+     "customer_share": "telecom_mno3"
+    }
+   ],
+   "min_txn_amount": 5000,
+   "pools": [
+    "day_telecom",
+    "month"
+   ]
+  }
+ ],
+ "pools": {
+  "day_coffee": {
+   "period": "day",
+   "0": 700
+  },
+  "day_conv": {
+   "period": "day",
+   "0": 700
+  },
+  "day_ott": {
+   "period": "day",
+   "0": 700
+  },
+  "day_delivery": {
+   "period": "day",
+   "0": 700
+  },
+  "day_movie": {
+   "period": "day",
+   "0": 700
+  },
+  "day_telecom": {
+   "period": "day",
+   "0": 1000
+  },
+  "month": {
+   "0": 25000
+  }
+ },
+ "unmodeled_benefits": [
+  {
+   "name": "이마트24·웨이브·티빙·메가박스",
+   "reason": "가맹점 비중 자료가 있는 브랜드만 반영 (편의점·OTT·영화는 과소)"
+  },
+  {
+   "name": "K-패스 교통비 환급·대중교통 추가 5천 원 캐시백(2026.10~12 기간 한정)",
+   "reason": "정부 K-패스 환급은 카드사 비용이 아니고, 기간 한정 이벤트"
+  },
+  {
+   "name": "찐친 무제한 캐시백, 체크인 챌린지(월 첫 결제 최대 10%)",
+   "reason": "초대·출석 미션형 이벤트"
+  }
+ ]
+}
