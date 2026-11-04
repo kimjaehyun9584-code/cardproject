@@ -201,6 +201,7 @@ def run_product(prod, cust, t_all, shares, behavior, seed, n_months, all_on_card
     simple = [i for i, b in enumerate(bens) if not (b.get("pools") or b.get("per_day") or b.get("per_month")
                                                      or b.get("per_year") or b.get("monthly_eligible_cap"))]
     complex_ = [i for i in range(len(bens)) if i not in simple]
+    top_groups = sorted({b["top_of"] for b in bens if b.get("top_of")})
 
     perf = np.zeros((n_c, n_months))
     tier_cm = np.zeros((n_c, n_months))
@@ -247,9 +248,16 @@ def run_product(prod, cust, t_all, shares, behavior, seed, n_months, all_on_card
         # 혜택 (이번 달, 이 카드 결제만)
         cur = in_m & on
         tier_txn = tier_cm[ci, mo]
+        mmask = [bm & cur for bm in bmask]
+        for grp in top_groups:  # 그룹 중 이번 달 이용액이 가장 큰 1개 영역만 (예: Deep Dream 챙겨드림)
+            members_b = [i for i, b in enumerate(bens) if b.get("top_of") == grp]
+            spend = np.stack([np.bincount(ci[mmask[i]], weights=amt[mmask[i]], minlength=n_c) for i in members_b])
+            best = np.argmax(spend, axis=0)
+            for j, i in enumerate(members_b):
+                mmask[i] &= best[ci] == j
         for bi in simple:
             b = bens[bi]
-            mk = bmask[bi] & cur
+            mk = mmask[bi].copy()
             if b.get("min_tier") is not None:
                 mk &= tier_txn >= b["min_tier"]
             idx = np.flatnonzero(mk)
@@ -262,7 +270,7 @@ def run_product(prod, cust, t_all, shares, behavior, seed, n_months, all_on_card
             rows, bids = [], []
             for bi in complex_:
                 b = bens[bi]
-                mk = bmask[bi] & cur
+                mk = mmask[bi].copy()
                 if b.get("min_tier") is not None:
                     mk &= tier_txn >= b["min_tier"]
                 idx = np.flatnonzero(mk)

@@ -1,0 +1,63 @@
+{
+  "id": "shinhan_deepdream_check",
+  "name": "신한카드 Deep Dream 체크",
+  "issuer": "신한카드",
+  "card_kind": "check",
+  "annual_fee": 0,
+  "source": "data/reference/raw/products/shinhancard_deepdream_check_minions.html (신한카드 상품 페이지 'Deep Dream 체크(미니언즈)', 2026-11-04 다운로드). 카드고릴라 2025 인기 체크카드 4위",
+  "performance": {
+    "tiers": [200000, 400000, 800000],
+    "exclude_categories": [],
+    "grace": {"months": 2, "tier": 200000},
+    "_note": "실적 제외: 카드대출·연회비·수수료·이자·취소·기프트/선불카드 (생성 데이터에는 취소만 해당). 신규 회원은 등록월+1개월까지 20~40만 원 구간 한도"
+  },
+  "benefits": [
+    {"id": "base", "name": "[모두드림] 전 가맹점 0.2% 적립", "kind": "points", "rate": 0.002,
+     "match": [{"category": "*"}],
+     "exclude": [{"category": "UTILITY_INS", "merchant_share": "utility_electric_gas"},
+                 {"category": "UTILITY_INS", "merchant_share": "utility_water"},
+                 {"category": "UTILITY_INS", "merchant_share": "utility_mgmt_fee"}],
+     "_note": "실적·한도 없음. 공과금·관리비 적립 제외. 주말 주유 적립 건과 중복 불가지만 반영하지 않음 (약간 과대)"},
+    {"id": "more_mart", "name": "[더해드림] 할인점 +0.4%", "kind": "points", "rate": 0.004,
+     "match": [{"category": "GROCERY", "merchant_share": "grocery_big3", "channel": "offline"}],
+     "min_tier": 200000, "pools": ["dream"]},
+    {"id": "more_retail", "name": "[더해드림] 편의점·잡화 +0.4%", "kind": "points", "rate": 0.004,
+     "match": [{"category": "CONVENIENCE", "channel": "offline"}],
+     "min_tier": 200000, "pools": ["dream"]},
+    {"id": "more_enjoy", "name": "[더해드림] 영화·커피 +0.4%", "kind": "points", "rate": 0.004,
+     "match": [{"category": "CAFE"}, {"category": "CULTURE_OTT", "merchant_share": "culture_cgv_lotte"}],
+     "min_tier": 200000, "pools": ["dream"]},
+    {"id": "more_abroad", "name": "[더해드림] 해외 일시불 +0.4%", "kind": "points", "rate": 0.004,
+     "match": [{"category": "*", "overseas": true}], "lump_only": true,
+     "min_tier": 200000, "pools": ["dream"]},
+    {"id": "more_mobile", "name": "[더해드림] 이동통신 +0.4%", "kind": "points", "rate": 0.004,
+     "match": [{"category": "TELECOM", "customer_share": "telecom_mno3"}],
+     "min_tier": 200000, "pools": ["dream"]},
+    {"id": "top_mart", "name": "[챙겨드림] 최다 영역 할인점 +0.4%", "kind": "points", "rate": 0.004, "top_of": "dream",
+     "match": [{"category": "GROCERY", "merchant_share": "grocery_big3", "channel": "offline"}],
+     "min_tier": 200000, "pools": ["dream"]},
+    {"id": "top_retail", "name": "[챙겨드림] 최다 영역 편의점·잡화 +0.4%", "kind": "points", "rate": 0.004, "top_of": "dream",
+     "match": [{"category": "CONVENIENCE", "channel": "offline"}],
+     "min_tier": 200000, "pools": ["dream"]},
+    {"id": "top_enjoy", "name": "[챙겨드림] 최다 영역 영화·커피 +0.4%", "kind": "points", "rate": 0.004, "top_of": "dream",
+     "match": [{"category": "CAFE"}, {"category": "CULTURE_OTT", "merchant_share": "culture_cgv_lotte"}],
+     "min_tier": 200000, "pools": ["dream"]},
+    {"id": "top_abroad", "name": "[챙겨드림] 최다 영역 해외 +0.4%", "kind": "points", "rate": 0.004, "top_of": "dream",
+     "match": [{"category": "*", "overseas": true}], "lump_only": true,
+     "min_tier": 200000, "pools": ["dream"]},
+    {"id": "top_mobile", "name": "[챙겨드림] 최다 영역 이동통신 +0.4%", "kind": "points", "rate": 0.004, "top_of": "dream",
+     "match": [{"category": "TELECOM", "customer_share": "telecom_mno3"}],
+     "min_tier": 200000, "pools": ["dream"]},
+    {"id": "fuel_weekend", "name": "[아껴드림] 주말 주유 리터당 40원", "kind": "per_liter", "per_liter": 40,
+     "match": [{"category": "FUEL"}], "weekdays": [5, 6],
+     "monthly_eligible_cap": 200000, "min_tier": 200000}
+  ],
+  "pools": {
+    "dream": {"200000": 5000, "400000": 15000, "800000": 30000}
+  },
+  "unmodeled_benefits": [
+    {"name": "택시 월 3·6·9번째 1천 원 할인", "reason": "택시가 ETC에 섞여 있어 분리 불가"},
+    {"name": "반겨드림 3천 포인트 (90일 80만 원)", "reason": "신규 1회성"},
+    {"name": "신한은행 이체·출금 수수료 면제", "reason": "은행 수수료로 카드 손익 밖"}
+  ]
+}

@@ -119,6 +119,8 @@ def validate_product(prod, categories, shares):
             _check_match(m, f"{where}.match[{i}]", categories, shares)
         for i, m in enumerate(b.get("exclude", [])):
             _check_match(m, f"{where}.exclude[{i}]", categories, shares)
+        if "top_of" in b and not isinstance(b["top_of"], str):
+            raise ProductError(f"{where}: top_of는 그룹 이름(문자열)")
         mt = b.get("min_tier")
         if mt is not None and mt not in tiers:
             raise ProductError(f"{where}: min_tier {mt}가 tiers에 없음")

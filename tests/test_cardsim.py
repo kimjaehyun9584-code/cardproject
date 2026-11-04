@@ -241,3 +241,29 @@ def test_day_pool_channel_and_exclude():
     ben[0]["match"][0]["channel"] = "online"
     q, _ = run_product(_tiny_product(ben, {"d": {"period": "day", "0": 1000}}), cust, t, load_shares(), load_behavior(), 1, 1, all_on_card=True)
     assert q["pts"].sum() == 0
+
+
+def test_top_of_group_only_largest_area():
+    from cardsim.products import load_shares
+    from cardsim.simulate import load_behavior, run_product
+    rows = [("2025-01-02 12:00", "CAFE", 30000), ("2025-01-03 12:00", "CONVENIENCE", 10000)]
+    cust, t = _tiny_case(rows)
+    ben = [{"id": "c", "kind": "points", "rate": 0.01, "top_of": "g", "match": [{"category": "CAFE"}], "pools": []},
+           {"id": "v", "kind": "points", "rate": 0.01, "top_of": "g", "match": [{"category": "CONVENIENCE"}], "pools": []}]
+    q, used = run_product(_tiny_product(ben, {}), cust, t, load_shares(), load_behavior(), 1, 1, all_on_card=True)
+    assert q["pts"].sum() == pytest.approx(300)
+    assert "v" not in used
+
+
+def test_advisor_profile_and_leakage():
+    from cardsim.advisor import Population, evaluate
+    pop = Population(n_customers=800, seed=3)
+    g = pop.lookalikes("30s", 1_000_000, n=20)
+    assert len(g) == 20 and g["scale"].between(0.5, 2.0).all()
+    df, details = evaluate(pop, g, ["shinhan_mr_life", "hyundai_zero3_discount", "kb_nori2_check"])
+    assert set(df["id"]) == {"shinhan_mr_life", "hyundai_zero3_discount", "kb_nori2_check"}
+    assert (df["실적 미달 누수"] >= 0).all() and (df["한도·횟수 누수"] >= 0).all()
+    zero = df.set_index("id").loc["hyundai_zero3_discount"]
+    assert zero["실적 미달 누수"] == 0 and zero["한도·횟수 누수"] == 0  # 무실적·무한도
+    assert zero["혜택률"] == pytest.approx(0.008, rel=0.01)
+    assert (df["월 사용액"] / 1_000_000).between(0.6, 1.4).all()

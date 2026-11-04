@@ -1,0 +1,83 @@
+{
+ "_source": "https://www.banksalad.com/product/cards/CARD004279",
+ "_downloaded": "2026-11-04",
+ "card": {
+  "productGuid": "CARD004279",
+  "organization": {
+   "guid": "CRD0006",
+   "name": "하나카드",
+   "logoImageUrl": "https://cdn.banksalad.com/graphic/color/logo/circle/keb.png",
+   "industryEnum": "INDUSTRY_CARD",
+   "objectid": "5880ec0575c8e8fbdc00acf1",
+   "subIndustryEnum": "SUB_INDUSTRY_UNSET",
+   "mydatacenterOrganizationCode": "D1AABJ0000"
+  },
+  "name": "네이버페이 머니 하나 체크카드",
+  "catchphrase": "온/오프라인 어디서나 1.2% 적립",
+  "cardTypeEnum": "CARD_TYPE_CHECK",
+  "isPremiumCard": false,
+  "isStopped": false,
+  "isContracted": false,
+  "imageUrl": "https://financialshopping-cdn.banksalad.com/2432card_27d9d3e77d.png",
+  "shouldDisplayImageVertically": true,
+  "annualCosts": [],
+  "majorBenefits": [
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/letter_coin_f462fc12e8.png",
+    "text": "모든 가맹점 1.2%",
+    "bdsIconName": "letter-coin"
+   }
+  ],
+  "minimumPreviousMonthPaymentAmountKrw0f": "250000",
+  "prevMonthPaymentAmountKrw0fOptions": [
+   "250000"
+  ],
+  "chartBenefits": [
+   {
+    "id": "5027258",
+    "title": "국내외 가맹점",
+    "summary": "국내/외 전가맹점 1.2% 네이버페이포인트 적립",
+    "description": "<p>※ 네이버페이 포인트 적립 서비스 세부 사항</p><ul><li>적립된 포인트는 네이버페이 사이트에서 확인 가능합니다.</li><li>국세, 지방세, 공과금(인터넷/모바일 앱을 통한 공과금 납부 금액 포함), 수도/전기요금, 도시가스 요금, 아파트관리비, 국민연금/고 용보험료/산재보험료/건강보험료 납부 금액, 스쿨뱅킹, 초.중.고 학교 납입금, 대학등록금, 대학원등록금, 상품권 및 기프트카드 구매, 선불카드 및 선불전자지급수단(하나머니 등) 충전 금액, 부동산 임대료, 국내외 ATM 이용금액은 포인트 적립대상에서 제외됩니다.</li><li>해외 결제 시 수수료가 발생할 수 있으니 [해외결제 및 기타안내] 참조하시기 바랍니다.</li></ul><p>&nbsp;</p><p>※ 적립기준</p><ul><li>적립 기준 : 네이버페이 포인트<br>* 네이버페이 포인트는 네이버페이 회원 가입 후 적립 및 이용 가능하며, 해당 정책의 기준은 네이버페이 운영 기준을 따릅니다.<br>* 네이버페이 포인트 적립, 사용 등 자세한 내용은 네이버페이 사이트 (pay.naver.com) 또는 네이버페이 고객센터(1588-3819)에서 확인 가능합니다.</li></ul><p>&nbsp;</p><p>※ 적립일자</p><ul><li>매월 1일부터 말일까지의 이용금액에 대해 다음 달 15일(휴일일 경우 다음 영업일) 일괄 적립</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "250000",
+      "calculatedMaxBenefitAmountKrw0f": "10000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "altTextForToggleButton": "1.2% 적립",
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/letter_coin_circle_10f5be1417.png",
+    "bdsIconName": "letter-coin",
+    "isExtraBenefit": false
+   }
+  ],
+  "chartBenefitLimits": [
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "250000",
+    "chartBenefitIds": [
+     "5027258"
+    ],
+    "limitAmount": "10000",
+    "isIntegrationLimit": false
+   }
+  ],
+  "cardBenefitCalculationLevelEnum": "CARD_BENEFIT_CALCULATION_LEVEL_SUMMARY_ONLY",
+  "cardBenefitTypeEnum": "CARD_BENEFIT_TYPE_POINT",
+  "issueUrls": [
+   {
+    "channel": "CARD_ISSUE_CHANNEL_WEB",
+    "url": "https://www.banksalad.com"
+   },
+   {
+    "channel": "CARD_ISSUE_CHANNEL_APP",
+    "url": "https://www.banksalad.com"
+   }
+  ],
+  "footerDescription": "<h2><strong>유의사항</strong></h2><hr><h3><strong>※ 서비스 제공 조건</strong></h3><h3><strong>[실적 산정 기준]</strong></h3><ul><li>지난달 1일부터 말일(승인 시점 기준)까지 국내외 이용금액 25만원 이상 시 서비스 제공 [실적과 관계없이 서비스 제공]</li><li>최초 카드 사용등록일로부터 다음달 말일까지는 지난달 카드 실적과 관계없이 서비스 제공</li></ul><p>&nbsp;</p><h3><strong>[지난달 실적 제외 대상]</strong></h3><p>국세, 지방세, 공과금(인터넷/모바일 앱을 통한 공과금 납부 금액 포함), 수도/전기요금, 도시가스 요금, 아파트관리비, 국민연금/고용보험료/산재보험료/건강보험료 납부 금액, 스쿨뱅킹, 초.중.고 학교 납입금, 대학등록금, 대학원등록금, 상품권 및 기프트카드 구매, 선불카드 및 선불전자지급수단(하나머니 등) 충전 금액, 부동산 임대료, 국내외 ATM 이용금액<br>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h3><strong>※ 서비스 제공 방법</strong></h3><ul><li>매출 접수된 국내외 이용금액에 따라 적립 혜택을 제공하며, 매출 취소 시 취소가 접수된 월에서 실적 및 적립된 네이버페이 포인트를 차감 반영</li><li>후불교통요금 등 무승인거래(카드사의 승인없이 이용금액이 카드사에 접수됨)의 경우 매출이 접수된 월의 이용금액에 반영</li><li>모든 적립 서비스는 하나카드에 등록된 가맹점 및 업종 기준에 따라 제공</li><li>해외 매출은 최종 원화 청구금액에 대하여 적립 제공<br>&nbsp;</li></ul><p>&nbsp;</p><p>&nbsp;</p>",
+  "legalReview": null,
+  "isExposed": true,
+  "cardBenefitSimulationLevelEnum": "CARD_BENEFIT_SIMULATION_LEVEL_FULL_AVAILABLE",
+  "isDetailPageAccessible": true
+ }
+}
