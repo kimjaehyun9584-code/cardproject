@@ -1,0 +1,69 @@
+{
+ "id": "kbank_one_369",
+ "name": "케이뱅크 ONE 체크카드 (369 캐시백)",
+ "issuer": "케이뱅크",
+ "card_kind": "check",
+ "annual_fee": 0,
+ "source": "data/reference/raw/products/kbank_one_card_benefits.json (케이뱅크 ONE 체크카드 상세, 2026-11-04 다운로드). 시즌6 프로모션 기간 2026.09.01~2026.12.31. 카드고릴라 2025 인기 체크카드 1위",
+ "performance": {
+  "tiers": [],
+  "exclude_categories": [],
+  "grace": null,
+  "_note": "이용실적 조건 없음 (캐시백 3종 중 매달 1개 선택)"
+ },
+ "benefits": [
+  {
+   "id": "stamp",
+   "name": "오프라인 1만 원 이상 3건마다 1,000원",
+   "kind": "fixed",
+   "amount": 1000,
+   "every_nth": 3,
+   "match": [
+    {
+     "category": "*",
+     "channel": "offline"
+    }
+   ],
+   "min_txn_amount": 10000,
+   "exclude": [
+    {
+     "category": "TRANSIT"
+    },
+    {
+     "category": "UTILITY_INS",
+     "merchant_share": "utility_electric_gas"
+    },
+    {
+     "category": "UTILITY_INS",
+     "merchant_share": "utility_water"
+    },
+    {
+     "category": "UTILITY_INS",
+     "merchant_share": "utility_mgmt_fee"
+    },
+    {
+     "category": "*",
+     "overseas": true
+    },
+    {
+     "category": "MEDICAL"
+    }
+   ]
+  }
+ ],
+ "pools": {},
+ "unmodeled_benefits": [
+  {
+   "name": "같은 날 같은 가맹점 중복 결제는 1건만 인정",
+   "reason": "생성 데이터에 가맹점 번호 없음 (혜택 약간 과대)"
+  },
+  {
+   "name": "K-패스 교통비 환급·대중교통 추가 5천 원 캐시백(2026.10~12 기간 한정)",
+   "reason": "정부 K-패스 환급은 카드사 비용이 아니고, 기간 한정 이벤트"
+  },
+  {
+   "name": "찐친 무제한 캐시백, 체크인 챌린지(월 첫 결제 최대 10%)",
+   "reason": "초대·출석 미션형 이벤트"
+  }
+ ]
+}

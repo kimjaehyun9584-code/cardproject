@@ -267,3 +267,24 @@ def test_advisor_profile_and_leakage():
     assert zero["실적 미달 누수"] == 0 and zero["한도·횟수 누수"] == 0  # 무실적·무한도
     assert zero["혜택률"] == pytest.approx(0.008, rel=0.01)
     assert (df["월 사용액"] / 1_000_000).between(0.6, 1.4).all()
+
+
+def test_every_nth_amount_by_txn_and_ride_days():
+    from cardsim.products import load_shares
+    from cardsim.simulate import load_behavior, run_product
+    rows = ([(f"2025-01-{d:02d} 12:00", "ETC", 12000) for d in range(1, 8)]          # 7건 → 3·6번째만
+            + [("2025-01-10 12:00", "CAFE", 2000), ("2025-01-11 12:00", "CAFE", 5000), ("2025-01-12 12:00", "CAFE", 15000)]
+            + [("2025-01-15 08:00", "TRANSIT", 1500), ("2025-01-15 18:00", "TRANSIT", 1500), ("2025-01-16 08:00", "TRANSIT", 1500)])
+    cust, t = _tiny_case(rows)
+    sh, bh = load_shares(), load_behavior()
+    nth = [{"id": "s", "kind": "fixed", "amount": 1000, "every_nth": 3, "match": [{"category": "ETC"}], "pools": []}]
+    q, _ = run_product(_tiny_product(nth, {}), cust, t, sh, bh, 1, 1, all_on_card=True)
+    assert q["disc"].sum() == pytest.approx(2000)
+    tiered = [{"id": "c", "kind": "fixed", "amount_by_txn": [[3000, 100], [10000, 500]], "min_txn_amount": 3000,
+               "match": [{"category": "CAFE"}], "pools": []}]
+    q, _ = run_product(_tiny_product(tiered, {}), cust, t, sh, bh, 1, 1, all_on_card=True)
+    assert q["disc"].sum() == pytest.approx(600)
+    ride = [{"id": "r", "kind": "fixed", "amount": 100, "units": "ride_days", "max_units": 10,
+             "match": [{"category": "TRANSIT"}], "pools": []}]
+    q, _ = run_product(_tiny_product(ride, {}), cust, t, sh, bh, 1, 1, all_on_card=True)
+    assert q["disc"].sum() == pytest.approx(200)  # 이용일 2일

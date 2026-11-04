@@ -111,7 +111,9 @@ def validate_product(prod, categories, shares):
         ids.add(b.get("id"))
         if b.get("kind") not in BENEFIT_KINDS:
             raise ProductError(f"{where}: kind는 {sorted(BENEFIT_KINDS)} 중 하나")
-        if KIND_FIELD[b["kind"]] not in b:
+        if b["kind"] == "fixed" and "amount_by_txn" in b:
+            pass
+        elif KIND_FIELD[b["kind"]] not in b:
             raise ProductError(f"{where}: kind={b['kind']}에는 {KIND_FIELD[b['kind']]!r} 필요")
         if not b.get("match"):
             raise ProductError(f"{where}: match가 비어 있음")
@@ -119,6 +121,10 @@ def validate_product(prod, categories, shares):
             _check_match(m, f"{where}.match[{i}]", categories, shares)
         for i, m in enumerate(b.get("exclude", [])):
             _check_match(m, f"{where}.exclude[{i}]", categories, shares)
+        if b.get("units") not in (None, "ride_days"):
+            raise ProductError(f"{where}: units는 ride_days만 지원")
+        if "every_nth" in b and not (isinstance(b["every_nth"], int) and b["every_nth"] >= 2):
+            raise ProductError(f"{where}: every_nth는 2 이상 정수")
         if "top_of" in b and not isinstance(b["top_of"], str):
             raise ProductError(f"{where}: top_of는 그룹 이름(문자열)")
         mt = b.get("min_tier")

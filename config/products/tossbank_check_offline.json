@@ -1,0 +1,178 @@
+{
+ "id": "tossbank_check_offline",
+ "name": "토스뱅크 체크카드 (오프라인 캐시백)",
+ "issuer": "토스뱅크",
+ "card_kind": "check",
+ "annual_fee": 0,
+ "source": "data/reference/raw/products/tossbank_checkcard_switch_cashback.json (https://www.tossbank.com/card/benefits, 2026-11-04 다운로드). 스위치 캐시백 시즌6 오프라인, 2026.04.01~2027.01.20. 카드고릴라 2025 인기 체크카드 3위",
+ "performance": {
+  "tiers": [],
+  "exclude_categories": [],
+  "grace": null,
+  "_note": "전월실적 조건 없음 (캐시백 4종 중 선택)"
+ },
+ "benefits": [
+  {
+   "id": "conv",
+   "name": "편의점(GS25·CU) 100/500원",
+   "kind": "fixed",
+   "amount_by_txn": [
+    [
+     3000,
+     100
+    ],
+    [
+     10000,
+     500
+    ]
+   ],
+   "match": [
+    {
+     "category": "CONVENIENCE",
+     "merchant_share": "convenience_gs25_cu",
+     "channel": "offline"
+    }
+   ],
+   "min_txn_amount": 3000,
+   "per_day": 1,
+   "per_month": 10,
+   "pools": [
+    "conv"
+   ]
+  },
+  {
+   "id": "food",
+   "name": "음식&음료(스타벅스 등) 100/500원",
+   "kind": "fixed",
+   "amount_by_txn": [
+    [
+     3000,
+     100
+    ],
+    [
+     10000,
+     500
+    ]
+   ],
+   "match": [
+    {
+     "category": "CAFE",
+     "merchant_share": "cafe_starbucks_coffeebean",
+     "channel": "offline"
+    }
+   ],
+   "min_txn_amount": 3000,
+   "per_day": 1,
+   "per_month": 10,
+   "pools": [
+    "food"
+   ]
+  },
+  {
+   "id": "mart",
+   "name": "마트(이마트·롯데마트 등) 100/500원",
+   "kind": "fixed",
+   "amount_by_txn": [
+    [
+     3000,
+     100
+    ],
+    [
+     10000,
+     500
+    ]
+   ],
+   "match": [
+    {
+     "category": "GROCERY",
+     "merchant_share": "grocery_big3",
+     "channel": "offline"
+    }
+   ],
+   "min_txn_amount": 3000,
+   "per_day": 1,
+   "per_month": 10,
+   "pools": [
+    "mart"
+   ]
+  },
+  {
+   "id": "movie",
+   "name": "영화관 100/500원",
+   "kind": "fixed",
+   "amount_by_txn": [
+    [
+     3000,
+     100
+    ],
+    [
+     10000,
+     500
+    ]
+   ],
+   "match": [
+    {
+     "category": "CULTURE_OTT",
+     "merchant_share": "culture_cgv_lotte"
+    }
+   ],
+   "min_txn_amount": 3000,
+   "per_day": 1,
+   "per_month": 10,
+   "pools": [
+    "movie"
+   ]
+  },
+  {
+   "id": "transit",
+   "name": "대중교통 하루 1회 100원 (월 10회)",
+   "kind": "fixed",
+   "amount": 100,
+   "units": "ride_days",
+   "max_units": 10,
+   "match": [
+    {
+     "category": "TRANSIT",
+     "customer_share": "transit_postpaid_option"
+    }
+   ],
+   "_note": "후불교통은 월 1건으로 묶여 있어 이용일 수 × 100원 (월 10일까지). 버스·지하철 1회 요금은 3천 원 미만이라 100원"
+  }
+ ],
+ "pools": {
+  "conv": {
+   "0": 5000
+  },
+  "food": {
+   "0": 5000
+  },
+  "mart": {
+   "0": 5000
+  },
+  "movie": {
+   "0": 5000
+  }
+ },
+ "unmodeled_benefits": [
+  {
+   "name": "온라인·어디서나·기부 캐시백",
+   "reason": "공식 페이지 탭 내용을 받지 못해 오프라인 캐시백만 반영"
+  },
+  {
+   "name": "음식&음료 중 투썸·메가·컴포즈·빽다방·맥도날드·버거킹·롯데리아·샐러디",
+   "reason": "가맹점 비중 자료가 없어 스타벅스·커피빈만 반영 (과소)"
+  },
+  {
+   "name": "백화점, 서점, 즉석사진, 메가박스",
+   "reason": "생성 데이터 업종에서 분리 불가 또는 비중 자료 없음"
+  },
+  {
+   "name": "마트 중 다이소·GS더프레시",
+   "reason": "이마트·롯데마트·홈플러스 비중(grocery_big3)으로 근사 (홈플러스는 대상 아님)"
+  },
+  {
+   "name": "해외 수수료·ATM 수수료 면제",
+   "reason": "손익 모델에 해외 수수료 수익 항목 없음"
+  }
+ ]
+}

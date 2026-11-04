@@ -67,7 +67,10 @@ def _monthly_transit(t):
     tr = t[is_tr]
     per = tr["txn_datetime"].dt.to_period("M")
     g = tr.groupby([tr["customer_id"], tr["payment_type"], per], sort=False)
+    tr = tr.assign(_day=tr["txn_datetime"].dt.normalize())
+    g = tr.groupby([tr["customer_id"], tr["payment_type"], per], sort=False)
     agg = g.agg(txn_id=("txn_id", "first"), amount=("amount", "sum"), rides=("amount", "size"),
+                ride_days=("_day", "nunique"),
                 channel=("channel", "first"), is_overseas=("is_overseas", "first"),
                 excluded_from_performance=("excluded_from_performance", "first")).reset_index()
     agg = agg.rename(columns={"txn_datetime": "period"})
@@ -80,6 +83,7 @@ def _monthly_transit(t):
     agg = agg.drop(columns="period")
     rest = t[~is_tr].copy()
     rest["rides"] = 1
+    rest["ride_days"] = 1
     return pd.concat([rest, agg[rest.columns]], ignore_index=True)
 
 
@@ -199,7 +203,9 @@ def run_product(prod, cust, t_all, shares, behavior, seed, n_months, all_on_card
         mk = _benefit_mask(t, cust_u, b, shares)
         bmask.append(mk)
     simple = [i for i, b in enumerate(bens) if not (b.get("pools") or b.get("per_day") or b.get("per_month")
-                                                     or b.get("per_year") or b.get("monthly_eligible_cap"))]
+                                                     or b.get("per_year") or b.get("monthly_eligible_cap")
+                                                     or b.get("every_nth"))]
+    unit_col = {"ride_days": t["ride_days"].to_numpy() if "ride_days" in t else np.ones(len(t))}
     complex_ = [i for i in range(len(bens)) if i not in simple]
     top_groups = sorted({b["top_of"] for b in bens if b.get("top_of")})
 
@@ -263,7 +269,8 @@ def run_product(prod, cust, t_all, shares, behavior, seed, n_months, all_on_card
             idx = np.flatnonzero(mk)
             if not len(idx):
                 continue
-            val = _benefit_value(b, np.minimum(amt[idx], b.get("max_eligible_per_txn", np.inf)), fuel_price)
+            val = _benefit_value(b, np.minimum(amt[idx], b.get("max_eligible_per_txn", np.inf)), fuel_price,
+                                 raw=amt[idx], units=unit_col[b["units"]][idx] if b.get("units") else None)
             (pts if b["kind"] == "points" else disc)[idx] += val
             used_by_benefit[b["id"]] = used_by_benefit.get(b["id"], 0.0) + float(val.sum())
         if complex_:
@@ -279,15 +286,19 @@ def run_product(prod, cust, t_all, shares, behavior, seed, n_months, all_on_card
             rows, bids = np.concatenate(rows), np.concatenate(bids)
             order = np.lexsort((bids, rows))  # t는 고객·시간순 정렬
             cur_c, cur_day = None, None
-            pool_used, pool_day, cnt_m, cnt_d, cap_used = {}, {}, {}, {}, {}
+            pool_used, pool_day, cnt_m, cnt_d, cap_used, cnt_q = {}, {}, {}, {}, {}, {}
             for r, bi in zip(rows[order].tolist(), bids[order].tolist()):
                 c = ci[r]
                 b = bens[bi]
                 if c != cur_c:
-                    cur_c, pool_used, cnt_m, cap_used = c, {}, {}, {}
+                    cur_c, pool_used, cnt_m, cap_used, cnt_q = c, {}, {}, {}, {}
                 if (c, day[r]) != cur_day:
                     cur_day, cnt_d, pool_day = (c, day[r]), {}, {}
                 ykey = (c, year[r], bi)
+                if b.get("every_nth"):  # 대상 결제 n건마다 지급 (예: 케이뱅크 369 캐시백)
+                    cnt_q[bi] = cnt_q.get(bi, 0) + 1
+                    if cnt_q[bi] % b["every_nth"]:
+                        continue
                 if b.get("per_day") and cnt_d.get(bi, 0) >= b["per_day"]:
                     continue
                 if b.get("per_month") and cnt_m.get(bi, 0) >= b["per_month"]:
@@ -299,7 +310,8 @@ def run_product(prod, cust, t_all, shares, behavior, seed, n_months, all_on_card
                     base = min(base, b["monthly_eligible_cap"] - cap_used.get(bi, 0.0))
                     if base <= 0:
                         continue
-                val = float(_benefit_value(b, np.array([base]), fuel_price)[0])
+                val = float(_benefit_value(b, np.array([base]), fuel_price, raw=np.array([amt[r]]),
+                                           units=np.array([unit_col[b["units"]][r]]) if b.get("units") else None)[0])
                 tier = tier_cm[c, mo]
                 for pn in b.get("pools", []):
                     used = pool_day if pools[pn].get("period") == "day" else pool_used
@@ -344,11 +356,21 @@ def run_product(prod, cust, t_all, shares, behavior, seed, n_months, all_on_card
     return q, used_by_benefit
 
 
-def _benefit_value(b, base, fuel_price):
+def _benefit_value(b, base, fuel_price, raw=None, units=None):
+    """혜택 금액. raw = 결제 금액(구간별 정액용), units = 이용일 수 등 (units 지정 혜택용)."""
     if b["kind"] in ("rate", "points"):
         return base * b["rate"]
     if b["kind"] == "fixed":
-        return np.full_like(base, float(b["amount"]))
+        if "amount_by_txn" in b:  # [[최소 결제금액, 정액], ...] 중 해당하는 가장 높은 구간
+            raw = base if raw is None else raw
+            val = np.zeros_like(base, dtype=float)
+            for lo, a in sorted(b["amount_by_txn"]):
+                val = np.where(raw >= lo, float(a), val)
+        else:
+            val = np.full_like(base, float(b["amount"]), dtype=float)
+        if b.get("units"):
+            val = val * np.minimum(units, b.get("max_units", np.inf))
+        return val
     if b["kind"] == "per_liter":
         return base / fuel_price * b["per_liter"]
     raise ValueError(b["kind"])
