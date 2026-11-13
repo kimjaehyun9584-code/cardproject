@@ -17,6 +17,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+from pandas.api.types import union_categoricals
 
 from .generate import generate
 from .products import load_all_products, load_pnl_assumptions, load_shares
@@ -69,11 +70,9 @@ class Population:
     """합성 고객·거래 (앱 시작 시 1회 생성)."""
 
     def __init__(self, n_customers=10000, seed=42, cache=True):
-        self.customers, txns = _load_or_generate(n_customers, seed, cache)
-        cancelled = set(txns.loc[txns["is_cancelled"], "original_txn_id"])
-        self.txns = txns[~txns["is_cancelled"] & ~txns["txn_id"].isin(cancelled)].reset_index(drop=True)
+        self.customers, self.txns = _load_or_generate(n_customers, seed, cache)
         self.seed = seed
-        spend = self.txns.groupby("customer_id")["amount"].sum() / N_MONTHS
+        spend = self.txns.groupby("customer_id", observed=True)["amount"].sum() / N_MONTHS
         self.customers["monthly_spend"] = self.customers["customer_id"].map(spend).fillna(0.0)
         self.products = load_all_products()
         self.shares = load_shares()
@@ -93,13 +92,50 @@ class Population:
         return c
 
 
+CAT_COLS = ["customer_id", "category", "channel", "payment_type"]
+
+
+def _slim(txns):
+    """취소 거래를 빼고, 앱에 필요한 열만 작은 자료형으로 남긴다 (메모리 약 1/3)."""
+    cancelled = set(txns.loc[txns["is_cancelled"], "original_txn_id"])
+    t = txns[~txns["is_cancelled"] & ~txns["txn_id"].isin(cancelled)]
+    t = t.drop(columns=["txn_id", "original_txn_id", "is_cancelled"]).reset_index(drop=True)
+    for c in CAT_COLS:
+        t[c] = t[c].astype("category")
+    t["amount"] = t["amount"].astype("int32")
+    t["installment_months"] = t["installment_months"].astype("int8")
+    return t
+
+
+BATCH = 2000  # 한 번에 만드는 고객 수: 무료 배포 서버 메모리(1GB대)에서도 첫 실행이 되도록
+
+
+def _generate_in_batches(n_customers, seed):
+    """고객을 BATCH명씩 나눠 생성해 최대 메모리를 줄인다. 배치마다 시드를 달리하고 고객 ID 앞에 배치 번호를 붙인다."""
+    custs, parts = [], []
+    for i, start in enumerate(range(0, n_customers, BATCH)):
+        size = min(BATCH, n_customers - start)
+        _, c, t = generate(size, N_MONTHS, START, seed * 1000 + i)
+        pre = f"B{i}_"
+        c["customer_id"] = pre + c["customer_id"]
+        t["customer_id"] = pre + t["customer_id"]
+        custs.append(c)
+        parts.append(_slim(t))
+        del t
+    txns = pd.DataFrame({
+        col: (union_categoricals([p[col] for p in parts]) if col in CAT_COLS
+              else np.concatenate([p[col].to_numpy() for p in parts]))
+        for col in parts[0].columns})
+    return pd.concat(custs, ignore_index=True), txns
+
+
 def _load_or_generate(n_customers, seed, cache):
     """합성 데이터를 data/cache/에 parquet로 저장해 두고 다음부터는 읽기만 한다 (16초 → 1초 미만)."""
-    stem = CACHE_DIR / f"pop_n{n_customers}_s{seed}"
+    stem = CACHE_DIR / f"pop_v3_n{n_customers}_s{seed}"
     cpath, tpath = stem.with_suffix(".customers.parquet"), stem.with_suffix(".txns.parquet")
     if cache and cpath.exists() and tpath.exists():
         return pd.read_parquet(cpath), pd.read_parquet(tpath)
-    _, customers, txns = generate(n_customers, N_MONTHS, START, seed)
+    customers, txns = _generate_in_batches(n_customers, seed)
     if cache:
         CACHE_DIR.mkdir(parents=True, exist_ok=True)
         customers.to_parquet(cpath)
@@ -134,6 +170,12 @@ def _scale_counts(t, factors, seed):
 def _profile_txns(pop, group, kind, profile=Profile()):
     """닮은 고객 거래를 금액 조정하고, 모든 결제를 이 카드 종류로 바꾼다."""
     t = pop.txns[pop.txns["customer_id"].isin(group["customer_id"])].copy()
+    for c in CAT_COLS:  # 일부 고객만 남긴 뒤에는 일반 문자열로 (범주형 groupby가 전체 범주를 펼치지 않게)
+        t[c] = t[c].astype(str)
+    t["amount"] = t["amount"].astype("int64")
+    t["txn_id"] = "T" + t.index.astype(str)
+    t["is_cancelled"] = False
+    t["original_txn_id"] = None
     t = _scale_counts(t, profile.category_factor, pop.seed)
     # 업종 배율을 바꿔도 입력한 월 사용액은 그대로: 고객별 합계를 목표에 맞게 다시 맞춘다
     target = (group.set_index("customer_id")["monthly_spend"] * group.set_index("customer_id")["scale"]) * N_MONTHS
