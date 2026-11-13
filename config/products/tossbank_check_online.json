@@ -1,0 +1,108 @@
+{
+ "id": "tossbank_check_online",
+ "name": "토스뱅크 체크카드 (온라인 캐시백)",
+ "issuer": "토스뱅크",
+ "card_kind": "check",
+ "annual_fee": 0,
+ "source": "data/reference/raw/products/tossbank_checkcard_switch_cashback.json (https://www.tossbank.com/card/benefits, 2026-11-13 다운로드). 스위치 캐시백 시즌6 온라인, 2026.04.01~2027.01.20. 카드고릴라 2025 인기 체크카드 3위",
+ "performance": {
+  "tiers": [],
+  "exclude_categories": [],
+  "grace": null,
+  "_note": "전월실적 조건 없음 (캐시백 4종 중 선택)"
+ },
+ "benefits": [
+  {
+   "id": "shop",
+   "name": "온라인 쇼핑(쿠팡 등) 500원 (1만 원 이상, 일 1회)",
+   "kind": "fixed",
+   "amount": 500,
+   "match": [
+    {
+     "category": "ONLINE_SHOP",
+     "merchant_share": "online_coupang_kurly",
+     "channel": "online"
+    }
+   ],
+   "min_txn_amount": 10000,
+   "per_day": 1,
+   "pools": [
+    "shop",
+    "total"
+   ]
+  },
+  {
+   "id": "delivery",
+   "name": "배달앱(배민·쿠팡이츠·요기요) 500원 (1만 원 이상, 일 1회)",
+   "kind": "fixed",
+   "amount": 500,
+   "match": [
+    {
+     "category": "DELIVERY",
+     "channel": "online"
+    }
+   ],
+   "min_txn_amount": 10000,
+   "per_day": 1,
+   "pools": [
+    "delivery",
+    "total"
+   ],
+   "_note": "배달 3사 합이 배달앱 거의 전부라 배달 업종 전체로 봄 (상한 쪽, LOCA 365와 같은 방식)"
+  },
+  {
+   "id": "subscription",
+   "name": "구독(넷플릭스·유튜브 등) 500원 (1만 원 이상, 일 1회)",
+   "kind": "fixed",
+   "amount": 500,
+   "match": [
+    {
+     "category": "CULTURE_OTT",
+     "merchant_share": "culture_netflix_youtube"
+    }
+   ],
+   "min_txn_amount": 10000,
+   "per_day": 1,
+   "pools": [
+    "subscription",
+    "total"
+   ]
+  }
+ ],
+ "pools": {
+  "shop": {
+   "0": 2000
+  },
+  "delivery": {
+   "0": 2000
+  },
+  "subscription": {
+   "0": 2000
+  },
+  "total": {
+   "0": 14000
+  }
+ },
+ "unmodeled_benefits": [
+  {
+   "name": "간편결제(네이버페이·토스페이) 500원",
+   "reason": "생성 데이터에 결제 수단(간편결제) 구분이 없음"
+  },
+  {
+   "name": "웹툰&웹소설, 게임&앱 결제",
+   "reason": "생성 데이터에 해당 업종이 없음 (기타·영화OTT에 섞여 있음)"
+  },
+  {
+   "name": "여행&숙박(마이리얼트립·NOL·여기어때)",
+   "reason": "여행 업종 안 해당 플랫폼 비중 자료 없음"
+  },
+  {
+   "name": "온라인 쇼핑 중 무신사·컬리·오늘의집·크림·에이블리·지그재그",
+   "reason": "비중 자료가 있는 쿠팡(online_coupang_kurly)만 반영 (과소)"
+  },
+  {
+   "name": "해외 수수료·ATM 수수료 면제",
+   "reason": "손익 모델에 해외 수수료 수익 항목 없음"
+  }
+ ]
+}

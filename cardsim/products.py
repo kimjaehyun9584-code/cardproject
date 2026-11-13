@@ -77,6 +77,8 @@ def validate_product(prod, categories, shares):
     for field in ("id", "name", "card_kind", "annual_fee", "performance", "benefits", "pools", "source"):
         if field not in prod:
             raise ProductError(f"{pid}: 필수 항목 {field!r} 없음")
+    if not 0.0 <= prod.get("customer_value", 1.0) <= 1.0:
+        raise ProductError(f"{pid}: customer_value는 0~1")
     if prod["card_kind"] not in CARD_KINDS:
         raise ProductError(f"{pid}: card_kind는 credit 또는 check")
 

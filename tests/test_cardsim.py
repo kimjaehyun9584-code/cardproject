@@ -288,3 +288,15 @@ def test_every_nth_amount_by_txn_and_ride_days():
              "match": [{"category": "TRANSIT"}], "pools": []}]
     q, _ = run_product(_tiny_product(ride, {}), cust, t, sh, bh, 1, 1, all_on_card=True)
     assert q["disc"].sum() == pytest.approx(200)  # 이용일 2일
+
+
+def test_donation_cashback_costs_issuer_but_not_customer():
+    from cardsim.advisor import Population, evaluate
+    pop = Population(n_customers=600, seed=5)
+    g = pop.lookalikes("30s", 800_000, n=15)
+    df, _ = evaluate(pop, g, ["tossbank_check_anywhere", "tossbank_check_donation"])
+    r = df.set_index("id")
+    a, d = r.loc["tossbank_check_anywhere"], r.loc["tossbank_check_donation"]
+    assert a["월 혜택"] == pytest.approx(d["월 혜택"]) and a["카드사 공헌이익"] == pytest.approx(d["카드사 공헌이익"])
+    assert d["연 순혜택"] == 0 and a["연 순혜택"] > 0
+    assert 0.0027 < a["혜택률"] <= 0.003  # 해외 결제는 캐시백 제외

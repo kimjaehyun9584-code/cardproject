@@ -38,7 +38,7 @@ cardsim/validate.py     검증 항목과 HTML 리포트 (설계서 5장)
 cardsim/generate.py     CLI
 cardsim/products.py     카드 상품 정의 로드·검증 (손익 시뮬레이터 설계서 2.2)
 cardsim/simulate.py     손익 시뮬레이터·민감도 분석·리포트 (손익 시뮬레이터 설계서)
-config/products/        실제 카드 17종 상품 정의 (신용 8, 체크 9)
+config/products/        실제 카드 20종 상품 정의 (신용 8, 체크 12)
 cardsim/advisor.py      웹앱 계산부: 고객 프로필 → 카드별 순혜택·혜택 누수·공헌이익
 app.py                  웹앱 (Streamlit)
 scripts/fetch_banksalad.py  뱅크샐러드 상품 조건 원자료 받기
@@ -54,7 +54,7 @@ tests/                  pytest
 python -m cardsim.simulate --customers 10000 --seed 42
 ```
 
-실제 카드 17종을 합성 고객에게 적용해 회원 1인 월 공헌이익을 계산하고, 가정값마다 범위 양 끝으로 바꾼 민감도 분석과 함께 `reports/simulation_report.html`을 만듭니다 (약 16분, 대부분 민감도 분석). 상품 구조를 비교하는 상대 지표이며 실제 손익 예측이 아닙니다.
+실제 카드 20종을 합성 고객에게 적용해 회원 1인 월 공헌이익을 계산하고, 가정값마다 범위 양 끝으로 바꾼 민감도 분석과 함께 `reports/simulation_report.html`을 만듭니다 (약 16분, 대부분 민감도 분석). 상품 구조를 비교하는 상대 지표이며 실제 손익 예측이 아닙니다.
 
 ## 테스트
 ```bash
@@ -71,7 +71,7 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-연령대와 월 평균 사용액을 넣으면, 비슷한 합성 고객의 1년 결제로 카드 17종을 계산해 보여줍니다.
+연령대와 월 평균 사용액을 넣으면, 비슷한 합성 고객의 1년 결제로 카드 20종을 계산해 보여줍니다.
 - **고객 입장**: 연회비를 뺀 연 순혜택 순위, 혜택 누수(전월실적 미달·한도/횟수 때문에 못 받은 혜택)
 - **카드사 입장**: 그 고객의 회원 1인 월 공헌이익, 누수가 없었다면의 공헌이익
 - 카드 한 장으로 모든 결제를 한다고 본 값입니다. 자세한 가정은 `docs/simulator_design.md` 8장

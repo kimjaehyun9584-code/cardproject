@@ -114,7 +114,8 @@ def evaluate(pop, group, product_ids=None):
             "종류": "신용카드" if kind == "credit" else "체크카드",
             "연회비": prod["annual_fee"],
             "월 혜택": actual,
-            "연 순혜택": actual * 12 - prod["annual_fee"],
+            # customer_value: 고객이 실제로 쓰는 몫의 비율 (기부 캐시백은 0: 카드사 비용이지만 고객 현금이 아님)
+            "연 순혜택": actual * prod.get("customer_value", 1.0) * 12 - prod["annual_fee"],
             "혜택률": actual / spend if spend else 0.0,
             "실적 미달 누수": max(no_tier - actual, 0.0),
             "한도·횟수 누수": max(no_limit - no_tier, 0.0),

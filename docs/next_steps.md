@@ -1,6 +1,6 @@
 # 다음 작업 (인수인계 메모)
 
-마지막 업데이트: 2026-11-04, 데이터 설계서 v1.11 · 시뮬레이터 설계서 v0.13 기준
+마지막 업데이트: 2026-11-13, 데이터 설계서 v1.11 · 시뮬레이터 설계서 v0.14 기준
 
 ## 현재 상태
 - 합성 데이터 생성기(`cardsim/`)와 검증 리포트 완성. `python -m cardsim.generate --seed 42`
@@ -14,7 +14,7 @@
 - 스크립트: `scripts/fetch_banksalad.py CARD000004 ...` → 뱅크샐러드 상품 조건 원자료 저장
 - 확인하지 못한 것: 업종별 건당 금액(카드승인실적에 건수 없음), 금액 기준 온라인 비중, 세그먼트별 사용액(연령·소득별 카드 사용액 통계 미확보)
 
-## 바로 할 일: 손익 시뮬레이터 (`docs/simulator_design.md` v0.13)
+## 바로 할 일: 손익 시뮬레이터 (`docs/simulator_design.md` v0.14)
 - 범위 확정: 신용·체크카드 상품, 공헌이익 수준 손익, 주력카드 비율 + 실적 맞추기, 세그먼트별 가입률
 - 상품 확정 (2026-10-28): 실제 카드 5종을 `config/products/*.json`으로 정의, `cardsim/products.py`로 검증
 1. ✅ 가맹점 비중 16개 + 휘발유 가격 (설계서 2.5, v0.6): 출처 2·추정 13·가정 1(후불교통 선택률). 근거를 끝까지 못 찾는 값만 가정으로 둠 (사용자 확정)
@@ -31,7 +31,7 @@
 9. ✅ 고객·카드사 겸용 웹앱 (설계서 8장): `streamlit run app.py`
 10. ✅ 케이뱅크 ONE(3종 선택지별)·토스뱅크(오프라인 캐시백) 추가 (v0.13) → 17종. 엔진에 `every_nth`·`amount_by_txn`·`units`(이용일 수) 추가
    - 둘 다 기간 한정 프로모션(케이뱅크 2026.12.31, 토스 2027.1.20까지) → 시즌 바뀌면 상품 파일 갱신 필요
-   - 토스 온라인·어디서나·기부 캐시백은 페이지 탭 내용을 받지 못해 미반영
+   - ✅ (v0.14) 토스 온라인·어디서나·기부 캐시백 추가 → 20종. 온라인 중 간편결제·웹툰·게임·여행 영역은 데이터 없음으로 미반영
 11. 다음 후보 (사용자 확인 필요): 웹앱 입력 확장(아파트 거주·통신사·후불교통 사용 여부, 업종 비중 직접 입력), 여러 카드 조합 추천, 대상 세그먼트 가입률 시나리오
 - PR: https://github.com/kimjaehyun9584-code/cardproject/pull/1 (이 브랜치에 푸시하면 갱신됨)
 - 합성 데이터에서 사용자와 함께 확정한 값은 유지: S1 대학생 신용카드 보유 확률 8%, 카페 가격대(3.2.2), 음식점 간편식(3.2.3), 대학생 편의점 횟수 8회·계수 0.45, 대중교통 1,500원 하한, 대학생 월 사용액 70~80만 원(현재 약 73만)
@@ -41,7 +41,7 @@
 - 허용됨: www.bok.or.kr, file-cdn.bok.or.kr(`curl --http1.1` 필요), ecos.bok.or.kr, kosis.kr(OpenAPI만), www.data.go.kr, jumin.mois.go.kr
 - 신한카드 IR 자료: `POST /mob/MOBFM12003N/MOBFM12003R05.ajax` {"page":1}로 목록, `/mob/MOBFM12003N/RetrieveFile.ajax?ancGdSeqN=..&hmpBlbBsnCCd=HPC&factBookGubun=N`으로 PDF (`curl --http1.1` 권장)
 - 신한카드 상품공시실(`/pconts/html/helpdesk/guide/CONFM90022/CONFM90022R02.html`)에 할부 금리 분포·가맹점 수수료율 구간·조달금리 공시가 있음
-- 허용됨 (2026-11-04 추가): www.kbanknow.com (상세는 POST /ib20/act/CRDCRDONE0000100A 응답, 브라우저로 받음), www.tossbank.com (/card/benefits, 간헐적으로 upstream 실패 → 재시도), www.card-gorilla.com (기사·순위 페이지는 정적 HTML이 비어 있어 v.daum.net 기사로 확인)
+- 허용됨 (2026-11-04 추가): www.kbanknow.com (상세는 POST /ib20/act/CRDCRDONE0000100A 응답, 브라우저로 받음), www.tossbank.com (/card/benefits, 간헐적으로 upstream 실패 → 재시도. 탭 전환에는 asset-fe.tossbank.com 필요, 2026-11-13 허용), www.card-gorilla.com (기사·순위 페이지는 정적 HTML이 비어 있어 v.daum.net 기사로 확인)
 - 허용됨 (2026-10-02 추가): card.kbcard.com, www.shinhancard.com, www.samsungcard.com, www.hyundaicard.com, www.bccard.com, www.banksalad.com, v.daum.net
   - 뱅크샐러드 상품 페이지(`/product/cards/CARD000004` 형식)의 `__NEXT_DATA__`에 상품 조건이 구조화되어 있음. 목록 페이지는 없어 검색으로 상품 ID를 찾음
 - 안 됨: www.crefia.or.kr·gongsi.crefia.or.kr·www.cardsales.or.kr(허용 도메인이지만 상대 서버가 연결을 끊음), file.alphasquare.co.kr·static12.samsungcard.com(정책 403), KOSIS 통계표 화면(sso.kosis.kr 로그인 경유)
