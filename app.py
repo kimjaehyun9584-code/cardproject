@@ -11,7 +11,8 @@ import streamlit as st
 
 from cardsim.advisor import ADJUSTABLE, AGE_BANDS, SEGMENTS, Population, Profile, category_mix, evaluate
 
-# 차트 색: 실제 혜택 / 실적 미달 누수 / 한도·횟수 누수 (검증된 범주형 팔레트 1~3번)
+# 차트 색: 받은 혜택 / 실적 부족으로 놓친 혜택 / 한도에 걸려 놓친 혜택 (검증된 범주형 팔레트 1~3번)
+L_GOT, L_TIER, L_LIMIT = "받은 혜택", "실적 부족으로 놓친 혜택", "한도에 걸려 놓친 혜택"
 C_ACTUAL, C_TIER, C_LIMIT = "#2a78d6", "#eb6834", "#1baf7a"
 
 st.set_page_config(page_title="카드 혜택·손익 시뮬레이터", page_icon="💳", layout="wide")
@@ -111,7 +112,7 @@ c1, c2, c3 = st.columns(3)
 card(c1, "고객에게 가장 유리한 카드", best["카드"], f"연 {best['연 순혜택']:,.0f}원",
      f"{best['종류']} · 연회비 차감 순혜택 · {best['계산 반영도']}")
 card(c2, "그 카드를 쓰면 카드사는", best["카드"], f"월 {best['카드사 공헌이익']:+,.0f}원",
-     f"회원 1인 공헌이익. 혜택 누수가 없었다면 월 {best['누수 없을 때 공헌이익']:+,.0f}원")
+     f"회원 1인 월 이익. 고객이 놓치는 혜택 없이 다 받았다면 월 {best['누수 없을 때 공헌이익']:+,.0f}원")
 card(c3, "카드사에 가장 남는 카드", top_co["카드"], f"월 {top_co['카드사 공헌이익']:+,.0f}원",
      f"{top_co['종류']} · 고객 연 순혜택 {top_co['연 순혜택']:,.0f}원 · {top_co['계산 반영도']}")
 if not show_core and len(hidden):
@@ -122,23 +123,29 @@ tab_c, tab_k, tab_d, tab_p = st.tabs(["고객 입장", "카드사 입장", "카�
 
 # ---------------------------------------------------------------- 고객 입장
 with tab_c:
-    st.subheader("카드별 혜택과 혜택 누수 (월평균)")
-    st.caption("실제 혜택 = 약관대로 받은 금액. 누수 = 같은 결제인데 조건 때문에 못 받은 금액. "
-               "실적 미달: 전월실적 구간을 못 채워서 / 한도·횟수: 월 한도·일 횟수·건당 상한에 걸려서")
+    st.subheader("카드별로 받는 혜택과 놓치는 혜택 (한 달 평균)")
+    st.markdown(
+        f"막대 전체 길이는 **조건이 하나도 없었다면 받았을 혜택**입니다. 그중 실제로 받는 건 파란색뿐이에요.\n"
+        f"- 🟦 **{L_GOT}**: 이 카드 약관대로 실제로 돌려받는 할인·적립 금액\n"
+        f"- 🟧 **{L_TIER}**: 지난달 이 카드로 쓴 돈이 기준(예: 30만 원)에 못 미쳐서 이번 달 혜택을 못 받거나 "
+        f"덜 받은 금액\n"
+        f"- 🟩 **{L_LIMIT}**: '월 최대 1만 원', '하루 1번·한 달 5번까지', '1회 결제 1만 원까지'처럼 "
+        f"정해진 한도를 넘어서 못 받은 금액\n\n"
+        "주황·초록이 길수록 광고에서 본 혜택만큼 받기 어려운 카드입니다.")
     long = df.rename(columns={"카드": "_c", "표시명": "카드"}).melt(id_vars=["카드"], value_vars=["월 혜택", "실적 미달 누수", "한도·횟수 누수"],
                    var_name="구분", value_name="금액")
-    long["구분"] = long["구분"].replace({"월 혜택": "실제 혜택"})
+    long["구분"] = long["구분"].replace({"월 혜택": L_GOT, "실적 미달 누수": L_TIER, "한도·횟수 누수": L_LIMIT})
     order = df["표시명"].tolist()
     chart = alt.Chart(long).mark_bar(cornerRadiusEnd=4, stroke="white", strokeWidth=2).encode(
         y=alt.Y("카드:N", sort=order, title=None, axis=alt.Axis(labelLimit=260)),
         x=alt.X("sum(금액):Q", title="원/월", stack="zero"),
-        color=alt.Color("구분:N", scale=alt.Scale(domain=["실제 혜택", "실적 미달 누수", "한도·횟수 누수"],
+        color=alt.Color("구분:N", scale=alt.Scale(domain=[L_GOT, L_TIER, L_LIMIT],
                                                 range=[C_ACTUAL, C_TIER, C_LIMIT]),
                         legend=alt.Legend(orient="top", title=None)),
         order=alt.Order("구분_order:Q"),
         tooltip=["카드", "구분", alt.Tooltip("금액:Q", format=",.0f")],
     ).transform_calculate(
-        구분_order="datum.구분 == '실제 혜택' ? 0 : (datum.구분 == '실적 미달 누수' ? 1 : 2)"
+        구분_order=f"datum.구분 == '{L_GOT}' ? 0 : (datum.구분 == '{L_TIER}' ? 1 : 2)"
     ).properties(height=36 * len(df))
     st.altair_chart(chart, use_container_width=True)
 
@@ -148,12 +155,12 @@ with tab_c:
         view, hide_index=True, use_container_width=True,
         column_config={
             "연회비": st.column_config.NumberColumn(format="%,d원"),
-            "월 혜택": st.column_config.NumberColumn(format="%,.0f원"),
             "연 순혜택": st.column_config.NumberColumn("연 순혜택 (연회비 차감)", format="%,.0f원"),
             "혜택률": st.column_config.NumberColumn(format="percent"),
-            "실적 미달 누수": st.column_config.NumberColumn(format="%,.0f원"),
-            "한도·횟수 누수": st.column_config.NumberColumn(format="%,.0f원"),
-            "실적 미달 달 비율": st.column_config.NumberColumn(format="percent"),
+            "월 혜택": st.column_config.NumberColumn("받은 혜택 (월)", format="%,.0f원"),
+            "실적 미달 누수": st.column_config.NumberColumn("실적 부족으로 놓친 혜택 (월)", format="%,.0f원"),
+            "한도·횟수 누수": st.column_config.NumberColumn("한도에 걸려 놓친 혜택 (월)", format="%,.0f원"),
+            "실적 미달 달 비율": st.column_config.NumberColumn("실적 기준을 못 채운 달 비율", format="percent"),
         },
     )
     st.info("포인트·캐시백은 1포인트 = 1원으로 봤습니다. 계산 반영도: ✅ 약관 혜택을 전부 계산 / ⚠️ 작은 혜택 일부가 빠져 "
@@ -166,15 +173,18 @@ with tab_c:
 with tab_k:
     st.subheader("이 고객이 가입하면 카드사에 남는 돈 (회원 1인 월 공헌이익)")
     st.caption("공헌이익 = 가맹점수수료 + 연회비 + 할부수수료 − 혜택 − 조달 − 대손 − 승인 처리 − 모집 비용. "
-               "누수가 없었다면 = 고객이 조건 없이 혜택을 다 받았을 때")
+               "회색 막대 = 고객이 실적·한도에 걸리지 않고 혜택을 다 받았다면 남았을 이익. "
+               "파란 막대와의 차이가 '고객이 놓친 혜택' 덕분에 카드사에 남는 돈입니다.")
     k = df.sort_values("카드사 공헌이익", ascending=False)
     long_k = k.rename(columns={"카드": "_c", "표시명": "카드"}).melt(id_vars=["카드"], value_vars=["카드사 공헌이익", "누수 없을 때 공헌이익"],
                     var_name="구분", value_name="원/월")
+    K_REAL, K_FULL = "카드사 이익 (실제)", "고객이 혜택을 다 받았다면"
+    long_k["구분"] = long_k["구분"].replace({"카드사 공헌이익": K_REAL, "누수 없을 때 공헌이익": K_FULL})
     chart_k = alt.Chart(long_k).mark_bar(cornerRadiusEnd=4).encode(
         y=alt.Y("카드:N", sort=k["표시명"].tolist(), title=None, axis=alt.Axis(labelLimit=260)),
         yOffset="구분:N",
         x=alt.X("원/월:Q"),
-        color=alt.Color("구분:N", scale=alt.Scale(domain=["카드사 공헌이익", "누수 없을 때 공헌이익"],
+        color=alt.Color("구분:N", scale=alt.Scale(domain=[K_REAL, K_FULL],
                                                 range=[C_ACTUAL, "#b8b8b4"]),
                         legend=alt.Legend(orient="top", title=None)),
         tooltip=["카드", "구분", alt.Tooltip("원/월:Q", format=",.0f")],
@@ -195,8 +205,9 @@ with tab_d:
     d = details[pick]
     r = df.set_index("id").loc[pick]
     a, b, c = st.columns(3)
-    a.metric("월 혜택", won(r["월 혜택"]))
-    b.metric("월 누수", won(r["실적 미달 누수"] + r["한도·횟수 누수"]))
+    a.metric("받은 혜택 (월)", won(r["월 혜택"]))
+    b.metric("놓친 혜택 (월)", won(r["실적 미달 누수"] + r["한도·횟수 누수"]),
+             help=f"{L_TIER} {won(r['실적 미달 누수'])} + {L_LIMIT} {won(r['한도·횟수 누수'])}")
     c.metric("카드사 공헌이익", f"월 {r['카드사 공헌이익']:,.0f}원")
     st.markdown(f"**계산 반영도:** {r['계산 반영도']}" + (f" — {d['coverage_note']}" if d["coverage_note"] else ""))
     dates = f"**약관 확인일:** {r['약관 확인일']}"
