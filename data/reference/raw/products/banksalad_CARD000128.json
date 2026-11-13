@@ -1,0 +1,242 @@
+{
+ "_source": "https://www.banksalad.com/product/cards/CARD000128",
+ "_downloaded": "2026-11-03",
+ "card": {
+  "productGuid": "CARD000128",
+  "organization": {
+   "guid": "CRD0004",
+   "name": "KB국민카드",
+   "logoImageUrl": "https://cdn.banksalad.com/graphic/color/logo/circle/kb.png",
+   "industryEnum": "INDUSTRY_CARD",
+   "objectid": "5880ec0575c8e8fbdc00ace8",
+   "subIndustryEnum": "SUB_INDUSTRY_UNSET",
+   "mydatacenterOrganizationCode": "D1AAAF0000"
+  },
+  "name": "My WE:SH",
+  "catchphrase": "‘나’의 행복을 위한 필수 혜택 카드",
+  "cardTypeEnum": "CARD_TYPE_CREDIT",
+  "isPremiumCard": false,
+  "isStopped": false,
+  "isContracted": true,
+  "imageUrl": "https://financialshopping-cdn.banksalad.com/kb_my_wesh_f63c480bf1.png",
+  "shouldDisplayImageVertically": true,
+  "annualCosts": [
+   {
+    "brandName": "국내전용",
+    "amountKrw0f": "15000",
+    "textToDisplay": "국내전용 15,000원"
+   },
+   {
+    "brandName": "MASTER",
+    "amountKrw0f": "15000",
+    "textToDisplay": "MASTER 15,000원"
+   },
+   {
+    "brandName": "AMEX",
+    "amountKrw0f": "15000",
+    "textToDisplay": "AMEX 15,000원"
+   },
+   {
+    "brandName": "국내전용",
+    "amountKrw0f": "9000",
+    "textToDisplay": "모바일 단독카드 국내전용 9,000원"
+   },
+   {
+    "brandName": "MASTER",
+    "amountKrw0f": "9000",
+    "textToDisplay": "모바일 단독카드 MASTER 9,000원"
+   },
+   {
+    "brandName": "AMEX",
+    "amountKrw0f": "9000",
+    "textToDisplay": "모바일 단독카드 AMEX 9,000원"
+   }
+  ],
+  "majorBenefits": [
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/fork_knife_88450ad7c0.png",
+    "text": "음식점 10%"
+   },
+   {
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/toggle_coin_won_1d07100d79.png",
+    "text": "OTT 30%"
+   }
+  ],
+  "minimumPreviousMonthPaymentAmountKrw0f": "400000",
+  "prevMonthPaymentAmountKrw0fOptions": [
+   "400000"
+  ],
+  "chartBenefits": [
+   {
+    "id": "4987267",
+    "title": "더욱 진심 서비스(택 1)",
+    "summary": "[먹는데 진심], [노는데 진심], [관리에 진심] 중 하나 선택",
+    "description": "<p><strong>[먹는데 진심] : 배달/커피 5% 할인</strong></p><ul><li>배달앱(배달의민족, 요기요, 마켓컬리), 커피(커피/음료전문점 업종)<br>※ 상품권(선물하기 등), 선불카드(선불전자지급수단 포함) 제외<br>※ 배달 현장 결제건 제외<br>※ 백화점/대형마트 등 일부 입점 매장 제외</li></ul><p>&nbsp;</p><p><strong>[노는데 진심] : 택시/커피 5%, 영화관 30% 할인</strong></p><ul><li>택시, 커피 : 택시, 커피/음료전문점 업종<br>※ 백화점/대형마트 등 일부 입점 매장 제외</li><li>영화관 : CGV, 롯데시네마, 메가박스<br>※ 매점, 관람권(상품권) 구입, 예매대행사이트는 제외</li></ul><p>&nbsp;</p><p><strong>[관리에 진심] : 미용실, 스포츠, 온라인서점, 올리브영 5% 할인</strong></p><ul><li>미용실, 스포츠: 미용실, 종합스포츠센터, 골프(연습)장 , 테니스장, 수영장, 요가, 볼링장, 스포츠용품점, 레저용품점 업종</li><li>온라인서점 : 교보문고, YES24 공식 홈페이지(앱)<br>※ 오프라인 매장 결제 건은 제외</li><li>올리브영 : 오프라인 매장 및 온라인 공식 쇼핑몰(앱)<br>※ 백화점/대형마트 등 일부 입점 매장 제외</li></ul><p>&nbsp;</p><p><strong>더욱 진심 서비스 월 할인한도</strong></p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\" colspan=\"2\"><strong>구분</strong></th><th style=\"text-align:center;\"><strong>할인율</strong></th><th style=\"text-align:center;\"><strong>월 할인한도</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">먹는데 진심</td><td style=\"text-align:center;\">배달, 커피</td><td style=\"text-align:center;\">5%</td><td style=\"text-align:center;\">5천원</td></tr><tr><td style=\"text-align:center;\" rowspan=\"2\">노는데 진심</td><td style=\"text-align:center;\">택시, 커피</td><td style=\"text-align:center;\">5%</td><td style=\"text-align:center;\" rowspan=\"2\">5천원</td></tr><tr><td style=\"text-align:center;\">영화관</td><td style=\"text-align:center;\">30%</td></tr><tr><td style=\"text-align:center;\">관리에 진심</td><td style=\"text-align:center;\"><p>미용실, 스포츠</p><p>온라인서점, 올리브영</p></td><td style=\"text-align:center;\">5%</td><td style=\"text-align:center;\">1만원</td></tr></tbody></table></figure><ul><li>전월 이용실적 40만원 이상 시 제공</li><li>영화관 할인은 연 4회(연 2만원) 이내 제공</li><li>최초 발급받은 My WE:SH 카드 사용등록일(KB Pay 등 간편결제 등록 포함)로 부터 다음달 말일(실적유예기간)까지는 전월 이용실적 40만원 미만시에도 할인서비스 제공</li></ul>",
+    "grades": [],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/diy_circle_c94af3fd46.png",
+    "bdsIconName": "diy",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4987268",
+    "title": "Happy Birth Month",
+    "summary": "생일 월에는 ‘더욱 진심 서비스’ 할인한도가 2배 제공",
+    "description": "<p><strong>[WE:SH 서비스]</strong></p><p>고객님의 생일을 진심으로 축하드리는 마음을 담아, 생일 월에는 ‘더욱 진심 서비스’ 할인한도가 2배 제공됩니다. 즐거운 혜택 이용 되세요!</p><ul><li>먹는데진심/노는데진심 : 월 5천원 → 월 1만원</li><li>관리에진심 : 월 1만원 → 월 2만원</li></ul><p>&nbsp;</p><p>유의사항</p><ul><li>Happy Birth Month는 전월 이용실적 40만원 이상 시 제공되며, 실적유예기간 제공없음<br>(카드 발급 후 전월 이용실적 조건 충족 시 서비스 제공)</li><li>생일 월은 KB국민카드에 등록된 회원정보 기준으로 제공</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "400000",
+      "calculatedMaxBenefitAmountKrw0f": "0",
+      "isCalculatedBenefitAccurate": false
+     }
+    ],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/short_cake_circle_f39f9b2126.png",
+    "bdsIconName": "shortcake",
+    "isExtraBenefit": true
+   },
+   {
+    "id": "4987269",
+    "title": "전월실적 채워드림",
+    "summary": "5만원 한도내로 연 2회 무료로 전월실적 채워드리는 서비스",
+    "description": "<p>전월 실적이 조금 부족하다면!<br>전월실적 채워드림을 이용하세요!<br>5만원 한도내로 연 2회 무료로 저희가 채워드립니다!</p><p>&nbsp;</p><p>서비스 소개</p><ul><li>전월 이용실적이 부족하여 이번 달 할인혜택을 못 받을 때 할인 혜택이<br>제공될 수 있도록 My WE:SH카드의 전월 실적을 채워 드리는 서비스</li></ul><p>&nbsp;</p><p>서비스 대상</p><ul><li>전월 이용실적이 35만원 이상 40만원 미만인 고객</li></ul><p>&nbsp;</p><p>서비스 이용 방법<br>1) 모바일앱(홈페이지)에서 서비스 신청</p><ul><li>본인회원만 신청가능, 매월 1일~25일 이내 신청</li></ul><p>2) 서비스 신청 후 다음날부터 신청월 말일까지 서비스 적용</p><ul><li>서비스 신청 당일은 할인서비스 미적용</li></ul><p>&nbsp;</p><p>유의사항</p><ul><li>본인 회원 기준 월 1회, 연 2회 신청 가능</li><li>서비스 신청 후 취소 불가</li><li>Happy Birth Month가 제공되는 생일 월에는 신청 불가</li></ul>",
+    "grades": [],
+    "canToggleBenefitCalculation": false,
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/letter_coin_circle_10f5be1417.png",
+    "bdsIconName": "letter-coin",
+    "isExtraBenefit": true
+   },
+   {
+    "id": "4987263",
+    "title": "KB Pay",
+    "summary": "KB Pay 10% 할인",
+    "description": "<p>[나한테 진심 서비스]</p><p>국내 가맹점에서 KB Pay로 결제한 이용 건</p><p>※ 해외 가맹점 결제건 제외</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>구분</strong></th><th style=\"text-align:center;\"><strong>할인율</strong></th><th style=\"text-align:center;\"><strong>월 할인한도</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">KB Pay</td><td style=\"text-align:center;\">10%</td><td style=\"text-align:center;\">5천원<br>(건당 2,500원 한도)</td></tr></tbody></table></figure><ul><li>전월 이용실적 40만원 이상 시 제공</li><li>최초 발급받은 My WE:SH 카드 사용등록일(KB Pay 등 간편결제 등록 포함)로 부터 다음달 말일(실적유예기간)까지는 전월 이용실적 40만원 미만 시에도 할인 서비스 제공</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "400000",
+      "calculatedMaxBenefitAmountKrw0f": "5000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "altTextForToggleButton": "10% 할인",
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/mobile_pay_circle_7e1fb06940.png",
+    "bdsIconName": "mobile-pay",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4987264",
+    "title": "음식점, 편의점",
+    "summary": "음식점, 편의점(GS25, CU) 10% 할인",
+    "description": "<p>[나한테 진심 서비스]</p><p>음식점(한식, 일식, 중식, 양식, 뷔페, 패밀리레스토랑, 일반음식점 업종), 편의점(GS25, CU)</p><p>※ 백화점/대형마트 등 일부 입점 매장 제외</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>구분</strong></th><th style=\"text-align:center;\"><strong>할인율</strong></th><th style=\"text-align:center;\"><strong>월 할인한도</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">음식점, 편의점</td><td style=\"text-align:center;\">10%</td><td style=\"text-align:center;\">5천원<br>(건당 2,500원 한도)</td></tr></tbody></table></figure><ul><li>전월 이용실적 40만원 이상 시 제공</li><li>최초 발급받은 My WE:SH 카드 사용등록일(KB Pay 등 간편결제 등록 포함)로 부터 다음달 말일(실적유예기간)까지는 전월 이용실적 40만원 미만시에도 할인서비스 제공</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "400000",
+      "calculatedMaxBenefitAmountKrw0f": "5000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "altTextForToggleButton": "10% 할인",
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/fork_knife_circle_7fe7a88d6b.png",
+    "bdsIconName": "fork-knife",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4987265",
+    "title": "이동통신",
+    "summary": "SKT, KT, LG U+, Liiv M 이동통신 자동납부 요금 10% 할인",
+    "description": "<p>[나한테 진심 서비스]</p><p>※ 인터넷, IPTV 등 결합상품 제외</p><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>구분</strong></th><th style=\"text-align:center;\"><strong>할인율</strong></th><th style=\"text-align:center;\"><strong>월 할인한도</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">이동통신</td><td style=\"text-align:center;\">10%</td><td style=\"text-align:center;\" rowspan=\"2\">5천원<br>(건당 2,500원 한도)</td></tr><tr><td style=\"text-align:center;\">OTT</td><td style=\"text-align:center;\">30%</td></tr></tbody></table></figure><ul><li>전월 이용실적 40만원 이상 시 제공</li><li>최초 발급받은 My WE:SH 카드 사용등록일(KB Pay 등 간편결제 등록포함)로 부터 다음달 말일(실적유예기간)까지는 전월 이용실적 40만원 미만시에도 할인서비스 제공</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "400000",
+      "calculatedMaxBenefitAmountKrw0f": "5000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "altTextForToggleButton": "10% 할인",
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/phone_wifi_circle_a640350a8f.png",
+    "bdsIconName": "phone-wifi",
+    "isExtraBenefit": false
+   },
+   {
+    "id": "4987266",
+    "title": "OTT",
+    "summary": "넷플릭스, 유튜브 프리미엄, 웨이브, 티빙, 디즈니 플러스 30% 할인",
+    "description": "<p>[나한테 진심 서비스]</p><ul><li>넷플릭스, 유튜브 프리미엄, 웨이브, 티빙, 디즈니 플러스 공식 홈페이지를 통한 정기결제 이용건<br>※ 간편결제 또는 인앱 결제건 등은 제외</li></ul><figure class=\"table\"><table><thead><tr><th style=\"text-align:center;\"><strong>구분</strong></th><th style=\"text-align:center;\"><strong>할인율</strong></th><th style=\"text-align:center;\"><strong>월 할인한도</strong></th></tr></thead><tbody><tr><td style=\"text-align:center;\">이동통신요금</td><td style=\"text-align:center;\">10%</td><td style=\"text-align:center;\" rowspan=\"2\">5천원<br>(건당 2,500원 한도)</td></tr><tr><td style=\"text-align:center;\">OTT</td><td style=\"text-align:center;\">30%</td></tr></tbody></table></figure><ul><li>전월 이용실적 40만원 이상 시 제공</li><li>최초 발급받은 My WE:SH 카드 사용등록일(KB Pay 등 간편결제 등록포함)로 부터 다음달 말일(실적유예기간)까지는 전월 이용실적 40만원 미만시에도 할인서비스 제공</li></ul>",
+    "grades": [
+     {
+      "requiredPrevMonthPaymentAmountKrw0f": "400000",
+      "calculatedMaxBenefitAmountKrw0f": "5000",
+      "isCalculatedBenefitAccurate": true
+     }
+    ],
+    "canToggleBenefitCalculation": true,
+    "altTextForToggleButton": "30% 할인",
+    "iconImageUrl": "https://financialshopping-cdn.banksalad.com/toggle_coin_won_circle_7ca8580d53.png",
+    "bdsIconName": "toggle-coin-won",
+    "isExtraBenefit": false
+   }
+  ],
+  "chartBenefitLimits": [
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "400000",
+    "chartBenefitIds": [
+     "4987263"
+    ],
+    "limitAmount": "5000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "400000",
+    "chartBenefitIds": [
+     "4987264"
+    ],
+    "limitAmount": "5000",
+    "isIntegrationLimit": false
+   },
+   {
+    "requiredPrevMonthPaymentAmountKrw0f": "400000",
+    "chartBenefitIds": [
+     "4987265",
+     "4987266"
+    ],
+    "limitAmount": "5000",
+    "isIntegrationLimit": false
+   }
+  ],
+  "cardBenefitCalculationLevelEnum": "CARD_BENEFIT_CALCULATION_LEVEL_SUMMARY_ONLY",
+  "cardBenefitTypeEnum": "CARD_BENEFIT_TYPE_CASH",
+  "issueUrls": [
+   {
+    "channel": "CARD_ISSUE_CHANNEL_WEB",
+    "url": "https://card.kbcard.com/CRD/DVIEW/HCAMCXPRICAC0076?cooperationcode=09923&solicitorcode=7030170007&utm_medium=cpa&utm_source=banksalad"
+   },
+   {
+    "channel": "CARD_ISSUE_CHANNEL_APP",
+    "url": "https://m.kbcard.com/CRD/DVIEW/MCAMCXHIACRC0002?cooperationcode=09923&solicitorcode=7030170008&utm_medium=cpa&utm_source=banksalad"
+   }
+  ],
+  "footerDescription": "<h2><strong>유의사항</strong></h2><hr><h3><strong>할인 제외 대상</strong></h3><ul><li>무이자할부 이용금액, 단기카드대출(현금서비스), 장기카드대출(카드론), 상품권 및 선불카드(선불전자지급수단 포함) 구입·충전금액, 아파트관리비, 초·중·고 학교 납입금 전체, 정부지원금(보육료/유치원보조비/바우처 이용금액 등), 대학(원)등록금, 국세, 지방세, 공과금(전기/수도 등), 4대 사회보험료(건강/연금/고용/산재), 각종 수수료 및 이자, 연체료, 연회비, 신차구매청구(환급) 할인 전표 전체, 취소금액</li></ul><p>&nbsp;</p><h3><strong>전월 이용실적 기준</strong></h3><ul><li>전월 1일 ~ 말일(승인시점 기준) ‘KB국민 My WE:SH 카드’ 일시불 및 할부 승인금액 기준</li><li>해외 이용금액은 전월 1일~말일까지 일시불 매입완료 기준</li><li>취소금액은 취소전표가 KB국민카드에 접수된 월의 실적에서 차감</li></ul><p>&nbsp;</p><h3><strong>전월 이용실적 제외 대상</strong></h3><ul><li>My WE:SH 카드로 ‘나한테 진심, 더욱 진심 서비스’ 할인 받은 이용건(해당 이용금액 전체), 단기카드대출(현금서비스), 장기카드대출(카드론), 상품권 및 선불카드(선불전자지급수단 포함) 구입/충전금액, 아파트관리비, 초·중·고 학교 납입금 전체,정부지원금(보육료/유치원보조비/바우처 이용금액 등), 대학(원)등록금, 국세, 지방세, 공과금(전기/수도 등), 4대 사회보험료(건강/연금/고용/산재), 각종 수수료 및 이자, 연체료, 연회비, 무승인전표(교통요금/자판기/터널통행료/항공기내 이용 등), 취소금액</li></ul>",
+  "legalReview": {
+   "number": "<ul><li>여신금융협회 심의필 제 2026 - C1h - 13643호 (2026.09.07 ~ 2027.09.06)</li></ul>",
+   "description": "<ul><li>카드 신청 전 상품설명서 및 약관을 반드시 확인하시기 바랍니다.</li><li>금융소비자는 금융소비자보호법 제19조 제1항에 따라 해당상품 또는 서비스에 대하여 설명을 받을 권리가 있으며, 그 설명을 듣고 내용을 충분히 이해한 후 거래하시기 바랍니다.</li><li>신용카드 발급이 부적정한 경우(개인신용평점 낮음 등) 카드발급이 제한될 수 있습니다.</li><li>카드이용대금과 이에 수반되는 모든 수수료를 지정된 대금 결제일에 상환합니다.</li><li>뱅크샐러드는 KB국민카드의 신용카드 상품 판매 업무를 중개하고 있습니다.</li><li>뱅크샐러드는 KB국민카드의 금융상품에 대한 계약체결 권한이 없습니다.</li><li>뱅크샐러드는 금융관계법률에 따라 KB국민카드와 위탁계약을 체결한 금융상품판매대리ㆍ중개업자입니다.</li><li>고의 또는 과실로 금융소비자보호법을 위반하여 금융소비자에게 손해를 발생시킨 경우에는 그 손해를 배상할 책임이 있습니다.</li><li>뱅크샐러드는 금융상품직접판매업자로부터 급부 수령에 관한 권한을 부여 받을 경우를 제외하고는 금융소비자로부터 급부를 수령할 권한이 없습니다.</li><li>금융소비자가 제공한 개인(신용)정보 등은 금융상품직접판매업자가 보유 관리 하며, 뱅크샐러드는 기타 금융소비자보호법에서 요구하는 금융소비자 보호 또는 건전한 질서유지를 위한 내용을 준수하고 있습니다.</li><li>뱅크샐러드는 다수의 신용카드사를 대리하거나 중개합니다.</li><li><strong>연체이자율 : 회원별/이용 상품별 정상 이자율 + 3%p, 최고 연 20% 이내</strong><br><strong>※ 단, 연체 발생 시점에 정상 이자율이 없는 경우 아래와 같이 적용함</strong><br><strong>- 일시불 거래 연체 시 : 거래 발생 시점의 최소기간(2개월) 유이자할부 수수료율 적용</strong><br><strong>- 무이자할부 거래 연체 시 : 거래 발생 시점의 동일한 할부 계약 기간의 유이자할부 수수료율 적용</strong><br><strong>- 그 외의 경우 : 정상이자율은 상법상 상사법정이율과 상호금융가계자금대출금리* 중 높은 금리 적용</strong><br><strong>*한국은행에서 매월 발표하는 가장 최근의 비은행 금융기관 가중평균대출금리(신규대출 기준)</strong></li><li><strong>상환능력에 비해 신용카드 사용액이 과도할 경우 귀하의 개인신용평점이 하락할 수 있습니다.</strong></li><li><strong>개인신용평점 하락 시 금융거래 관련된 불이익이 발생할 수 있습니다.</strong></li><li><strong>일정기간 원리금을 연체할 경우, 모든 원리금을 변제할 의무가 발생할 수 있습니다.</strong></li></ul><p>&nbsp;</p>",
+   "startDateMs": "1788739200000",
+   "endDateMs": "1820188800000",
+   "isLegalIssued": true
+  },
+  "cashbackPromotion": {
+   "startDateMs": "1793491200000",
+   "endDateMs": "1795996800000",
+   "cashbackAmountKrw0f": "1040000",
+   "cardOrganizationPromotionId": "1271",
+   "isFinished": false
+  },
+  "isExposed": true,
+  "alfredCardId": "4321",
+  "annualCostHtmlToDisplay": "<p>국내전용 15,000원<br>국내외겸용(MASTER, AMEX) 15,000원</p>",
+  "cardBenefitSimulationLevelEnum": "CARD_BENEFIT_SIMULATION_LEVEL_FULL_AVAILABLE",
+  "isDetailPageAccessible": true
+ }
+}

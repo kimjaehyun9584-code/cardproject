@@ -1,0 +1,33 @@
+{
+  "id": "hana_naverpay_check",
+  "name": "네이버페이 머니 하나 체크카드",
+  "issuer": "하나카드",
+  "card_kind": "check",
+  "annual_fee": 0,
+  "source": "data/reference/raw/products/banksalad_CARD004279.json (뱅크샐러드, 2026-11-04 다운로드). 카드고릴라 2025 인기 체크카드 5위",
+  "terms_checked": "2026-11-04",
+  "coverage": "full",
+  "performance": {
+    "tiers": [250000],
+    "exclude_categories": [],
+    "exclude_shares": [
+      {"category": "UTILITY_INS", "merchant_share": "utility_electric_gas"},
+      {"category": "UTILITY_INS", "merchant_share": "utility_water"},
+      {"category": "UTILITY_INS", "merchant_share": "utility_mgmt_fee"}
+    ],
+    "grace": {"months": 2, "tier": 250000},
+    "_note": "실적 제외: 국세·지방세·공과금·수도·전기·도시가스·아파트관리비·4대보험·학교 납입금·상품권 등. 신규 회원은 사용등록일~다음 달 말일까지 실적 무관"
+  },
+  "benefits": [
+    {"id": "all", "name": "국내외 전 가맹점 1.2% 네이버페이 포인트", "kind": "points", "rate": 0.012,
+     "match": [{"category": "*"}],
+     "exclude": [{"category": "UTILITY_INS", "merchant_share": "utility_electric_gas"},
+                 {"category": "UTILITY_INS", "merchant_share": "utility_water"},
+                 {"category": "UTILITY_INS", "merchant_share": "utility_mgmt_fee"}],
+     "min_tier": 250000, "pools": ["all"]}
+  ],
+  "pools": {"all": {"250000": 10000}},
+  "unmodeled_benefits": [
+    {"name": "네이버페이 포인트 비용", "reason": "포인트 1원 비용은 카드사 마이신한 등과 같은 요율(point_cost_per_point)로 가정. 네이버와 비용 분담 여부 자료 없음"}
+  ]
+}

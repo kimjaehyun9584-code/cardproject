@@ -1,0 +1,55 @@
+{
+  "id": "lotte_loca365",
+  "name": "롯데 LOCA 365",
+  "issuer": "롯데카드",
+  "card_kind": "credit",
+  "annual_fee": 20000,
+  "source": "data/reference/raw/products/banksalad_CARD000037.json (뱅크샐러드, 2026-11-03 다운로드)",
+  "terms_checked": "2026-11-03",
+  "coverage": "partial",
+  "coverage_note": "학습지 10% 빠짐",
+  "performance": {
+    "tiers": [500000],
+    "exclude_categories": [],
+    "grace": {"months": 2, "tier": 500000},
+    "_note": "실적 제외: 무이자할부, 국세·지방세·4대보험, 등록금, 상품권, 택시·고속버스 등. 생성 데이터 업종으로는 해당 없음(택시는 ETC에 섞여 있음). 신규 회원은 발급일~다음 달 말일까지 실적 무관"
+  },
+  "benefits": [
+    {"id": "mgmt_fee", "name": "아파트관리비 10%", "kind": "rate", "rate": 0.10,
+     "match": [{"category": "UTILITY_INS", "merchant_share": "utility_mgmt_fee"}],
+     "min_txn_amount": 20000, "min_tier": 500000, "pools": ["mgmt_fee", "life"]},
+    {"id": "utility", "name": "공과금(전기·도시가스) 10%", "kind": "rate", "rate": 0.10,
+     "match": [{"category": "UTILITY_INS", "merchant_share": "utility_electric_gas"}],
+     "min_txn_amount": 20000, "min_tier": 500000, "pools": ["utility", "life"]},
+    {"id": "telecom", "name": "이동통신 3사 10%", "kind": "rate", "rate": 0.10,
+     "match": [{"category": "TELECOM", "customer_share": "telecom_mno3"}],
+     "min_txn_amount": 20000, "per_month": 1, "min_tier": 500000, "pools": ["telecom", "life"]},
+    {"id": "transit", "name": "대중교통 10%", "kind": "rate", "rate": 0.10,
+     "match": [{"category": "TRANSIT", "customer_share": "transit_postpaid_option"}],
+     "min_txn_amount": 20000, "min_tier": 500000, "pools": ["transit", "life"],
+     "_note": "후불교통 월 합산 청구 1건 기준으로 2만 원 이상 조건 적용"},
+    {"id": "insurance", "name": "보험료 10%", "kind": "rate", "rate": 0.10,
+     "match": [{"category": "UTILITY_INS", "merchant_share": "utility_insurance"}],
+     "min_txn_amount": 20000, "min_tier": 500000, "pools": ["insurance", "life"]},
+    {"id": "delivery", "name": "배달앱(배민·요기요·쿠팡이츠) 10%", "kind": "rate", "rate": 0.10,
+     "match": [{"category": "DELIVERY"}],
+     "min_txn_amount": 20000, "min_tier": 500000, "pools": ["delivery", "life"],
+     "_note": "쿠팡이츠 포함 3사라 배달 업종 전체로 봄 (상한 쪽)"},
+    {"id": "streaming", "name": "스트리밍 1,500원 (월 1회)", "kind": "fixed", "amount": 1500,
+     "match": [{"category": "CULTURE_OTT", "merchant_share": "culture_netflix_youtube"}],
+     "per_month": 1, "min_tier": 500000}
+  ],
+  "pools": {
+    "mgmt_fee":  {"500000": 5000},
+    "utility":   {"500000": 5000},
+    "telecom":   {"500000": 5000},
+    "transit":   {"500000": 5000},
+    "insurance": {"500000": 5000},
+    "delivery":  {"500000": 5000},
+    "life":      {"500000": 35000}
+  },
+  "unmodeled_benefits": [
+    {"name": "학습지 10%", "reason": "학습지 업종이 생성 데이터에 없음 (교육에 섞여 있음)"},
+    {"name": "국내 2~3개월 무이자할부", "reason": "무이자할부 비중은 손익 요율(installment_free_share)로 일괄 반영"}
+  ]
+}

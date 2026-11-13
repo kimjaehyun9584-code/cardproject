@@ -1,0 +1,39 @@
+{
+  "id": "shinhan_kakaopay_check",
+  "name": "카카오페이 신한 체크카드",
+  "issuer": "신한카드",
+  "card_kind": "check",
+  "annual_fee": 0,
+  "source": "data/reference/raw/products/shinhancard_kakaopay_check.html (신한카드 상품 페이지, 2026-11-04 다운로드). 카드고릴라 2025 인기 체크카드 10위",
+  "terms_checked": "2026-11-04",
+  "coverage": "core_missing",
+  "coverage_note": "주력 혜택인 카카오페이 결제 2% 적립이 계산되지 않음",
+  "performance": {
+    "tiers": [300000, 500000, 700000, 1000000],
+    "exclude_categories": [],
+    "grace": {"months": 2, "tier": 300000},
+    "_note": "실적 제외: 수수료·이자·기프트/선불카드·취소. 신규 회원은 등록월+1개월까지 통합 한도 5천 원"
+  },
+  "benefits": [
+    {"id": "transit", "name": "대중교통 3% 적립", "kind": "points", "rate": 0.03,
+     "match": [{"category": "TRANSIT", "customer_share": "transit_postpaid_option"}],
+     "min_tier": 300000, "pools": ["transit", "domestic"]},
+    {"id": "telecom", "name": "이동통신 3% 적립 (5만 원 이상)", "kind": "points", "rate": 0.03,
+     "match": [{"category": "TELECOM", "customer_share": "telecom_mno3"}], "min_txn_amount": 50000,
+     "min_tier": 300000, "pools": ["telecom", "domestic"]},
+    {"id": "cgv", "name": "CGV 최대 3천 원 적립 (월 1회)", "kind": "fixed", "amount": 3000,
+     "match": [{"category": "CULTURE_OTT", "merchant_share": "culture_cgv"}], "per_month": 1,
+     "min_tier": 300000, "pools": ["domestic"], "_note": "정액 3천 원으로 봄 (상한 쪽)"},
+    {"id": "overseas", "name": "해외 1% 적립 (한도 없음)", "kind": "points", "rate": 0.01,
+     "match": [{"category": "*", "overseas": true}]}
+  ],
+  "pools": {
+    "transit":  {"300000": 5000},
+    "telecom":  {"300000": 5000},
+    "domestic": {"300000": 5000, "500000": 7000, "700000": 10000, "1000000": 13000}
+  },
+  "unmodeled_benefits": [
+    {"name": "카카오페이 결제 2% 적립 (월 1만 원, 실적 무관)", "reason": "생성 데이터에 간편결제 수단 구분이 없음. 이 카드의 주력 혜택이라 혜택이 크게 과소"},
+    {"name": "해외 ATM 인출 건당 $3 적립", "reason": "현금 인출은 생성 데이터에 없음"}
+  ]
+}

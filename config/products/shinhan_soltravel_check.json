@@ -1,0 +1,34 @@
+{
+  "id": "shinhan_soltravel_check",
+  "name": "신한카드 SOL트래블 체크",
+  "issuer": "신한카드",
+  "card_kind": "check",
+  "annual_fee": 0,
+  "source": "data/reference/raw/products/shinhancard_soltravel_check.html (신한카드 상품 페이지, 2026-11-04 다운로드). 카드고릴라 2025 인기 체크카드 7위",
+  "terms_checked": "2026-11-04",
+  "coverage": "core_missing",
+  "coverage_note": "주력 혜택인 해외 결제·ATM 수수료 면제가 계산되지 않음",
+  "performance": {
+    "tiers": [300000],
+    "exclude_categories": [],
+    "exclude_shares": [{"category": "*", "overseas": true}],
+    "grace": {"months": 2, "tier": 300000},
+    "_note": "국내 이용금액만 실적. 국세·지방세·4대보험 등 제외. 신규 회원은 등록월+1개월까지 실적 무관"
+  },
+  "benefits": [
+    {"id": "convenience", "name": "4대 편의점 5% (일 1회·월 3회)", "kind": "rate", "rate": 0.05,
+     "match": [{"category": "CONVENIENCE", "channel": "offline"}],
+     "per_day": 1, "per_month": 3, "min_tier": 300000, "pools": ["convenience"]},
+    {"id": "transit", "name": "국내 대중교통 1%", "kind": "rate", "rate": 0.01,
+     "match": [{"category": "TRANSIT", "customer_share": "transit_postpaid_option"}],
+     "min_tier": 300000, "pools": ["transit"]}
+  ],
+  "pools": {
+    "convenience": {"300000": 3000},
+    "transit":     {"300000": 3000}
+  },
+  "unmodeled_benefits": [
+    {"name": "해외 이용 수수료(국제브랜드 1%·해외 서비스 0.2%) 면제", "reason": "손익 모델에 해외 이용 수수료 수익 항목이 없어 면제 효과가 0. 고객 입장 혜택은 과소"},
+    {"name": "공항라운지 연 2회, 해외 대중교통 1%, CU 행사상품 5%, 해외 ATM 수수료 면제", "reason": "라운지 이용·현금 인출·행사상품 자료 없음"}
+  ]
+}

@@ -1,0 +1,49 @@
+{
+ "id": "tossbank_check_anywhere",
+ "name": "토스뱅크 체크카드 (어디서나 캐시백)",
+ "issuer": "토스뱅크",
+ "card_kind": "check",
+ "annual_fee": 0,
+ "source": "data/reference/raw/products/tossbank_checkcard_switch_cashback.json (https://www.tossbank.com/card/benefits, 2026-11-13 다운로드). 스위치 캐시백 시즌6 어디서나, 2026.04.01~2027.01.20. 카드고릴라 2025 인기 체크카드 3위",
+ "terms_checked": "2026-11-13",
+ "promo_end": "2027-01-20",
+ "coverage": "full",
+ "performance": {
+  "tiers": [],
+  "exclude_categories": [],
+  "grace": null,
+  "_note": "전월실적 조건 없음 (캐시백 4종 중 선택)"
+ },
+ "benefits": [
+  {
+   "id": "all",
+   "name": "국내 전 가맹점 0.3% (한도 없음)",
+   "kind": "rate",
+   "rate": 0.003,
+   "match": [
+    {
+     "category": "*"
+    }
+   ],
+   "exclude": [
+    {
+     "category": "*",
+     "overseas": true
+    }
+   ],
+   "min_txn_amount": 334,
+   "_note": "제외 대상은 국세·지방세·4대보험·수수료·상품권 등으로, 공과금·관리비·대중교통은 대상"
+  }
+ ],
+ "pools": {},
+ "unmodeled_benefits": [
+  {
+   "name": "국세·지방세·4대보험 결제 제외",
+   "reason": "생성 데이터에 해당 결제가 없어 영향 없음"
+  },
+  {
+   "name": "해외 수수료·ATM 수수료 면제",
+   "reason": "손익 모델에 해외 수수료 수익 항목 없음"
+  }
+ ]
+}

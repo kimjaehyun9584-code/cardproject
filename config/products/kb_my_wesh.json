@@ -1,0 +1,55 @@
+{
+  "id": "kb_my_wesh",
+  "name": "KB국민 My WE:SH",
+  "issuer": "KB국민카드",
+  "card_kind": "credit",
+  "annual_fee": 15000,
+  "source": "data/reference/raw/products/banksalad_CARD000128.json (뱅크샐러드, 2026-11-03 다운로드). 연회비는 해외겸용 15,000원 (국내전용 9,000원 상품도 있음)",
+  "terms_checked": "2026-11-03",
+  "coverage": "partial",
+  "coverage_note": "KB Pay 10%(월 5천 원), 생일 월 한도 2배 빠짐",
+  "performance": {
+    "tiers": [400000],
+    "exclude_categories": ["TRANSIT"],
+    "exclude_shares": [
+      {"category": "UTILITY_INS", "merchant_share": "utility_electric_gas"},
+      {"category": "UTILITY_INS", "merchant_share": "utility_water"},
+      {"category": "UTILITY_INS", "merchant_share": "utility_mgmt_fee"}
+    ],
+    "exclude_discounted": true,
+    "grace": {"months": 2, "tier": 400000},
+    "_note": "실적 제외: 이 카드로 할인받은 결제 전체, 아파트관리비, 공과금(전기/수도 등), 무승인전표(교통요금 등)를 반영. 후불교통은 무승인 매출로 보고 제외. 신규 회원은 사용등록일~다음 달 말일까지 실적 무관"
+  },
+  "benefits": [
+    {"id": "food_conv", "name": "음식점·편의점(GS25·CU) 10%", "kind": "rate", "rate": 0.10,
+     "match": [{"category": "RESTAURANT"}, {"category": "CONVENIENCE", "merchant_share": "convenience_gs25_cu"}],
+     "max_eligible_per_txn": 25000, "min_tier": 400000, "pools": ["food_conv"],
+     "_note": "건당 할인 2,500원 한도 → 건당 대상 금액 25,000원"},
+    {"id": "telecom", "name": "이동통신 10%", "kind": "rate", "rate": 0.10,
+     "match": [{"category": "TELECOM", "customer_share": "telecom_mno3_liivm"}],
+     "max_eligible_per_txn": 25000, "min_tier": 400000, "pools": ["telecom_ott"]},
+    {"id": "ott", "name": "OTT 30%", "kind": "rate", "rate": 0.30,
+     "match": [{"category": "CULTURE_OTT", "merchant_share": "culture_netflix_youtube"}],
+     "max_eligible_per_txn": 8334, "min_tier": 400000, "pools": ["telecom_ott"],
+     "_note": "건당 할인 2,500원 한도 → 건당 대상 금액 약 8,334원"},
+    {"id": "eat_delivery", "name": "[먹는데 진심] 배달앱 5%", "kind": "rate", "rate": 0.05,
+     "match": [{"category": "DELIVERY", "merchant_share": "delivery_baemin_yogiyo"}],
+     "min_tier": 400000, "pools": ["eat"]},
+    {"id": "eat_cafe", "name": "[먹는데 진심] 커피 5%", "kind": "rate", "rate": 0.05,
+     "match": [{"category": "CAFE"}],
+     "min_tier": 400000, "pools": ["eat"]}
+  ],
+  "pools": {
+    "food_conv":   {"400000": 5000},
+    "telecom_ott": {"400000": 5000},
+    "eat":         {"400000": 5000}
+  },
+  "unmodeled_benefits": [
+    {"name": "KB Pay 10% (월 5천 원)", "reason": "간편결제 수단 구분이 생성 데이터에 없음"},
+    {"name": "더욱 진심 택1 중 노는데·관리에 진심", "reason": "선택형이라 '먹는데 진심' 하나로 고정. 고객별 최적 선택은 반영하지 않음"},
+    {"name": "Happy Birth Month (생일 월 한도 2배)", "reason": "연 1개월 효과, 생일 정보 없음"},
+    {"name": "전월실적 채워드림 (연 2회, 5만 원 한도)", "reason": "신청형 서비스"},
+    {"name": "마켓컬리 (먹는데 진심 배달 항목)", "reason": "컬리 비중 자료 없음"},
+    {"name": "무이자할부 결제 할인 제외", "reason": "결제별 무이자 여부가 생성 데이터에 없음"}
+  ]
+}
