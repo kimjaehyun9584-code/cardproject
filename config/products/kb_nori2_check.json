@@ -5,6 +5,9 @@
   "card_kind": "check",
   "annual_fee": 0,
   "source": "data/reference/raw/products/banksalad_CARD004248.json (뱅크샐러드, 2026-10-02 다운로드)",
+  "terms_checked": "2026-10-02",
+  "coverage": "partial",
+  "coverage_note": "뷰티·공연·놀이공원·앱스토어·공항라운지 빠짐",
   "performance": {
     "tiers": [200000, 300000, 400000, 600000, 800000],
     "exclude_categories": ["TRANSIT"],

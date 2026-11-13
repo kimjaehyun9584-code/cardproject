@@ -5,6 +5,7 @@
 되지 않도록, 맞지 않으면 바로 오류를 낸다.
 """
 
+import datetime as dt
 import json
 from pathlib import Path
 
@@ -16,6 +17,7 @@ SHARES_PATH = ROOT / "config" / "merchant_shares.json"
 PNL_PATH = ROOT / "config" / "pnl_assumptions.json"
 
 CARD_KINDS = {"credit", "check"}
+COVERAGE_LEVELS = {"full", "partial", "core_missing"}  # 계산 반영도 (웹앱 표시)
 BENEFIT_KINDS = {"rate", "points", "fixed", "per_liter"}
 KIND_FIELD = {"rate": "rate", "points": "rate", "fixed": "amount", "per_liter": "per_liter"}
 SHARE_LEVEL = {"merchant_share": "txn", "customer_share": "customer"}
@@ -77,6 +79,14 @@ def validate_product(prod, categories, shares):
     for field in ("id", "name", "card_kind", "annual_fee", "performance", "benefits", "pools", "source"):
         if field not in prod:
             raise ProductError(f"{pid}: 필수 항목 {field!r} 없음")
+    if prod.get("coverage", "partial") not in COVERAGE_LEVELS:
+        raise ProductError(f"{pid}: coverage는 {sorted(COVERAGE_LEVELS)} 중 하나")
+    for key in ("terms_checked", "promo_end"):
+        if key in prod:
+            try:
+                dt.date.fromisoformat(prod[key])
+            except (TypeError, ValueError):
+                raise ProductError(f"{pid}: {key}는 YYYY-MM-DD 날짜") from None
     if not 0.0 <= prod.get("customer_value", 1.0) <= 1.0:
         raise ProductError(f"{pid}: customer_value는 0~1")
     if prod["card_kind"] not in CARD_KINDS:

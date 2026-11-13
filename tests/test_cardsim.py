@@ -257,7 +257,7 @@ def test_top_of_group_only_largest_area():
 
 def test_advisor_profile_and_leakage():
     from cardsim.advisor import Population, evaluate
-    pop = Population(n_customers=800, seed=3)
+    pop = Population(n_customers=800, seed=3, cache=False)
     g = pop.lookalikes("30s", 1_000_000, n=20)
     assert len(g) == 20 and g["scale"].between(0.5, 2.0).all()
     df, details = evaluate(pop, g, ["shinhan_mr_life", "hyundai_zero3_discount", "kb_nori2_check"])
@@ -292,7 +292,7 @@ def test_every_nth_amount_by_txn_and_ride_days():
 
 def test_donation_cashback_costs_issuer_but_not_customer():
     from cardsim.advisor import Population, evaluate
-    pop = Population(n_customers=600, seed=5)
+    pop = Population(n_customers=600, seed=5, cache=False)
     g = pop.lookalikes("30s", 800_000, n=15)
     df, _ = evaluate(pop, g, ["tossbank_check_anywhere", "tossbank_check_donation"])
     r = df.set_index("id")
@@ -300,3 +300,34 @@ def test_donation_cashback_costs_issuer_but_not_customer():
     assert a["월 혜택"] == pytest.approx(d["월 혜택"]) and a["카드사 공헌이익"] == pytest.approx(d["카드사 공헌이익"])
     assert d["연 순혜택"] == 0 and a["연 순혜택"] > 0
     assert 0.0027 < a["혜택률"] <= 0.003  # 해외 결제는 캐시백 제외
+
+
+def test_promo_status_and_coverage_fields():
+    import datetime as dt
+    from cardsim.advisor import promo_status
+    from cardsim.products import load_all_products
+    prods = load_all_products()
+    assert all(p.get("coverage") in {"full", "partial", "core_missing"} for p in prods.values())
+    assert all("terms_checked" in p for p in prods.values())
+    k = prods["kbank_one_all"]
+    assert promo_status(k, dt.date(2026, 12, 31))["expired"] is False
+    assert promo_status(k, dt.date(2027, 1, 1))["expired"] is True
+    assert promo_status(prods["shinhan_mr_life"])["expired"] is False  # 종료일 없음
+
+
+def test_profile_overrides_change_matching_and_counts():
+    from cardsim.advisor import N_MONTHS, Population, Profile, _profile_txns, evaluate
+    pop = Population(n_customers=800, seed=7, cache=False)
+    g = pop.lookalikes("40s", 1_200_000, n=20)
+    ids = ["lotte_loca365", "shinhan_mr_life"]
+    base, base_d = evaluate(pop, g, ids)
+    alt, alt_d = evaluate(pop, g, ids, Profile(apt_fee=False, telecom_mno3=False))
+    loca = lambda d: d["lotte_loca365"]["by_rule"]
+    assert loca(alt_d).get("아파트관리비 10%", 0) == 0 and loca(alt_d).get("이동통신 3사 10%", 0) == 0
+    assert loca(base_d).get("이동통신 3사 10%", 0) > 0
+    # 업종 배율: 카페 0 → 카페 결제 없음, 월 사용액 합계는 유지
+    _, t0 = _profile_txns(pop, g, "credit")
+    _, t1 = _profile_txns(pop, g, "credit", Profile(category_factor=(("CAFE", 0.0), ("DELIVERY", 2.0))))
+    assert (t1["category"] == "CAFE").sum() == 0
+    assert (t1["category"] == "DELIVERY").sum() > 1.5 * (t0["category"] == "DELIVERY").sum()
+    assert t1["amount"].sum() == pytest.approx(t0["amount"].sum(), rel=0.001)

@@ -5,6 +5,9 @@
   "card_kind": "check",
   "annual_fee": 0,
   "source": "data/reference/raw/products/shinhancard_soltravel_check.html (신한카드 상품 페이지, 2026-11-04 다운로드). 카드고릴라 2025 인기 체크카드 7위",
+  "terms_checked": "2026-11-04",
+  "coverage": "core_missing",
+  "coverage_note": "주력 혜택인 해외 결제·ATM 수수료 면제가 계산되지 않음",
   "performance": {
     "tiers": [300000],
     "exclude_categories": [],

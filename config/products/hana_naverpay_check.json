@@ -5,6 +5,8 @@
   "card_kind": "check",
   "annual_fee": 0,
   "source": "data/reference/raw/products/banksalad_CARD004279.json (뱅크샐러드, 2026-11-04 다운로드). 카드고릴라 2025 인기 체크카드 5위",
+  "terms_checked": "2026-11-04",
+  "coverage": "full",
   "performance": {
     "tiers": [250000],
     "exclude_categories": [],

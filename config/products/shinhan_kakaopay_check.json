@@ -5,6 +5,9 @@
   "card_kind": "check",
   "annual_fee": 0,
   "source": "data/reference/raw/products/shinhancard_kakaopay_check.html (신한카드 상품 페이지, 2026-11-04 다운로드). 카드고릴라 2025 인기 체크카드 10위",
+  "terms_checked": "2026-11-04",
+  "coverage": "core_missing",
+  "coverage_note": "주력 혜택인 카카오페이 결제 2% 적립이 계산되지 않음",
   "performance": {
     "tiers": [300000, 500000, 700000, 1000000],
     "exclude_categories": [],

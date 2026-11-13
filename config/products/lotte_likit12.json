@@ -5,6 +5,8 @@
   "card_kind": "credit",
   "annual_fee": 10000,
   "source": "data/reference/raw/products/banksalad_CARD000038.json (뱅크샐러드, 2026-11-03 다운로드)",
+  "terms_checked": "2026-11-03",
+  "coverage": "full",
   "performance": {"tiers": [], "exclude_categories": [], "grace": null,
                   "_note": "실적 조건·할인 한도 없음"},
   "benefits": [

@@ -5,6 +5,10 @@
  "card_kind": "check",
  "annual_fee": 0,
  "source": "data/reference/raw/products/tossbank_checkcard_switch_cashback.json (https://www.tossbank.com/card/benefits, 2026-11-13 다운로드). 스위치 캐시백 시즌6 기부, 2026.04.01~2027.01.20. 카드고릴라 2025 인기 체크카드 3위",
+ "terms_checked": "2026-11-13",
+ "promo_end": "2027-01-20",
+ "coverage": "full",
+ "coverage_note": "카드사 비용은 전부 반영. 고객 몫은 기부라 순혜택 0",
  "performance": {
   "tiers": [],
   "exclude_categories": [],

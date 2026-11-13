@@ -5,6 +5,9 @@
   "card_kind": "check",
   "annual_fee": 0,
   "source": "data/reference/raw/products/shinhancard_deepdream_check_minions.html (신한카드 상품 페이지 'Deep Dream 체크(미니언즈)', 2026-11-04 다운로드). 카드고릴라 2025 인기 체크카드 4위",
+  "terms_checked": "2026-11-04",
+  "coverage": "partial",
+  "coverage_note": "택시 할인 빠짐",
   "performance": {
     "tiers": [200000, 400000, 800000],
     "exclude_categories": [],

@@ -9,7 +9,7 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
-from cardsim.advisor import AGE_BANDS, SEGMENTS, Population, category_mix, evaluate
+from cardsim.advisor import ADJUSTABLE, AGE_BANDS, SEGMENTS, Population, Profile, category_mix, evaluate
 
 # 차트 색: 실제 혜택 / 실적 미달 누수 / 한도·횟수 누수 (검증된 범주형 팔레트 1~3번)
 C_ACTUAL, C_TIER, C_LIMIT = "#2a78d6", "#eb6834", "#1baf7a"
@@ -17,17 +17,17 @@ C_ACTUAL, C_TIER, C_LIMIT = "#2a78d6", "#eb6834", "#1baf7a"
 st.set_page_config(page_title="카드 혜택·손익 시뮬레이터", page_icon="💳", layout="wide")
 
 
-@st.cache_resource(show_spinner="합성 고객 1만 명의 1년 결제를 만드는 중 (처음 한 번, 약 30초)...")
+@st.cache_resource(show_spinner="합성 고객 1만 명의 1년 결제를 불러오는 중 (서버에서 처음 한 번만 약 20초, 이후 2초)...")
 def population():
     return Population(n_customers=10000, seed=42)
 
 
 @st.cache_data(show_spinner="카드별로 1년치 혜택과 손익을 계산하는 중...")
-def run(age, spend, segment, n):
+def run(age, spend, segment, n, profile):
     pop = population()
     group = pop.lookalikes(age, spend, segment, n)
-    df, details = evaluate(pop, group)
-    return df, details, category_mix(pop, group), group
+    df, details = evaluate(pop, group, profile=profile)
+    return df, details, category_mix(pop, group, profile), group
 
 
 def won(v):
@@ -47,24 +47,56 @@ with st.sidebar:
     kinds = st.multiselect("카드 종류", ["신용카드", "체크카드"], default=["신용카드", "체크카드"])
     n = st.slider("비교할 닮은 고객 수", 30, 300, 100, step=10,
                   help="입력과 월 사용액이 가장 가까운 합성 고객 수. 많을수록 평균이 안정적")
+
+    st.subheader("결과를 크게 바꾸는 항목 (선택)")
+    st.caption("'모름'이면 합성 고객 평균을 씁니다.")
+    TRI = {"모름": None, "예": True, "아니오": False}
+    apt = st.radio("아파트 관리비를 카드로 내나요?", list(TRI), horizontal=True)
+    tel = st.radio("휴대폰 통신사", ["모름", "SKT·KT·LG U+", "알뜰폰"], horizontal=True)
+    trn = st.radio("후불교통(교통카드 기능)을 쓰나요?", list(TRI), horizontal=True)
+    LEVELS = {"안 씀": 0.0, "적게": 0.5, "보통": 1.0, "많이": 1.5, "아주 많이": 2.0}
+    factors = []
+    for cat, label in ADJUSTABLE.items():
+        lv = st.select_slider(f"{label} 결제 횟수", list(LEVELS), value="보통")
+        if LEVELS[lv] != 1.0:
+            factors.append((cat, LEVELS[lv]))
+    st.caption("횟수를 바꿔도 월 사용액 합계는 입력값으로 유지됩니다.")
+    show_core = st.checkbox("주력 혜택이 계산되지 않은 카드도 순위에 넣기", value=False,
+                            help="❌ 표시 카드: 데이터로 계산할 수 없는 주력 혜택이 있어 혜택이 작게, 카드사 이익이 크게 나옵니다")
+    profile = Profile(apt_fee=TRI[apt], telecom_mno3={"모름": None, "SKT·KT·LG U+": True, "알뜰폰": False}[tel],
+                      postpaid_transit=TRI[trn], category_factor=tuple(factors))
     st.caption("합성 데이터는 공개 통계(통계청·한국은행)에 맞춰 만든 가상 고객입니다. "
                "실제 개인 데이터가 아닙니다.")
 
-df, details, mix, group = run(age, spend_man * 10000, seg, n)
-df = df[df["종류"].isin(kinds)].reset_index(drop=True)
+df, details, mix, group = run(age, spend_man * 10000, seg, n, profile)
+df = df[df["종류"].isin(kinds)]
+hidden = df[df["coverage"] == "core_missing"]
+if not show_core:
+    df = df[df["coverage"] != "core_missing"]
+df = df.reset_index(drop=True)
 if df.empty:
     st.warning("카드 종류를 하나 이상 고르세요.")
     st.stop()
+df["표시명"] = df["카드"] + df["coverage"].map({"core_missing": " ❌"}).fillna("") + df["프로모션 만료"].map({True: " ⏰"}).fillna("")
 
 st.title("💳 카드 혜택·손익 시뮬레이터")
+st.info("공개 통계로 만든 **가상 고객 데이터**로 카드 약관을 계산해 비교하는 시뮬레이션입니다. "
+        "특정 카드의 가입을 권유하거나 실제 혜택·손익을 보장하지 않으며, 실제 조건은 각 카드사에서 확인하세요.", icon="ℹ️")
+expired = df[df["프로모션 만료"]]
+if len(expired):
+    st.error("⏰ 프로모션 기간이 끝난 조건으로 계산된 카드가 있습니다 (현재 조건과 다를 수 있음): "
+             + ", ".join(f"{r.카드} ({r.프로모션_종료일})" for r in expired.rename(columns={"프로모션 종료일": "프로모션_종료일"}).itertuples()))
 seg_txt = "" if seg is None else f" · {SEGMENTS.get(seg, seg)}"
 st.markdown(
     f"**{AGE_BANDS[age]}{seg_txt}, 월 {spend_man:,}만 원** 쓰는 고객과 비슷한 합성 고객 {len(group)}명이 "
     f"**카드 한 장으로 모든 결제를 1년간 했다고 보고** 실제 카드 {len(df)}종의 약관대로 계산했습니다."
 )
 
-best = df.iloc[0]
-top_co = df.sort_values("카드사 공헌이익", ascending=False).iloc[0]
+# 대표 카드는 주력 혜택이 계산된 카드 중에서, 만료된 프로모션은 빼고 고른다
+pickable = df[(df["coverage"] != "core_missing") & ~df["프로모션 만료"]]
+pickable = pickable if len(pickable) else df
+best = pickable.iloc[0]
+top_co = pickable.sort_values("카드사 공헌이익", ascending=False).iloc[0]
 
 
 def card(col, label, name, value, note):
@@ -77,11 +109,14 @@ def card(col, label, name, value, note):
 
 c1, c2, c3 = st.columns(3)
 card(c1, "고객에게 가장 유리한 카드", best["카드"], f"연 {best['연 순혜택']:,.0f}원",
-     f"{best['종류']} · 연회비 차감 순혜택")
+     f"{best['종류']} · 연회비 차감 순혜택 · {best['계산 반영도']}")
 card(c2, "그 카드를 쓰면 카드사는", best["카드"], f"월 {best['카드사 공헌이익']:+,.0f}원",
      f"회원 1인 공헌이익. 혜택 누수가 없었다면 월 {best['누수 없을 때 공헌이익']:+,.0f}원")
 card(c3, "카드사에 가장 남는 카드", top_co["카드"], f"월 {top_co['카드사 공헌이익']:+,.0f}원",
-     f"{top_co['종류']} · 고객 연 순혜택 {top_co['연 순혜택']:,.0f}원")
+     f"{top_co['종류']} · 고객 연 순혜택 {top_co['연 순혜택']:,.0f}원 · {top_co['계산 반영도']}")
+if not show_core and len(hidden):
+    st.caption(f"❌ 주력 혜택이 계산되지 않은 {len(hidden)}종({', '.join(hidden['카드'])})은 순위에서 뺐습니다. "
+               "왼쪽 아래 체크박스로 넣을 수 있습니다.")
 
 tab_c, tab_k, tab_d, tab_p = st.tabs(["고객 입장", "카드사 입장", "카드 상세", "프로필·가정"])
 
@@ -90,10 +125,10 @@ with tab_c:
     st.subheader("카드별 혜택과 혜택 누수 (월평균)")
     st.caption("실제 혜택 = 약관대로 받은 금액. 누수 = 같은 결제인데 조건 때문에 못 받은 금액. "
                "실적 미달: 전월실적 구간을 못 채워서 / 한도·횟수: 월 한도·일 횟수·건당 상한에 걸려서")
-    long = df.melt(id_vars=["카드"], value_vars=["월 혜택", "실적 미달 누수", "한도·횟수 누수"],
+    long = df.rename(columns={"카드": "_c", "표시명": "카드"}).melt(id_vars=["카드"], value_vars=["월 혜택", "실적 미달 누수", "한도·횟수 누수"],
                    var_name="구분", value_name="금액")
     long["구분"] = long["구분"].replace({"월 혜택": "실제 혜택"})
-    order = df["카드"].tolist()
+    order = df["표시명"].tolist()
     chart = alt.Chart(long).mark_bar(cornerRadiusEnd=4, stroke="white", strokeWidth=2).encode(
         y=alt.Y("카드:N", sort=order, title=None, axis=alt.Axis(labelLimit=260)),
         x=alt.X("sum(금액):Q", title="원/월", stack="zero"),
@@ -107,7 +142,8 @@ with tab_c:
     ).properties(height=36 * len(df))
     st.altair_chart(chart, use_container_width=True)
 
-    view = df[["카드", "종류", "연회비", "월 혜택", "연 순혜택", "혜택률", "실적 미달 누수", "한도·횟수 누수", "실적 미달 달 비율"]]
+    view = df[["카드", "종류", "계산 반영도", "연회비", "월 혜택", "연 순혜택", "혜택률", "실적 미달 누수", "한도·횟수 누수",
+               "실적 미달 달 비율", "약관 확인일", "프로모션 종료일"]]
     st.dataframe(
         view, hide_index=True, use_container_width=True,
         column_config={
@@ -120,8 +156,8 @@ with tab_c:
             "실적 미달 달 비율": st.column_config.NumberColumn(format="percent"),
         },
     )
-    st.info("포인트·캐시백은 1포인트 = 1원으로 봤습니다. 일부 카드는 데이터로 계산할 수 없는 혜택이 빠져 있어 "
-            "실제보다 작게 나옵니다 (특히 카카오페이 결제 2%, 해외 수수료 면제). '카드 상세' 탭에서 확인하세요.\n\n"
+    st.info("포인트·캐시백은 1포인트 = 1원으로 봤습니다. 계산 반영도: ✅ 약관 혜택을 전부 계산 / ⚠️ 작은 혜택 일부가 빠져 "
+            "실제보다 약간 작게 나옴 / ❌ 주력 혜택이 빠짐. 빠진 혜택은 '카드 상세' 탭에서 확인하세요.\n\n"
             "케이뱅크 ONE(시즌6, 2026.12.31까지)과 토스뱅크(시즌6, 2027.1.20까지)는 기간 한정 프로모션 조건이며, "
             "매달 캐시백 종류를 고를 수 있어 종류별로 따로 보여줍니다. 토스뱅크 기부 캐시백은 캐시백이 기부처로 가서 "
             "고객 연 순혜택을 0으로 봅니다 (카드사 비용은 같음).")
@@ -132,10 +168,10 @@ with tab_k:
     st.caption("공헌이익 = 가맹점수수료 + 연회비 + 할부수수료 − 혜택 − 조달 − 대손 − 승인 처리 − 모집 비용. "
                "누수가 없었다면 = 고객이 조건 없이 혜택을 다 받았을 때")
     k = df.sort_values("카드사 공헌이익", ascending=False)
-    long_k = k.melt(id_vars=["카드"], value_vars=["카드사 공헌이익", "누수 없을 때 공헌이익"],
+    long_k = k.rename(columns={"카드": "_c", "표시명": "카드"}).melt(id_vars=["카드"], value_vars=["카드사 공헌이익", "누수 없을 때 공헌이익"],
                     var_name="구분", value_name="원/월")
     chart_k = alt.Chart(long_k).mark_bar(cornerRadiusEnd=4).encode(
-        y=alt.Y("카드:N", sort=k["카드"].tolist(), title=None, axis=alt.Axis(labelLimit=260)),
+        y=alt.Y("카드:N", sort=k["표시명"].tolist(), title=None, axis=alt.Axis(labelLimit=260)),
         yOffset="구분:N",
         x=alt.X("원/월:Q"),
         color=alt.Color("구분:N", scale=alt.Scale(domain=["카드사 공헌이익", "누수 없을 때 공헌이익"],
@@ -146,7 +182,7 @@ with tab_k:
     rule = alt.Chart(pd.DataFrame({"x": [0]})).mark_rule(color="#888").encode(x="x:Q")
     st.altair_chart(chart_k + rule, use_container_width=True)
 
-    lines = pd.DataFrame({name: details[i]["lines"] for i, name in zip(k["id"], k["카드"])}).T
+    lines = pd.DataFrame({name: details[i]["lines"] for i, name in zip(k["id"], k["표시명"])}).T
     st.markdown("**손익 항목별 (원/월)**")
     st.dataframe(lines.round(0), use_container_width=True,
                  column_config={c: st.column_config.NumberColumn(format="%,.0f") for c in lines.columns})
@@ -162,6 +198,11 @@ with tab_d:
     a.metric("월 혜택", won(r["월 혜택"]))
     b.metric("월 누수", won(r["실적 미달 누수"] + r["한도·횟수 누수"]))
     c.metric("카드사 공헌이익", f"월 {r['카드사 공헌이익']:,.0f}원")
+    st.markdown(f"**계산 반영도:** {r['계산 반영도']}" + (f" — {d['coverage_note']}" if d["coverage_note"] else ""))
+    dates = f"**약관 확인일:** {r['약관 확인일']}"
+    if isinstance(r["프로모션 종료일"], str):
+        dates += f" · **프로모션 종료일:** {r['프로모션 종료일']}" + (" (⏰ 기간 종료, 현재 조건과 다를 수 있음)" if r["프로모션 만료"] else "")
+    st.markdown(dates)
     if d["tiers"]:
         st.write("전월실적 구간: " + " / ".join(f"{x // 10000}만 원" for x in d["tiers"]))
     else:
@@ -188,6 +229,9 @@ with tab_p:
         f"- 닮은 고객 {len(group)}명의 실제 월 사용액은 {group['monthly_spend'].min() / 1e4:,.0f}~"
         f"{group['monthly_spend'].max() / 1e4:,.0f}만 원이고, 입력한 금액에 맞게 결제 금액을 비례 조정했습니다 "
         f"(배율 {group['scale'].min():.2f}~{group['scale'].max():.2f}, 0.5~2배로 제한).\n"
+        "- 선택 입력: " + ", ".join([
+            f"아파트 관리비 카드 납부 {apt}", f"통신사 {tel}", f"후불교통 {trn}",
+            *[f"{ADJUSTABLE[c]} 결제 횟수 ×{f:g}" for c, f in profile.category_factor]]) + "\n"
         "- 고객 유형별 구성: " + ", ".join(f"{SEGMENTS.get(s, s)} {v}명" for s, v in group['segment'].value_counts().items()) + "\n"
         "- 손익 요율·가맹점 비중은 `config/pnl_assumptions.json`, `config/merchant_shares.json` (출처·추정·가정 구분, "
         "`docs/simulator_design.md` 참고).\n"

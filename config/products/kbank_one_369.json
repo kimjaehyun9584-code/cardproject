@@ -5,6 +5,9 @@
  "card_kind": "check",
  "annual_fee": 0,
  "source": "data/reference/raw/products/kbank_one_card_benefits.json (케이뱅크 ONE 체크카드 상세, 2026-11-04 다운로드). 시즌6 프로모션 기간 2026.09.01~2026.12.31. 카드고릴라 2025 인기 체크카드 1위",
+ "terms_checked": "2026-11-04",
+ "promo_end": "2026-12-31",
+ "coverage": "full",
  "performance": {
   "tiers": [],
   "exclude_categories": [],

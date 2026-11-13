@@ -5,6 +5,9 @@
   "card_kind": "credit",
   "annual_fee": 15000,
   "source": "data/reference/raw/products/banksalad_CARD000004.json (뱅크샐러드, 2026-10-02 다운로드). 연회비는 국내전용(S&) 기준, 해외겸용 18,000원",
+  "terms_checked": "2026-10-02",
+  "coverage": "partial",
+  "coverage_note": "세탁비·밤 택시·인테이크몰 할인 빠짐 (작은 혜택)",
   "performance": {
     "tiers": [300000, 500000, 1000000],
     "exclude_categories": [],

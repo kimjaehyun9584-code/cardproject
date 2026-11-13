@@ -5,6 +5,9 @@
   "card_kind": "credit",
   "annual_fee": 10000,
   "source": "data/reference/raw/products/banksalad_CARD003051.json (뱅크샐러드, 2026-10-02 다운로드). 라이프스타일 패키지는 패키지4(커피전문점 30% + 오픈마켓 7%)로 고정. 오픈마켓(G마켓·11번가·옥션), 소셜커머스(쿠팡·티몬·위메프), 트렌디숍(편의점·올리브영·유니클로 등) 구분은 카드고릴라 설명 기준(https://m.card-gorilla.com/contents/detail/490)",
+  "terms_checked": "2026-10-02",
+  "coverage": "partial",
+  "coverage_note": "택시 할인, 트렌디숍 일부 적립 빠짐",
   "performance": {
     "tiers": [
       300000
